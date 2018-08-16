@@ -25,7 +25,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "../ShurooqRTS/node_modules/jquery/dist/jquery.min.js" 
+            ]
           },
           "configurations": {
             "production": {

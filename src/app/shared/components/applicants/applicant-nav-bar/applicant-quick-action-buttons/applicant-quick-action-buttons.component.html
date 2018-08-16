@@ -1,0 +1,33 @@
+<div class="candidate-shortlist-right-bar right">
+  <a (click)="showQucikActionModal()" class="waves-effect waves-grey btn-flat  padding-12-left-right candidate-bar-button-margin tooltipped"  data-position="left" data-delay="50" data-tooltip="Click to short list Mr. Kevin Pieterson for this job"><i class="fas fa-clipboard-check"></i> Shortlist </a>
+</div>
+
+  
+
+<!-- Modal Structure -->
+<div id="modal_quickaction" class="modal">
+<div class="modal-content">
+
+
+<div class="row">
+
+<div class="input-field col s12">
+<h4 style="margin-bottom:0px;">Shortlist Mr. Kevin Pieterson for a job.</h4>
+<select placeholder="Select Stage" id="qJob" style="width:100%;">
+
+<option value="1" selected disabled>Select a job</option>
+<option value="2">Marketing Analyst, Marketing Department, Al Majaz</option>
+<option value="3">HR Consultant, HR Department, Shurooq</option>
+</select>
+
+</div>
+</div>
+
+
+
+</div>
+<div class="modal-footer">
+<a (click)="shortlistCandidate()" class=" modal-action  waves-effect btn-flat">Shortlist</a>
+<a class=" modal-action modal-close waves-effect  btn-flat">Cancel</a>
+</div>
+</div>

@@ -1,0 +1,45 @@
+<div class="mn-content fixed-sidebar">
+ <app-header></app-header>
+
+ <app-sidebar-right></app-sidebar-right>
+  
+  <aside id="slide-out" class="side-nav white fixed">
+      <div class="side-nav-wrapper">
+          <div class="sidebar-profile">
+              <div class="sidebar-profile-image">
+                  <img src="/assets/images/profile-image.png" class="circle" alt="">
+              </div>
+              <div class="sidebar-profile-info">
+                 
+                      <p>Abdul Shabbeer</p>
+                     
+                 
+              </div>
+          </div>
+     
+      <app-nav-menu></app-nav-menu>
+     
+      <!--
+      <div class="footer">
+          <p class="copyright">Steelcoders ©</p>
+          <a href="#!">Privacy</a> &amp; <a href="#!">Terms</a>
+      </div>
+      -->
+      
+
+
+</div>
+  </aside>
+  <main class="mn-inner" id="mninner" runat="server">
+  
+    <div id="cInfo" class="routeContainer" [@routeAnimation]="getDepth(myOutlet)">
+        <router-outlet #myOutlet="outlet"></router-outlet>
+        </div>
+    
+   <!--  <app-dashboard></app-dashboard>
+      <app-candidates></app-candidates>
+      <app-jobs></app-jobs> -->
+  </main>
+  
+  <app-footer></app-footer>
+<div class="left-sidebar-hover"></div>

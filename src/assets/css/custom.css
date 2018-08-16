@@ -1,0 +1,335 @@
+/* Write your custom CSS here */
+
+/* Write your custom CSS here */
+.candidate-header{
+    padding:12px 20px 5px 20px !important; clear:both; background-color:#f9f9f9;  border-bottom: 1px solid #e0e0e0; ;
+}
+.clear-both {
+    clear:both;
+}
+.candidate-list-title{
+    font-size: 13px !important;
+}
+.candidate-list-designation{
+    font-weight: normal !important;
+    font-size: 12px !important;
+}
+
+.candidate-selected{
+   background: #e2e1e1;
+}
+
+.collapsable-candidate-filter-header{
+    border-top: none !important;
+    border-right: none !important;
+    border-left:none !important;
+    border-bottom:none !important;
+}
+.collapsable-candidate-filter-body{
+    padding: 1rem !important;
+}
+.mailbox-list a{
+        padding: 15px 20px 9px 20px !important;
+}
+.mailbox-title{
+    font-size: 20px !important;
+}
+.mailbox-author{
+    font-size:14px !important;
+}
+
+.mailbox-subtitle{
+   margin:  2rem 0 1rem 0;
+   text-transform: uppercase;
+   
+   font-size:18px;
+}
+
+.padding-12-left-right{
+    padding-left:12px; padding-right:12px !important;
+}
+.cv-subtitle-heading{
+    font-size: 14px;
+}
+.cv-subtitle-heading-small{
+    font-size: 13px;
+}
+.mailbox-view{
+    padding: 10px 25px 25px 25px;
+}
+.mailbox-divider{
+        margin-top: 10px;
+}
+
+.breadcrumb {
+    float: left;
+    margin: 0 8px 5px;
+    color: #555  !important;
+    line-height: 37px;
+    font-size:14px;
+}
+.breadcrumb-nav{
+    text-decoration: underline;
+    color: #555;
+}
+
+.basic-info-title{
+    width:150px;
+    font-weight: bolder;
+    font-weight: 600;
+    color: darkslategray;
+    
+}
+.candidate-active-tab{
+    background-color:#e2e1e1 !important;font-size:14px;
+}
+.candidate-shortlist-right-bar{
+    
+    background: #f9f9f9;
+    padding: 0px 35px;
+    
+    border-bottom: 1px solid #e0e0e0;
+}
+.candidate-bar-button-margin{
+margin: 3px 0px 4px;
+}
+.width-100{
+    width:100px;
+}
+
+.status-info-box-dodgerblue{
+    background-color:dodgerblue; padding:5px; color:whitesmoke;
+}
+
+#cd-timeline{
+    margin-top: 0px;
+}
+.mailbox-subtitle{
+    background-color: #f4f4f4;
+    padding: 8px;
+    margin-top: 14px;
+}
+td, th{
+    padding: 7px 5px;
+}
+
+.mailbox-active-button{
+    background-color: #e2e1e1;
+}
+.header-filter-margin-padding-zero   {
+    margin:0px;
+    padding: 0px;
+}
+
+.job-boxes{
+    border: 1px solid red; float:left; height:100px;
+}
+
+.job-listing-heading{
+      font-size: 20px;
+      margin: 0px
+}
+.job-listing-sub-heading{
+      font-size: 13px;
+      margin: 0px;
+      padding-left:10px;
+      padding-top: 4px;
+}
+    .margin-top-zero{
+        margin-top: 0px;
+    }
+    #main-boxes{
+        padding:10px;
+    }
+    .jobs-summary-portlet{
+        background-color:#f9f9f9; padding-bottom:15px;
+    }
+
+.approved-candidates-summary-portlet {
+    background-color: white;
+    padding-bottom: 15px;
+}
+
+    .padding-12px{
+        padding: 12px;
+    }
+
+    #main-boxes a{
+        color: rgba(0, 0, 0, .6)
+    }
+
+    /*
+    #main-boxes a:hover { 
+     color:darkblue;
+}
+    */
+    #main-boxes .card-content:hover{
+        background-color:#e2e1e1;
+    }
+    #main-boxes h4{
+       font-size: 1.75rem;
+    }
+
+    #main-boxes .btn-flat{
+        background-color: #e2e1e1;
+    }
+    #main-boxes .btn-flat:hover{
+         background-color: #00acc1;
+         color: white;
+    }
+
+    
+
+    .breadcrumb-dropdown{
+        width: 125px !important;
+    }
+
+    .mailbox-view-header{
+        padding-top: 12px;
+    }
+
+    .job-interview-candidate-pic{
+        width: 55px;
+    }
+    /*.job-interview-candidate-pic:hover{
+        width: 100px;
+    }*/
+
+    .job-interview-icons{
+        font-size:24px;
+        padding: 10px 5px 10px 5px;
+    }
+
+    #main-boxes-inverview .card-content{
+        padding: 12px;
+        padding-top: 15px;
+    }
+#main-boxes-inverview .card-action{
+padding: 7px;
+text-align: left;
+background-color: #dde7e6;
+padding-left: 10px;
+font-size: 12.5px;    
+
+}
+
+  #main-boxes-inverview .btn-flat{
+        background-color: #e2e1e1;
+    }
+    #main-boxes-inverview    .btn-flat:hover{
+         background-color: #00acc1;
+         color: white;
+    }
+
+    #main-boxes-inverview  .interview-confirmed{
+        background-color: #efd041;
+    }
+
+      #main-boxes-inverview  .interview-conducted{
+        background-color: #84d5a6;
+    }
+ #main-boxes-inverview {
+        margin: 1rem 0 0rem 0;
+    }
+    
+    .padding-bottom-5px{
+        padding-bottom: 5px;
+    }
+     .padding-top-5px{
+        padding-top: 5px;
+    }
+
+    .interview-list-display-icons{
+        font-size: 24px;
+        margin-left: 10px;
+        margin-top:3px;
+    }
+
+    .cd-features-list li{
+        padding: 12px;
+    }
+    .cd-features-list li{
+         padding: 12px !important;
+    }
+    
+    #modal_filter_candidates{
+        width: 100%;
+        min-height: 370px;
+    }
+
+    .row .col.l1point5{
+    width: 12.5%;
+    margin-left: auto;
+    left: auto;
+    right: auto;
+    }
+.btn-flat-no-hover:hover{
+background-color: #e2e1e1;
+         color: #555;
+}
+
+.history-button-card-view{
+    font-size:20px; padding-top:0px;
+   
+}
+
+.card-view-history-link{
+    margin-right: 6px !important; color: #373939 !important;
+}
+
+.card-light{
+   background-color:  #f4f4f4 !important;
+}
+
+.card-sub-title{
+    font-size: 12.5px;
+}
+.collapsable-header{
+    background-color:#e8f1f0; font-size:18px;
+}
+
+.top-marginless{
+    margin-top: 0px;
+    border-top:0px;
+    border-top:none;
+}
+.collapsable-header-icon{
+    margin-right:5px !important;
+}
+
+.white{
+    color:white;
+}
+
+.card-less-padding{
+    padding: 10px 3px 10px 10px !important;
+}
+.timeline-icon{
+    font-size: 35px;
+    color: white;
+    padding-top: 12px;
+}
+.cd-timeline-img{
+text-align: center;
+}
+
+.routeContainer{
+    position: relative;
+    
+}
+.routeContainer>*{
+    display: block;
+}
+
+/* Fix the job header */
+.fix-job-hdr{
+	position: -webkit-sticky;
+	position: sticky;
+	top: 60px;
+	z-index:500;
+}
+
+.applicant-ref{
+    font-weight: 800;
+    color: #313534;
+}

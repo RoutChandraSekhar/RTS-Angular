@@ -1,0 +1,28 @@
+<li *ngFor="let applicant of ApplicantsList;  let i = index" [ngClass]="'candidate-selected'">
+
+  <a style="cursor: pointer;" (click)="GetApplicantInfo(applicant.ApplicantID)"> 
+      <div class="left">
+          <img src="/assets/images/profile-image-1.png" alt="" class="circle mailbox-profile-image" style="margin-top:-10px;">
+      </div>
+      <h5 class="mail-author candidate-list-designation">Angular Developer</h5>
+      <h4 class="mail-title candidate-list-title">{{applicant.applicantName}}</h4>
+      <h4 class="mail-title candidate-list-title">Ref# CX-{{applicant.applicantID}}</h4>
+      <span *ngFor="let applicant of ApplicantDetails">
+            <span> {{ applicant.applicantName }} </span><br/>
+
+        <span *ngFor="let education1 of applicant.education">
+            <span>Education :  {{education1.college}}</span><br/>
+            <span *ngFor="let grade of education1.marks">
+                <span> {{grade.subject}} - {{grade.score}}</span><br/>
+                
+            </span>
+        </span>
+        <hr/>
+    </span>
+  </a>
+</li> 
+
+
+
+<app-test-component></app-test-component>
+
