@@ -18,6 +18,8 @@ import { BreadcrumbApplicantInterviewsComponent } from './applicants-interviews/
 import { SharedModule } from '../shared/shared.module';
 import { ApplicantInfoCardComponent } from './applicant-info-card/applicant-info-card.component';
 import { ApplicantHistoryComponent } from './applicant-history/applicant-history.component';
+import { AddVacancyComponent } from './add-vacancy/add-vacancy.component';
+import { EvaluateCandidateComponent } from './evaluate-candidate/evaluate-candidate.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { ApplicantHistoryComponent } from './applicant-history/applicant-history
     JobDescriptionComponent,
     BreadcrumbApplicantInterviewsComponent,
     ApplicantInfoCardComponent,
-    ApplicantHistoryComponent
+    ApplicantHistoryComponent,
+    AddVacancyComponent,
+    EvaluateCandidateComponent
   ],
   exports:[
     JobsComponent,

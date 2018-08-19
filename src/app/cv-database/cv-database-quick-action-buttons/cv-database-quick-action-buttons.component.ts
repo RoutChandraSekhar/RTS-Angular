@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-cv-database-quick-action-buttons',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CvDatabaseQuickActionButtonsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  AddNewCandidate(){
+    this.router.navigate(['/addcandidate']);
+    
   }
 
 }

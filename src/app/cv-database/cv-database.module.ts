@@ -9,6 +9,18 @@ import { ApplicantApplicationLogComponent } from '../shared/components/applicant
 import { BreadcrumbCvDatabaseComponent } from './breadcrumb-cv-database/breadcrumb-cv-database.component';
 import { CvDatabaseQuickActionButtonsComponent } from './cv-database-quick-action-buttons/cv-database-quick-action-buttons.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { AddCandidateComponent } from './add-candidate/add-candidate.component';
+import { BreadcrumbAddCandidateComponent } from './add-candidate/breadcrumb-add-candidate/breadcrumb-add-candidate.component';
+import { AddCandidateQuickAcionButtonsComponent } from './add-candidate/add-candidate-quick-acion-buttons/add-candidate-quick-acion-buttons.component';
+import { AddCandidateFormPostionAppliedComponent } from './add-candidate/add-candidate-form-postion-applied/add-candidate-form-postion-applied.component';
+import { AddCandidateFormPersonalProfileComponent } from './add-candidate/add-candidate-form-personal-profile/add-candidate-form-personal-profile.component';
+import { AddCandidateFormWorkExperienceComponent } from './add-candidate/add-candidate-form-work-experience/add-candidate-form-work-experience.component';
+import { AddCandidateFormEmploymentProfileComponent } from './add-candidate/add-candidate-form-employment-profiles/add-candidate-form-employment-profile/add-candidate-form-employment-profile.component';
+import { AddCandidateFormAcademicProfileComponent } from './add-candidate/add-candidate-form-academic-profiles/add-candidate-form-academic-profile/add-candidate-form-academic-profile.component';
+import { AddCandidateFormWhyshurooqComponent } from './add-candidate/add-candidate-form-whyshurooq/add-candidate-form-whyshurooq.component';
+import { AddCandidateFormUploadcvComponent } from './add-candidate/add-candidate-form-uploadcv/add-candidate-form-uploadcv.component';
+import { AddCandidateFormEmploymentProfilesComponent } from './add-candidate/add-candidate-form-employment-profiles/add-candidate-form-employment-profiles.component';
+import { AddCandidateFormAcademicProfilesComponent } from './add-candidate/add-candidate-form-academic-profiles/add-candidate-form-academic-profiles.component';
 
 var myroutes : Routes=[
   {path:"candidates",  data:{depth:2}, component:CvDatabaseComponent,
@@ -31,7 +43,7 @@ var myroutes : Routes=[
     AppRoutingModule,
     myroutesCVDatabase
   ],
-  declarations: [CvDatabaseComponent, BreadcrumbCvDatabaseComponent, CvDatabaseQuickActionButtonsComponent],
+  declarations: [CvDatabaseComponent, BreadcrumbCvDatabaseComponent, CvDatabaseQuickActionButtonsComponent, AddCandidateComponent, BreadcrumbAddCandidateComponent, AddCandidateQuickAcionButtonsComponent, AddCandidateFormPostionAppliedComponent, AddCandidateFormPersonalProfileComponent, AddCandidateFormWorkExperienceComponent, AddCandidateFormEmploymentProfileComponent, AddCandidateFormAcademicProfileComponent, AddCandidateFormWhyshurooqComponent, AddCandidateFormUploadcvComponent, AddCandidateFormEmploymentProfilesComponent, AddCandidateFormAcademicProfilesComponent],
   exports:[CvDatabaseComponent]
 })
 export class CvDatabaseModule { 
