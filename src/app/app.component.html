@@ -1,2 +1,10 @@
-<app-master> </app-master>
+
+<app-login *ngIf="! isLogged"  (isLoggedinEvent)= "isLoggedIn($event)"></app-login>
+<app-master *ngIf="isLogged" (isLoggedinEvent)= "isLoggedIn($event)"> </app-master>
+
+
+<!--
+<app-master></app-master>
+-->
+
 

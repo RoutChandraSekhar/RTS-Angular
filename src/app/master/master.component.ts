@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {trigger, transition, group, query, style,animate} from '@angular/animations';
-
+declare var $:any;
 @Component({
   selector: 'app-master',
   templateUrl: './master.component.html',
@@ -43,6 +43,20 @@ export class MasterComponent implements OnInit {
 
   ngOnInit() {
   }
+
+
+  ngAfterViewInit() {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    $(".fixed-sidebar .navigation-toggle a").removeClass("button-collapse")
+    $(".fixed-sidebar .navigation-toggle a").addClass("reverse-icon")
+    $(".fixed-sidebar .navigation-toggle a").click(function() {
+    $("#slide-out").toggle(), $(".mn-inner").toggleClass("hidden-fixed-sidebar"), $(".mn-content").toggleClass("fixed-sidebar-on-hidden"), $(document).trigger("fixedSidebarClick")
+    })
+    $(".dropdown-button").dropdown()
+
+}
+
   getDepth(outlet){
     return outlet.activatedRouteData['depth'];
 

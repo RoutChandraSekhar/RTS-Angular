@@ -9,11 +9,12 @@ import { ApplicantsInterviewsComponent } from '../jobs/applicants-interviews/app
 
 
 var myroutes : Routes=[
-  {path:"home", data:{depth:1}, component:DashboardComponent},
+   {path:"home", data:{depth:1}, component:DashboardComponent},
    {path:"dashboard1",  data:{depth:1},component:DashboardComponent},
    {path:"dashboard",  data:{depth:1}, component:DashboardComponent},
    {path:"jobs",  data:{depth:3}, component:JobsComponent},
    {path:"interviews",  data:{depth:4}, component:ApplicantsInterviewsComponent},
+   {path:"", data:{depth:1}, component:DashboardComponent},
    
  ];
  

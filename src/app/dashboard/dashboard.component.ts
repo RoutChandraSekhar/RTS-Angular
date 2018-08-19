@@ -21,6 +21,9 @@ export class DashboardComponent implements OnInit {
     this.flot1();
   }
 
+  
+  
+
   counterup(){
     $('.counter').each(function () {
       $(this).prop('Counter',0).animate({

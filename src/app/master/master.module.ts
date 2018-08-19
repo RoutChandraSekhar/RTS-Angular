@@ -26,6 +26,6 @@ import { JobsModule } from '../jobs/jobs.module';
     NavMenuComponent,
     FooterComponent
   ],
-  exports:[MasterComponent]
+  exports:[MasterComponent, HeaderComponent, NotificationsComponent]
 })
 export class MasterModule { }
