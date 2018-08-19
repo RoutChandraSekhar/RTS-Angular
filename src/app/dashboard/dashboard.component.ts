@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { CandidateService } from '../shared/services/candidate.service';
+
 declare var $:any;
 
 @Component({
@@ -8,7 +10,9 @@ declare var $:any;
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  country : number=3;
+  uName: string="shabeer";
+  constructor(@Inject(CandidateService) private candidateService : CandidateService) { }
 
   ngOnInit() {
     const body = document.getElementsByTagName('body')[0];
@@ -19,10 +23,14 @@ export class DashboardComponent implements OnInit {
 
     this.counterup();
     this.flot1();
+
+  
   }
 
   
-  
+  onRegisterClick(){
+    console.log(this.country);
+  }
 
   counterup(){
     $('.counter').each(function () {

@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
+import {FormsModule} from '@angular/forms'
 import { DashboardComponent } from './dashboard.component';
 
 @NgModule({
-  imports: [
+  imports: [FormsModule
   ],
   declarations: [DashboardComponent],
   exports:[DashboardComponent]
