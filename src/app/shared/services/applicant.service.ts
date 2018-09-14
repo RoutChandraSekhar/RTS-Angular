@@ -3,7 +3,7 @@ import { Applicant } from '../models/applicant';
 import {HttpClient} from  "@angular/common/http";
 import {Observable} from 'rxjs';
 import { ApplicantDetails } from '../models/applicant-details';
-
+  
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +16,8 @@ export class ApplicantService {
 
    }
 
+
+   /*
   public GetApplicantsList()
   {
     this.ApplicantsList=[
@@ -30,6 +32,8 @@ export class ApplicantService {
 
   }
 
+  */
+
   public GetAllApplicants():Observable<Applicant[]>
   {
     return this.http.get<Applicant[]>("http://core.sharjahfdiforum.ae/api/values",{responseType:"json"});
@@ -37,6 +41,7 @@ export class ApplicantService {
    
   }
 
+  /*
   public GetApplicantDetailsStatic(){
   this.ApplicantDetails=[
       new ApplicantDetails(1501,"Abdul Shabbeer","Application Developer","Male","1.jpg",
@@ -44,6 +49,8 @@ export class ApplicantService {
     )
   ]
   }
+
+  */
 
   public GetApplicantDetails():Observable<ApplicantDetails[]>
   {

@@ -1,11 +1,11 @@
 <div class="left">
   <div class="left">
-      <img src="/assets/images/profile-image-1.png" alt="" class="circle mailbox-profile-image z-depth-1">
+      <img [src]="GetProfilePic(SelectedCandidateBasicInfo.Gender)" alt="" class="circle mailbox-profile-image z-depth-1">
   </div>
   <div class="left">
-      <span class="mailbox-title">Mr. Kevin Piterson</span>
-      <span class="applicant-ref">Ref# CX-1510</span> <br />
-      <span class="mailbox-author">Web Developer</span> <br />
-      <span class="mailbox-author">Application Status : PHONE SCREEN</span>
+      <span class="mailbox-title">{{SelectedCandidateBasicInfo.FullName}}</span>
+      <span class="applicant-ref">{{SelectedCandidateBasicInfo.CandidateDisplayID}}</span> <br />
+      <span class="mailbox-author">{{SelectedCandidateBasicInfo.Gender}}</span> <br />
+      <span class="mailbox-author">{{SelectedCandidateBasicInfo.CandidateNationality}}</span>
   </div>
 </div>

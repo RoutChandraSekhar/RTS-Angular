@@ -1,37 +1,29 @@
-<div class="mailbox-view-header">
-    <app-applicant-title-info></app-applicant-title-info>
-  <div class="right mailbox-buttons">
+<ng-container *ngIf="isLoaded; else elseTemplate">
+    <div class="mailbox-view-header">
+        <app-applicant-title-info></app-applicant-title-info>
+      <div class="right mailbox-buttons">
+    
+          <!--<a href="cv-viewer.html" target="_blank" class="waves-effect waves-grey btn-flat m-t-xs padding-12-left-right tooltipped" data-position="left" data-delay="50" data-tooltip="Click to view CV on a new tab"><i class="fas fa-eye"></i> View CV</a>
+          <a class="waves-effect waves-grey btn-flat m-t-xs padding-12-left-right tooltipped" data-position="left" data-delay="50" data-tooltip="Click to download the CV"><i class="fas fa-download"></i> Download CV</a>
+          <a class="waves-effect waves-grey btn-flat m-t-xs padding-12-left-right tooltipped" data-position="left" data-delay="50" data-tooltip="Mark as favourite"><i class="fas fa-star"></i></a>
+          <a class="waves-effect waves-grey btn-flat m-t-xs padding-12-left-right tooltipped" data-position="left" data-delay="50" data-tooltip="Remove user from further search results"><i class="fas fa-ban"></i></a>-->
+    
+    
+      </div>
+    </div>
+    <div class="divider mailbox-divider"></div>
+    <div class="mailbox-text">
+    </div>
 
-      <!--<a href="cv-viewer.html" target="_blank" class="waves-effect waves-grey btn-flat m-t-xs padding-12-left-right tooltipped" data-position="left" data-delay="50" data-tooltip="Click to view CV on a new tab"><i class="fas fa-eye"></i> View CV</a>
-      <a class="waves-effect waves-grey btn-flat m-t-xs padding-12-left-right tooltipped" data-position="left" data-delay="50" data-tooltip="Click to download the CV"><i class="fas fa-download"></i> Download CV</a>
-      <a class="waves-effect waves-grey btn-flat m-t-xs padding-12-left-right tooltipped" data-position="left" data-delay="50" data-tooltip="Mark as favourite"><i class="fas fa-star"></i></a>
-      <a class="waves-effect waves-grey btn-flat m-t-xs padding-12-left-right tooltipped" data-position="left" data-delay="50" data-tooltip="Remove user from further search results"><i class="fas fa-ban"></i></a>-->
-
-
+    <app-applicant-current-application-status [CurrentAppliationStatus]="CurrentAppliationStatus" [isCurrentApplicationExist]="isCurrentApplicationExist" [CurrentCandidateID]="CurrentCandidateID" ></app-applicant-current-application-status>
+    <app-applicant-timeline [ApplicantTimeline]="ApplicantTimeline"></app-applicant-timeline>
+    <app-applicant-past-application-status [ApplicantPastApplicationStatus]="ApplicantPastApplicationStatus" [isPastApplicationExist]="isPastApplicationExist"></app-applicant-past-application-status>
+</ng-container>
+<ng-template #elseTemplate>
+  <div align="center" style="margin-top:15px;">
+    <img src="/assets/images/fluid-loader.gif" />
   </div>
-</div>
-<div class="divider mailbox-divider"></div>
-<div class="mailbox-text">
-  <!--<div class="mailbox-details">
-<a href="javascript:void(0);" class="details-toggle">Show Details</a>
-<div class="row details-list">
-<div class="col s4 first-col">
-<span>From</span>
-<span>To</span>
-<span>Date</span>
-</div>
-<div class="col s8 second-col">
-<span>integer.mattis@gmail.com</span>
-<span>jonathan.mattis@gmail.com</span>
-<span>Today at 14:31</span>
-</div>
-</div>
-</div>-->
-
-<app-applicant-current-application-status></app-applicant-current-application-status>
-<app-applicant-timeline></app-applicant-timeline>
-<app-applicant-past-application-status></app-applicant-past-application-status>
- 
   
+</ng-template>
 
- 
+

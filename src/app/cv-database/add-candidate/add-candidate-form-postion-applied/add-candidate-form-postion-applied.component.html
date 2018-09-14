@@ -1,13 +1,21 @@
+
+<button (click)="onBtnClick()" id="applel" name="apple">hi there</button>
+
+<!--Position Applied-->
 <div class="card">
   <div class="card-content">
       <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Position Applied</span>
       <div class="row" style="margin-bottom:0px;">
           <div class="col s12" style="margin-top:-10px;  padding:0px;">
-              <div class="row" >
+              <div class="row" style="margin-bottom:0px;">
                  <div class="input-field col s12">
-            <select class="js-states browser-default" multiple="multiple" tabindex="-1" style="width: 100%" id="multiple">
+            <select tabindex="-1" style="width: 100%" id="DrpPositionApplied"  >
               <!-- Load from API-->
+              <option value="Apple">Apple</option>
+              <option value="Mango">Mango</option>
               </select>
+
+             
               
           </div>
               </div>
@@ -19,28 +27,41 @@
           <div class="col s12" style="margin-top:-10px;  padding:0px;">
               <div class="row" style="padding-top:20px;" >
                  <div class="input-field col s6" >
-           
+                     <p>Preffered Location</p>
+                    <select tabindex="-1" style="width: 100%" id="DrpPrefferedLocation" multiple>
+                        <!-- Load from API-->
+                        <option value="Apple">Apple</option>
+                        <option value="Mango">Mango</option>
+                        </select>
+                     
+                    <!--
               <label class="active">Preffered Location</label>
 
-                       <p class="p-v-xs1">
-                  <input type="checkbox" id="chk1" value="1" style="left:0px;"  >
-                  <label for="chk1" style="padding-left: 25px; padding-right:25px; left: 0rem">Sharjah City</label>
+                       
+                  <input type="checkbox" id="chkSharjahCity" value="1" style="left:0px;"  >
+                  <label for="chkSharjahCity" style="padding-left: 25px; padding-right:25px; left: 0rem">Sharjah City</label>
 
-                           <input type="checkbox" id="chk5" value="2" >
-                  <label for="chk5" style="padding-left: 25px; padding-right:30px;">Mleiha</label>
+                           <input type="checkbox" id="chkMleiha" value="2" >
+                  <label for="chkMleiha" style="padding-left: 25px; padding-right:30px;">Mleiha</label>
 
-                            <input type="checkbox" id="chk2" value="3">
-                  <label for="chk2" style="padding-left: 25px; padding-right:30px;">Eastern Sharjah</label>
+                            <input type="checkbox" id="chkEasternShajah" value="3">
+                  <label for="chkEasternShajah" style="padding-left: 25px; padding-right:30px;">Eastern Sharjah</label>
 
 
-                          
+                          -->
 
                        
-              </p>
-                      
+              
+              
           </div>
-                  <div class="input-field col s12" >
-                  <input id="last_name" type="text" class="validate" placeholder="Mention if Other Location" autocomplete="off">
+                  <div class="input-field col s6" >
+                     
+                               
+                            <p>&nbsp;</p>
+
+
+
+                  <input id="last_name" type="text"  placeholder="Mention if Other Location" autocomplete="off">
                       </div>
               </div>
            
@@ -48,3 +69,327 @@
       </div>
   </div>
 </div>
+
+
+<!-- Personal Profile-->
+<div class="card">
+        <div class="card-content">
+            <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Personal Profile</span>
+            <div class="row">
+                        <div class="input-field col s4">
+                             <input id="FirstName" type="text"  [(ngModel)]="FirstName" name="FirstName">
+                            <label for="FirstName" class="">First Name (*)</label>
+         
+                        </div>
+      
+                        <div class="input-field col s4">
+                             <input id="MiddleName" type="text"  [(ngModel)]="MiddleName" name="MiddleName">
+                            <label for="MiddleName" class="">Middle Name</label>
+                        </div>
+      
+                        <div class="input-field col s4">
+                             <input id="LastName" type="text" [(ngModel)]="LastName" name="LastName">
+                            <label for="LastName" class="">Last Name (*)</label>
+                        </div>
+             </div>    
+            <div class="row">
+                        <div class="input-field col s3">
+                             <select style="width:100%;" id="DrpReligion" name="DrpReligion">
+                       
+                                  <option value="1">Islam</option>
+                                  <option value="2">Hindu</option>
+                                  <option value="3">Christian</option>
+                    </select>
+                            <label for="DrpReligion" class="active">Relgion</label>
+         
+                        </div>
+      
+                        <div class="input-field col s3">
+                             <select style="width:100%;" id="DrpCaste" name="DrpCaste">
+                       
+                        <option value="1">ABC</option>
+                        <option value="2">EFG</option>
+                       
+                    </select>
+                            <label for="DrpCaste" class="active">Caste</label>
+         
+                        </div>
+      
+                        <div class="input-field col s3">
+                             <select style="width:100%;" id="DrpCountry" name="DrpCountry">
+                       
+                        <option value="1">UAE</option>
+                        <option value="2">India</option>
+                        <option value="3">USA</option>
+                    </select>
+                            <label for="DrpCountry" class="active">Country</label>
+         
+                        </div>
+                  <div class="input-field col s3">
+                             <select style="width:100%;" id="DrpEmirate" name="DrpEmirate">
+                       
+                        <option value="7">Dubai</option>
+                        <option value="8">Sharjah</option>
+                        <option value="1000">Other</option>
+                    </select>
+                            <label for="DrpEmirate" class="active">Emirate</label>
+         
+                        </div>
+      
+                
+             </div> 
+            <div class="row" style="padding-top:15px;">
+                <div class="input-field col s4">
+                             <select style="width:100%;" multiple id="DrpLanguagesKnown" name="DrpLanguagesKnown">
+                       
+                        <option value="1">English</option>
+                        <option value="2">Hindi</option>
+                        <option value="3">Arabic</option>
+                    </select>
+                            <label for="DrpLanguagesKnown" class="active" style="padding-top:30px">Languages known (*)</label>
+         
+                        </div>
+      
+                <div class="input-field col s4">
+                             <select style="width:100%;" id="DrpVisaStatus" name="DrpVisaStatus">
+                       
+                        <option value="4">Visit</option>
+                        <option value="5">Employment</option>
+                        <option value="6">Dependant</option>
+                    </select>
+                            <label for="DrpVisaStatus" class="active" style="padding-top:30px">Visa Status (*)</label>
+         
+                        </div>
+      
+                <div class="input-field col s4">
+                             <select style="width:100%;" id="DrpNoticePeriod" name="DrpNoticePeriod">
+                       
+                        <option value="1 month">1 month</option>
+                        <option value="2 month">2 month</option>
+                      
+                    </select>
+                            <label for="DrpNoticePeriod" class="active" style="padding-top:30px">Notice Period</label>
+         
+                        </div>
+            </div>
+      
+             <div class="row">
+                        <div class="input-field col s6">
+                             <input id="Email" type="text"  [(ngModel)]="Email" name="Email">
+                            <label for="Email" class="">Email (*)</label>
+         
+                        </div>
+      
+                        <div class="input-field col s6">
+                             <input id="MobileNo" type="text" [(ngModel)]="MobileNo" name="MobileNo">
+                            <label for="MobileNo" class="">Mobile No (*)</label>
+                        </div>
+      
+                        
+             </div>  
+      
+            <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="DetailsofRelativesinShurooq" class="materialize-textarea" length="160" [(ngModel)]="DetailsofRelativesinShurooq" name="relativedetails"></textarea>
+                     
+                            <label for="DetailsofRelativesinShurooq" class="">Furnish the details of relatives at SHUROOQ (If any)</label>
+         
+                        </div>
+      
+                        
+      
+                        
+             </div>  
+        </div>
+      </div>
+
+
+
+      <!-- Work Emperience-->
+
+      <div class="card">
+            <div class="card-content">
+              <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Work Experience</span>
+              <div class="row">
+                              <div class="input-field col s3">
+                                           <input id="TotalWorkExperience" type="text" [(ngModel)]="TotalWorkExperience" name="TotalWorkExperience">
+                                          <label for="TotalWorkExperience" class="">Total Work Experience (*)</label>
+                       
+                                      </div>
+            
+                              <div class="input-field col s3">
+                                           <input id="UAEWorkExperience" type="text"  [(ngModel)]="UAEWorkExperience" name="UAEWorkExperience">
+                                          <label for="UAEWorkExperience" class="">UAE Work Experience (*)</label>
+                       
+                                      </div>
+            
+                              <div class="input-field col s3">
+                                           <input id="NonUAEWorkExperience" type="text"  [(ngModel)]="NonUAEWorkExperience" name="NonUAEWorkExperience">
+                                          <label for="NonUAEWorkExperience" class="">Non-UAE Work Experience (*)</label>
+                       
+                                      </div>
+            
+                              <div class="input-field col s3">
+                                           <input id="RelevantWorkExperience" type="text" [(ngModel)]="RelevantWorkExperience" name="RelevantWorkExperience">
+                                          <label for="RelevantWorkExperience" class="">Relevant Work Experience (*)</label>
+                       
+                                      </div>
+                          </div>
+              
+            </div>
+            </div>
+
+
+<!--Employment Profile-->
+<div  *ngFor="let employmentProfile of employmentProfiles let i = index">
+
+        <div class="card">
+                <div class="card-content">
+                    <div class="row">
+                    <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Employment Profile    </span>
+                 
+                   <div class="right" *ngIf="isEmployeProfileDeletable()">
+                       <a style="cursor:pointer" (click)="RemoveEmployeProfile(i)">
+                        <i class="material-icons" >close</i> </a>
+                    </div>
+                </div>
+                    <div class="row">
+                            
+                        <div class="input-field col s6">
+                                     <input  type="text"  [(ngModel)]="employmentProfile.designation" id="designation"  name="designation">
+                                    <label  class="">Designation</label>
+
+                                    
+
+                                  
+                                    
+                 
+                                </div>
+              
+                        <div class="input-field col s6">
+                                <input id="reportingto" type="text"  [(ngModel)]="employmentProfile.reportingto" name="reportingto">
+                                <label  class="">Reporting To</label>
+                 
+                                </div>
+                    </div>
+              
+                    
+              
+                    <div class="row">
+                        <div class="input-field col s6">
+                                     <input id="currentemployer" type="text"   [(ngModel)]="employmentProfile.currentemployer" name="currentemployer">
+                                    <label class="">Employer</label>
+                 
+                                </div>
+              
+                        <div class="input-field col s2">
+                                     <input id="salary" type="text" [(ngModel)]="employmentProfile.salary" name="salary">
+                                    <label  class=""> Gross Salary (AED)</label>
+                 
+                                </div>
+              
+                        <div class="input-field col s2">
+                                     <input id="employedfrom" type="text"  [(ngModel)]="employmentProfile.employedfrom" name="employedfrom">
+                                    <label class="">Employed From</label>
+                 
+                                </div>
+              
+                        <div class="input-field col s2">
+                                     <input id="employedto" type="text"  [(ngModel)]="employmentProfile.employedto" name="employedto">
+                                    <label  class="">Employed To</label>
+                 
+                                </div>
+                    </div>
+              
+                     <div class="row">
+              <div class="input-field col s12">
+                                      <textarea id="reasonforleaving" class="materialize-textarea" length="500" [(ngModel)]="employmentProfile.reasonforleaving" name="reasonforleaving"></textarea>
+                                    <label class="">Reason for leaving</label>
+                 
+                                </div>
+              </div>
+                </div>
+              </div>
+</div>
+
+<div class="row">
+        <a (click)="addEmploymentProfiles()" class="waves-effect waves-light btn right" style="width:350px;">
+            <i class="material-icons right">add_box</i>Add More Employment Information</a>
+    </div>
+
+
+
+<!-- Academic Profile-->
+<div class="card">
+        <div class="card-content">
+          <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Academic Profile</span>
+           <div class="row">
+                  <div class="input-field col s5">
+                          <select style="width:100%;" id="DrpQualification" name="DrpQualification" [(ngModel)]="Qualification">
+                    
+                     <option value="1">High School</option>
+                     <option value="2">Bachelors</option>
+                     <option value="3">Masters</option>
+                   
+                 </select>
+                      
+      
+                     </div>
+        
+                          <div class="input-field col s3">
+                                       <input id="last_name" type="text" class="validate">
+                                      <label for="last_name" class="">University/College</label>
+                   
+                                  </div>
+        
+                          <div class="input-field col s2">
+                                       <input id="last_name" type="text" class="validate">
+                                      <label for="last_name" class="">Year of completion</label>
+                   
+                                  </div>
+        
+                          <div class="input-field col s2">
+                                       <input id="last_name" type="text" class="validate">
+                                      <label for="last_name" class="">Result</label>
+                   
+                                  </div>
+                      </div>
+          </div>
+        </div>
+
+
+<!-- Why Shurooq -->
+<div class="card">
+        <div class="card-content">
+          <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Why do you wish to join SHUROOQ?</span>
+           <div class="row">
+                          <div class="input-field col s12">
+                                       <textarea id="WhyShurooq" class="materialize-textarea" length="300" [(ngModel)]="WhyShurooq" name="WhyShurooq"></textarea>
+        
+                                  </div>
+        
+                          
+                      </div>
+          </div>
+</div>        
+
+
+<!--Upload CV-->
+<div class="card">
+        <div class="card-content">
+          <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Upload CV (*)</span>
+           <div class="row">
+                        <div class="file-field input-field">
+                                      <div class="btn teal lighten-1">
+                                          <span>Select CV</span>
+                                          <input type="file" name="UploadCV" id="UploadCV">
+                                      </div>
+                                      <div class="file-path-wrapper">
+                                          <input class="file-path validate" type="text">
+                                      </div>
+                                  </div>
+        
+                          
+                      </div>
+          </div>
+        </div>

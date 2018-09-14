@@ -20,11 +20,27 @@ import { ApplicantInfoCardComponent } from './applicant-info-card/applicant-info
 import { ApplicantHistoryComponent } from './applicant-history/applicant-history.component';
 import { AddVacancyComponent } from './add-vacancy/add-vacancy.component';
 import { EvaluateCandidateComponent } from './evaluate-candidate/evaluate-candidate.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { InterviewFilterComponent } from './applicants-interviews/interview-filter/interview-filter.component';
+import { MatSelectModule, MatCheckboxModule, MatInputModule, MatAutocomplete, MatAutocompleteModule } from '@angular/material';
+import { BsDatepickerModule } from 'ngx-bootstrap';
 
 
 @NgModule({
   imports: [
-    SharedModule
+    BsDatepickerModule.forRoot(),
+    CommonModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
+    RouterModule,
+    MatSelectModule,
+    MatCheckboxModule,
+   
   ],
   declarations: [
     JobsComponent,
@@ -46,7 +62,8 @@ import { EvaluateCandidateComponent } from './evaluate-candidate/evaluate-candid
     ApplicantInfoCardComponent,
     ApplicantHistoryComponent,
     AddVacancyComponent,
-    EvaluateCandidateComponent
+    EvaluateCandidateComponent,
+    InterviewFilterComponent
   ],
   exports:[
     JobsComponent,

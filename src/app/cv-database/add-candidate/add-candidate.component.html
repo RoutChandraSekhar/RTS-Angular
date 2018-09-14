@@ -1,28 +1,549 @@
-<div class="row">
-  <div class="col s12" style="background-color:#e2e1e1; padding-top:5px">
-    <app-breadcrumb-add-candidate></app-breadcrumb-add-candidate>
-   <!-- <app-add-candidate-quick-acion-buttons></app-add-candidate-quick-acion-buttons> -->
+
+<button (click)="onBtnClick()">Test here btn click</button>
+        
+
+    <ng-container *ngIf="isLoaded; else elseTemplate">
+        <div class="row">
+            <div class="col s12" style="background-color:#e2e1e1; padding-top:5px">
+              <app-breadcrumb-add-candidate></app-breadcrumb-add-candidate>
+             <!-- <app-add-candidate-quick-acion-buttons></app-add-candidate-quick-acion-buttons> -->
+                    </div>
+          
+          <div class="col s12 m12 l12 job-application-form-s12" style="  padding:15px;" >
+          
+            <!--
+              <app-add-candidate-form-postion-applied></app-add-candidate-form-postion-applied>
+              
+              <app-add-candidate-form-personal-profile></app-add-candidate-form-personal-profile>
+              
+              <app-add-candidate-form-work-experience></app-add-candidate-form-work-experience>
+              <app-add-candidate-form-employment-profiles></app-add-candidate-form-employment-profiles>
+              <app-add-candidate-form-academic-profiles></app-add-candidate-form-academic-profiles>
+              <app-add-candidate-form-whyshurooq></app-add-candidate-form-whyshurooq>
+              <app-add-candidate-form-uploadcv></app-add-candidate-form-uploadcv>-->
+          
+          
+              <button (click)="onBtnClick()" id="applel" name="apple">hi there</button>
+             
+              <!--Position Applied-->
+              <div class="card">
+                <div class="card-content">
+                    <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Position Applied</span>
+                    <div class="row" style="margin-bottom:0px;">
+                        <div class="col s12" style="margin-top:-10px;  padding:0px;">
+                            <div class="row" style="margin-bottom:0px;">
+                               <div class="input-field col s12">
+
+                                    
+             
+                            <mat-form-field style="width:100%; margin-top:3px;" > 
+                                    <mat-select multiple  name="PositionsApplied" [(ngModel)]="SelectedVacancies">
+                                            <mat-option *ngFor="let Vacancy of VacancyList" [value]="Vacancy.VacancyID">{{Vacancy.Title}}</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                           
+                            
+                        </div>
+                            </div>
+                         
+                        </div>
+                    </div>
+              
+                    <div class="row" style="margin-bottom:0px;">
+                        <div class="col s12" style="margin-top:-10px;  padding:0px;">
+                            <div class="row" style="padding-top:20px;" >
+                               <div class="input-field col s6" >
+                                   <p>Preffered Location</p>
+                                  
+                                  <mat-form-field style="width:100%; margin-top:3px;"> 
+                                      <mat-select  multiple name="drpLocation" [(ngModel)]="SelectedLocations">
+                                        <mat-option *ngFor="let location of LocationList" [value]="location.locationID">{{location.Location}}</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                           
+                        </div>
+                                <div class="input-field col s6" >
+                                   
+                                             
+                                          <p>&nbsp;</p>
+              
+              
+                               
+                                <input  type="text"  placeholder="Mention if Other Location" autocomplete="off"[(ngModel)]="PrefferedOtherLocations" name="PrefferedOtherLocations" >
+                               
+                               
+                              
+                                    </div>
+                            </div>
+                         
+                        </div>
+                    </div>
+                </div>
+              </div>
+              
+              
+              <!-- Personal Profile-->
+              <div class="card">
+                      <div class="card-content">
+                          <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Personal Profile</span>
+                          <div class="row">
+                                      <div class="input-field col s4">
+                                           <input id="NameFirst" type="text"  [(ngModel)]="NameFirst" name="NameFirst" [ngModelOptions]="{standalone: true}">
+                                          <label for="NameFirst" class="">First Name (*)</label>
+                       
+                                      </div>
+                    
+                                      <div class="input-field col s4">
+                                           <input id="NameMiddle" type="text"  [(ngModel)]="NameMiddle" name="NameMiddle" [ngModelOptions]="{standalone: true}">
+                                          <label for="NameMiddle" class="">Middle Name</label>
+                                      </div>
+                    
+                                      <div class="input-field col s4">
+                                           <input id="NameLast" type="text" [(ngModel)]="NameLast" name="NameLast" [ngModelOptions]="{standalone: true}">
+                                          <label for="NameLast" class="">Last Name (*)</label>
+                                      </div>
+                           </div>    
+
+
+                           <div class="row">
+                            <div class="input-field col s3">
+                                <label for="DateOfBirth" class="datecalendar" >Date of birth (*)</label>
+                                 <input id="DateOfBirth" type="text"  [(ngModel)]="DateOfBirth" name="DateOfBirth" [ngModelOptions]="{standalone: true}" bsDatepicker style="z-index: 100" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }">
+                                
+             
+                            </div>
+          
+                            <div class="input-field col s3">
+                                    <label  class="active">Gender(*)</label>
+                                <mat-form-field style="width:100%; margin-top:3px;"> 
+                                    <mat-select   name="drpReligion" [(ngModel)]="Gender"  >
+                                        <mat-option value="Male">Male</mat-option>
+                                        <mat-option value="Female">Female</mat-option>
+                                      
+                                    </mat-select>
+                                  </mat-form-field>
+                                  
+                            </div>
+          
+                            <div class="input-field col s3">
+                                <mat-form-field style="width:100%; margin-top:3px;"> 
+                                    <mat-select   name="MaritialStatus" [(ngModel)]="MaritialStatus"  >
+                                        <mat-option value="Single">Single</mat-option>
+                                        <mat-option value="Married">Married</mat-option>
+                                       
+                                      
+                                    </mat-select>
+                                  </mat-form-field>
+                                <label for="NameLast" class="active">Maritial Status </label>
+                            </div>
+
+                            
+                            <div class="input-field col s3">
+                                <input id="NameLast" type="number" [(ngModel)]="NoOfDependant" name="NoOfDependant" [ngModelOptions]="{standalone: true}">
+                               <label for="NameLast" class="active">Dependants </label>
+                           </div>
+                 </div>   
+
+
+
+                          <div class="row">
+                                      <div class="input-field col s3">
+                                        
+                              <mat-form-field style="width:100%; margin-top:3px;"> 
+                                      <mat-select   name="drpReligion" [(ngModel)]="ReligionID" (ngModelChange)="onReligionChange()" >
+                                            <mat-option value="1">Islam</mat-option>
+                                            <mat-option value="9">Christianity</mat-option>
+                                            <mat-option value="10">Hinduism</mat-option>
+                                        <mat-option *ngFor="let Religion of ReligionList" [value]="Religion.ReligionID">{{Religion.Religion}}</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                    <label  class="active">Relgion(*)</label>
+                              </div>
+                    
+                                      <div class="input-field col s3">
+          
+                              <mat-form-field style="width:100%; margin-top:3px;"> 
+                                      <mat-select   name="drpCaste" [(ngModel)]="CasteID"[disabled]="isCasteDropdownDisabled" >
+                                         
+                                        <mat-option *ngFor="let Caste of CasteList" [value]="Caste.casteID">{{Caste.Caste}}</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                    <label  class="active">Caste(*)</label>
+                                      </div>
+                    
+                                      <div class="input-field col s3">
+
+                                        <!--
+                                            <select  id="DrpResidence" style="width:100%;" [(ngModel)]="CountryOfResidence" (change)="onResidenceCountryChange()">
+                                                    <option value="0" selected>Select Country</option>
+                                                    <option *ngFor="let c of CountryNationalityList" [ngValue]="c.CountryID">{{c.Country}}</option>  
+                                                                  
+                                                  </select>
+                                                  -->
+                                                  <mat-form-field style="width:100%; margin-top:3px;"> 
+                                                  <mat-select   name="DrpResidence" [(ngModel)]="CountryOfResidence" (ngModelChange)="onResidenceCountryChange()" >
+                                                        <mat-option value="1">UAE</mat-option>
+                                                        <mat-option *ngFor="let c of CountryNationalityList" [value]="c.CountryID">{{c.Country}}</mat-option>
+                                                      </mat-select>
+                                                    </mat-form-field>
+                                          <label for="DrpResidence" class="active">Country of residence</label>
+                       
+                                      </div>
+                                <div class="input-field col s3">
+                                      <mat-form-field style="width:100%; margin-top:5px;">
+                                              <mat-select [(ngModel)]="CityID" name="CityID" style="width:100%;" [disabled]="isCityDisabled" >
+                                               <mat-option value="1000" selected></mat-option>
+                                                <mat-option value="1">Sharjah</mat-option>
+                                                <mat-option value="2">Dubai</mat-option>
+                                                <mat-option value="3">Abu Dhabi</mat-option>
+                                                <mat-option value="4">Ajman</mat-option>
+                                                <mat-option value="5">Fujairah</mat-option>
+                                                <mat-option value="6">Ras al Khaimah</mat-option>
+                                                <mat-option value="7">Umm al Quwain</mat-option>
+                                              </mat-select>
+                                            </mat-form-field>
+                                          <label for="DrpEmirate" class="active">Emirate</label>
+                       
+                                      </div>
+                    
+                              
+                           </div> 
+                          <div class="row" style="padding-top:15px;">
+
+                            <div class="input-field col s3">
+                                <mat-form-field style="width:100%; margin-top:3px;">
+                                    <mat-select   name="DrpNationality" [(ngModel)]="Nationality"  >
+                                            <mat-option value="1">UAE</mat-option>
+                                            <mat-option *ngFor="let c of CountryNationalityList" [value]="c.CountryID">{{c.Country}}</mat-option>
+                                          </mat-select>
+                                        </mat-form-field>
+                                 <label  class="active">Nationality</label>
+                                   </div>
+                 
+
+
+                              <div class="input-field col s3">
+                                
+                                   <mat-form-field style="width:100%; margin-top:3px;"> 
+                                      <mat-select  multiple name="drpLanguage" [(ngModel)]="SelectedLanguages">
+                                            
+                                            
+                                           
+                                        <mat-option *ngFor="let Language of LanguageList" [value]="Language.LanguageID">{{Language.Language}}</mat-option>
+                                   </mat-select>
+                                   </mat-form-field>
+                                    <label  class="active">Language</label>
+                                      </div>
+                    
+                              <div class="input-field col s3">
+          
+                                      <mat-form-field style="width:100%; margin-top:5px;"   >
+                                              <mat-select  style="width:100%;" name="DrpVisaType" [(ngModel)]="VisaStatusID" >
+                                               
+                                                <mat-option value="1">Visit</mat-option>
+                                                <mat-option value="2">Employment</mat-option>
+                                                <mat-option value="3">Dependant</mat-option>
+                                              </mat-select>
+                                            </mat-form-field>
+                                          <label class="active">Visa Status</label>
+                                        
+                       
+                                      </div>
+                    
+                              <div class="input-field col s3">
+                                      <mat-form-field style="width:100%; margin-top:5px;" >
+                                              <mat-select  style="width:100%;" [(ngModel)]="NoticePeriod" name="NoticePeriod">
+                                               
+                                                <mat-option value="1">1 month</mat-option>
+                                                <mat-option value="2">2 months</mat-option>
+                                                <mat-option value="3">3 months</mat-option>
+                                                <mat-option value="6">6 months</mat-option>
+                                              </mat-select>
+                                            </mat-form-field>
+                                          <label class="active">Notice Period (*)</label>
+                       
+                                      </div>
+                          </div>
+                    
+                           <div class="row">
+                                      <div class="input-field col s4">
+                                           <input id="Email" type="text"  [(ngModel)]="Email" name="Email">
+                                          <label for="Email" class="">Email (*)</label>
+                       
+                                      </div>
+                    
+                                      <div class="input-field col s4">
+                                           <input id="MobileNo" type="text" [(ngModel)]="MobileNo" name="MobileNo">
+                                          <label for="MobileNo" class="">Mobile No (*)</label>
+                                      </div>
+          
+                                      <div class="input-field col s4">   
+                                               <mat-form-field style="width:100%; margin-top:3px;"> 
+                                                  <mat-select  multiple [(ngModel)]="SelectedJobIndustrys" name="SelectedJobIndustrys">
+                                                    <mat-option *ngFor="let JobIndustry of JobIndustryList" [value]="JobIndustry.IndustryID">{{JobIndustry.Industry}}</mat-option>
+                                               </mat-select>
+                                               </mat-form-field>
+                                                <label  class="active">Job Industry (*)</label>
+                                                  </div>
+                    
+                                      
+                           </div>  
+                    
+                          <div class="row">
+                                      <div class="input-field col s12">
+                                          <textarea id="DetailsofRelativesinShurooq" class="materialize-textarea" length="160" [(ngModel)]="RelativeDetails" name="relativedetails"></textarea>
+                                   
+                                          <label for="DetailsofRelativesinShurooq" class="">Furnish the details of relatives at SHUROOQ (If any) (*)</label>
+                       
+                                      </div>      
+                           </div>  
+                      </div>
+                    </div>
+              
+              
+              
+                    <!-- Work Emperience-->
+              
+                    <div class="card">
+                          <div class="card-content">
+                            <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Work Experience</span>
+                            <div class="row">
+                                            <div class="input-field col s3">
+                                                         <input id="WorkExperienceTotal" type="number" [(ngModel)]="WorkExperienceTotal" name="WorkExperienceTotal" placeholder="No of Years">
+                                                        <label for="WorkExperienceTotal" class="active">Total Work Experience (*)</label>
+                                     
+                                                    </div>
+                          
+                                            <div class="input-field col s3">
+                                                         <input id="WorkExperienceUAE" type="number"  [(ngModel)]="WorkExperienceUAE" name="WorkExperienceUAE" placeholder="No of Years">
+                                                        <label for="WorkExperienceUAE" class="active">UAE Work Experience </label>
+                                     
+                                                    </div>
+                          
+                                            <div class="input-field col s3">
+                                                         <input id="WorkExperienceNonUAE" type="number"  [(ngModel)]="WorkExperienceNonUAE" name="WorkExperienceNonUAE" placeholder="No of Years">
+                                                        <label for="WorkExperienceNonUAE" class="active">Non-UAE Work Experience </label>
+                                     
+                                                    </div>
+                          
+                                            <div class="input-field col s3">
+                                                         <input id="RelevantExperience" type="number" [(ngModel)]="RelevantExperience" name="RelevantExperience" placeholder="No of Years">
+                                                        <label for="RelevantExperience" class="active">Relevant Work Experience (*)</label>
+                                            </div>
+                            </div>
+                            
+                          </div>
+                          </div>
+              
+              
+              <!--Employment Profile-->
+              <div  *ngFor="let employmentProfile of EmployeeProfiles let i = index">
+              
+                      <div class="card">
+                              <div class="card-content">
+                                  <div class="row">
+                                  <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Employment Profile    </span>
+                               
+                                 <div class="right" *ngIf="isEmployeProfileDeletable()">
+                                     <a style="cursor:pointer" (click)="RemoveEmployeProfile(i)">
+                                      <i class="material-icons" >close</i> </a>
+                                  </div>
+                              </div>
+                                  <div class="row">
+                                          
+                                      <div class="input-field col s6">
+                                                   <input  type="text"  [(ngModel)]="employmentProfile.Designation" id="designation"  name="designation">
+                                                  <label  class="">Designation</label>
+              
+                                                  
+              
+                                                
+                                                  
+                               
+                                              </div>
+                            
+                                      <div class="input-field col s6">
+                                              <input id="reportingto" type="text"  [(ngModel)]="employmentProfile.ReportingTo" name="reportingto">
+                                              <label  class="">Reporting To</label>
+                               
+                                              </div>
+                                  </div>
+                            
+                                  
+                            
+                                  <div class="row">
+                                      <div class="input-field col s6">
+                                                   <input id="currentemployer" type="text"   [(ngModel)]="employmentProfile.Employer" name="currentemployer">
+                                                  <label class="">Employer(*)</label>
+                               
+                                              </div>
+                            
+                                      <div class="input-field col s2">
+                                                   <input id="salary" type="number" [(ngModel)]="employmentProfile.GrossMonthlySalary" name="salary">
+                                                  <label  class=""> Gross Salary (AED)</label>
+                               
+                                              </div>
+                            
+                                      <div class="input-field col s2">
+                                            <label for="employedfrom" class="datecalendar" >Employed From</label>
+                                                   <input id="employedfrom" type="text"  [(ngModel)]="employmentProfile.FromDate" name="employedfrom" class="form-control" bsDatepicker style="z-index: 100" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" placement="left">
+                                                  
+                               
+                                              </div>
+                            
+                                      <div class="input-field col s2">
+                                            <label for="employedto" class="datecalendar" >Employed To</label>
+                                                   <input id="employedto" type="text"  [(ngModel)]="employmentProfile.ToDate" name="employedto" class="form-control" bsDatepicker style="z-index: 100" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" placement="left">
+                                                  
+                               
+                                              </div>
+                                  </div>
+                            
+                                   <div class="row">
+                            <div class="input-field col s12">
+                                                    <textarea id="reasonforleaving" class="materialize-textarea" length="500" [(ngModel)]="employmentProfile.ReasonForLeaving" name="reasonforleaving"></textarea>
+                                                  <label class="">Reason for leaving</label>
+                               
+                                              </div>
+          
+                                              <!--
+                                              <div class="col s12">
+                                                  <mat-checkbox style="font-size:14px;"  [(ngModel)]="employmentProfile.isLatestJob"   name="IsLatestJob">Current Job</mat-checkbox>
+                                              </div>
+                                            -->
+                                             
+                            </div>
+                              </div>
+                            </div>
+              </div>
+              
+              <div class="row">
+                      <a (click)="addEmploymentProfiles()" class="waves-effect waves-light btn right" style="width:350px;">
+                          <i class="material-icons right">add_box</i>Add More Employment Information</a>
+                  </div>
+              
+                
+                  <div  *ngFor="let AcademicProfile of AcadmeicProfiles let i = index">
+              <!-- Academic Profile-->
+              <div class="card">
+                      <div class="card-content">
+                          <div>
+                        <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Academic Profile</span>
+                        <div class="right" *ngIf="isAcademicProfileDeletable()">
+                                <a style="cursor:pointer" (click)="RemoveAcademicProfile(i)">
+                                 <i class="material-icons" >close</i> </a>
+                             </div>
+                            </div>
+
+
+                         <div class="row">
+                                <div class="input-field col s5">
+          
+                               <mat-form-field style="width:100%; margin-top:5px;">
+                                  <mat-select  style="width:100%;" name="DrpEducationQualification" [(ngModel)]="AcademicProfile.EducationQualificationID">
+                                    <mat-option selected="true" disabled value="0">Education Qualification(*)</mat-option>
+                                    <mat-option value="1">High School</mat-option>
+                                    <mat-option value="2">Degree</mat-option>
+                                    <mat-option value="3">Masters</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                                   </div>
+          
+                                  
+                      
+                                        <div class="input-field col s3">
+                                                     <input id="Univeristy" type="text" name="Univeristy" [(ngModel)]="AcademicProfile.Institute">
+                                                    <label  class="">University/College</label>
+                                 
+                                                </div>
+                      
+                                        <div class="input-field col s2">
+                                                <label for="CompletionYear" class="datecalendar" >Completion Date</label>
+                                                     <input id="last_name" type="text" [(ngModel)]="AcademicProfile.CompletionYear" name="CompletionYear" bsDatepicker style="z-index: 100" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" placement="left" >
+                                                    
+                                 
+                                                </div>
+                      
+                                        <div class="input-field col s2">
+                                                     <input id="Result" type="text" [(ngModel)]="AcademicProfile.ExamResult" name="Result">
+                                                    <label  class="">Result(*)</label>
+                                 
+                                                </div>
+                                    </div>
+                        </div>
+                      </div>
+          
+                      </div>
+          
+                      <div class="row">
+                              <a (click)="addAcademicProfiles()" class="waves-effect waves-light btn right" style="width:350px;">
+                                  <i class="material-icons right">add_box</i>Add More Academic Information</a>
+                          </div>
+                      
+              
+              
+              <!-- Why Shurooq -->
+              <div class="card">
+                      <div class="card-content">
+                        <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Why do you wish to join SHUROOQ?(*)</span>
+                         <div class="row">
+                                        <div class="input-field col s12">
+                                                     <textarea id="WhyShurooq" class="materialize-textarea" length="300" [(ngModel)]="WhyShurooq" name="WhyShurooq"></textarea>
+                      
+                                                </div>
+                      
+                                        
+                                    </div>
+                        </div>
+              </div>        
+              
+              
+              <!--Upload CV-->
+              <div class="card">
+                      <div class="card-content">
+                        <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Upload CV (*)</span>
+                         <div class="row">
+                                      <div class="file-field input-field">
+                                                    <div class="btn teal lighten-1">
+                                                        <span>Select CV</span>
+                                                        <input #myFileUpload  type="file" id="file"  (change)="getFileDetails($event)" name="myCV">
+                                                       
+                                                    </div>
+                                                    <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text">
+                                                    </div>
+                                                </div>
+                      
+                                        
+                                    </div>
+                        </div>
+              </div>
+          
+          
+              
+          
+          
+          
+          <div class="row">
+          <button class="waves-effect waves-light green btn" style="margin-right:10px;" (click)="uploadFiles()"  [disabled]="isUpbloadButtonDisabled"><i class="material-icons right">save</i>{{UploadButtonText}}</button>
+          <a (click)="ResetFormConfirm()" class="waves-effect waves-light red btn"><i class="material-icons right">delete</i>Reset</a>
+          
           </div>
+               
+            </div>
+          
+          
+            
+    </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <div style="margin:35px" align="center"><img src="/assets/images/fluid-loader.gif" ></div>
+       
+    </ng-template>
+    
 
-<div class="col s12 m12 l12 job-application-form-s12" style="  padding:15px;" >
-    <app-add-candidate-form-postion-applied></app-add-candidate-form-postion-applied>
-    <app-add-candidate-form-personal-profile></app-add-candidate-form-personal-profile>
-    <app-add-candidate-form-work-experience></app-add-candidate-form-work-experience>
-    <app-add-candidate-form-employment-profiles></app-add-candidate-form-employment-profiles>
-    <app-add-candidate-form-academic-profiles></app-add-candidate-form-academic-profiles>
-    <app-add-candidate-form-whyshurooq></app-add-candidate-form-whyshurooq>
-    <app-add-candidate-form-uploadcv></app-add-candidate-form-uploadcv>
-
-
-
-<div class="row">
-<a class="waves-effect waves-light green btn" style="margin-right:10px;"><i class="material-icons right">save</i>Save Candidate</a>
-<a class="waves-effect waves-light red btn"><i class="material-icons right">delete</i>Reset</a>
-
-</div>
-     
-  </div>
-
-
-  
-</div>
+        
+        
+              
+              
+              

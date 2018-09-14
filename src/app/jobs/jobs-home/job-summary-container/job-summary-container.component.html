@@ -1,32 +1,47 @@
-<div class="row jobs-summary-portlet z-depth-1">
+<div class="row jobs-summary-portlet z-depth-1" >
     <div class="s12 padding-12px">
         <div class="left">
-            <a (click)="showJobDescriptionModal()" style="cursor: pointer;">
-            <h6 class="job-listing-heading">Head of Account Management</h6>
+            <a (click)="showJobDescriptionModal(JobInfo.VacancyID)" style="cursor: pointer;">
+            <h6 class="job-listing-heading">{{JobInfo.Title}}</h6>
             </a>
-        </div> <div class="left job-listing-sub-heading flat">Sales Department - Al Qasba</div>
-        <div class="right" style="padding-bottom: 6px;">
+        </div> <div class="left job-listing-sub-heading flat">{{JobInfo.Department}} - {{JobInfo.Entity}} </div>
+       
+       
+        <div class="right" style="padding-bottom: 6px;" *ngIf="ShowActionButtons">
           <a class="waves-effect waves-teal btn-flat tooltipped" style="margin-right: 8px;" data-position="left" data-delay="50" data-tooltip="Search candidates for this job" href="../candidates/applicants.aspx">Find Candidates</a> 
-          <a class="waves-effect waves-teal btn-flat tooltipped"  style="margin-right: 8px;" data-position="left" data-delay="50" data-tooltip="Unpublish this job from career portal">Unpublish</a>
-          <a class="waves-effect waves-teal btn-flat tooltipped"  data-position="left" data-delay="50" data-tooltip="Close this job. Click if this job is no more active.">Close this job</a>
+          
+          <ng-container *ngIf="GetBoolean(JobInfo.isPublished); else elseTemplate1">
+            <a (click)="unpublishjob(JobInfo.VacancyID)" class="waves-effect waves-teal btn-flat tooltipped"  style="margin-right: 8px;" data-position="left" data-delay="50" data-tooltip="Unpublish this job from career portal">Unpublish</a>
+          </ng-container>
+          <ng-template #elseTemplate1>
+            <a (click)="publishjob(JobInfo.VacancyID)" class="waves-effect waves-teal btn-flat tooltipped"  style="margin-right: 8px;" data-position="left" data-delay="50" data-tooltip="Publish this job to career portal">Publish</a>
+          </ng-template>
+          
+          
+          
+         
+          <a (click)="closeJob(JobInfo.VacancyID)" class="waves-effect waves-teal btn-flat tooltipped"  data-position="left" data-delay="50" data-tooltip="Close this job. Click if this job is no more active.">Close this job</a>
         </div>
     </div>
     <div class="clear-both"></div>
-    <div class="col l1point5"><a href="../candidates/applicants.aspx"><div class="card"><div class="card-content center"><h4>428</h4> APPLICANT</div></div></a></div>
-     <div class="col l1point5"><a href="../candidates/shortlist.aspx"><div class="card"><div class="card-content center"><h4>89</h4>  SHORTLIST</div></div></a></div>
-    <div class="col l1point5"><a href="../approved/approval.aspx"><div class="card"><div class="card-content center"><h4>52</h4> APPROVED</div></div></a></div>
-    <div class="col l1point5"><a href="../interview/interview.aspx"><div class="card"><div class="card-content center"><h4>21</h4> INTERVIEW</div></div></a></div>
-    <div class="col l1point5"><a href="../security/security.aspx"><div class="card"><div class="card-content center"><h4>6</h4> SECURITY</div></div></a></div>
-    <div class="col l1point5"><a href="#"><div class="card"><div class="card-content center"><h4>3</h4> OFFER</div></div></a></div>
-    <div class="col l1point5"><a href="#"><div class="card"><div class="card-content center"><h4>3</h4> HIRED</div></div></a></div>
-    <div class="col l1point5"><a href="#"><div class="card"><div class="card-content center"><h4>3</h4> JOINED</div></div></a></div>
 
+    <span *ngFor="let summary of JobApplicationsInfo">
+    <div class="col l1point5"><a href="../candidates/applicants.aspx"><div class="card"><div class="card-content center"><h4>{{summary.GroupValue}}</h4> {{summary.DisplayText}}</div></div></a></div>
+    </span> 
+    
     <div class="s12 padding-12px">
-        <div class="left">
-
-            <i class="fab fa-internet-explorer"></i> Published on Career Portal on 21-MAR-18
-
-        </div> <div class="right"><i class="fas fa-address-card"></i> 3 Openings</div>
+       <ng-container *ngIf="GetBoolean(JobInfo.isPublished); else elseTemplate">
+            <div class="left"> <i class="fab fa-internet-explorer" ></i> Published on Career Portal on {{JobInfo.PublishedDate | date}}</div>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <div class="left"> <i class="material-icons" style="vertical-align:middle; margin-right:3px; ">phonelink_off</i> This job is currently not published.</div>
+        </ng-template>
+    
+      
+        
+        <div class="right"><i class="fas fa-address-card"></i> {{JobInfo.OpenPositions}} Openings</div>
     </div>
 
 </div>
+
+

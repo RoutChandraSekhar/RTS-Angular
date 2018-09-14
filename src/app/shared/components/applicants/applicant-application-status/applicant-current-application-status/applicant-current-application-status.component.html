@@ -1,8 +1,42 @@
-<h5 class="mailbox-subtitle">Current Application Status</h5>
-  <ul class="collection">
-      <li class="collection-item"> <div class="basic-info-title left width-100">Job Title</div>  Web Developer</li>
-      <li class="collection-item"><div class="basic-info-title left width-100">Destination</div>Shurooq Corporate Office</li>
-      <li class="collection-item"><div class="basic-info-title left width-100">Department</div>Information Technology</li>
-      <li class="collection-item"><div class="basic-info-title left width-100">Line Manager</div>Mahendra Kakumanu</li>
-      <li class="collection-item"><div class="basic-info-title left width-100 ">Status</div><span class="status-info-box-dodgerblue">Offer Letter In Progress</span></li>
-  </ul>
+
+
+<div class="row" style="background-color: #f4f4f4; margin:0px; padding:0px;">
+    
+
+<div class="col s7">
+<h5 class="mailbox-subtitle" style="margin-top:3px; margin-bottom: 0px; padding-left: 0px; margin-left: -2px;">Current Application Status
+
+        
+</h5>
+</div>
+<div class="s5">
+        <div class="right" style="padding-right:15px;">
+                
+              <div [ngClass]="{'hide':isMultipleApplicationsExist==false}">
+                      
+                    <!-- Dropdown Trigger -->
+                    <a class='dropdown-button waves-effect waves-teal btn' id="CurrentApplicationID"  data-activates='dropdown2'>{{CurrentAppliationStatus.Title}} <i class="fas fa-caret-down"></i></a>
+                    <!-- Dropdown Structure -->
+                    <ul id='dropdown2' class='dropdown-content' >
+                        <li *ngFor="let application of ActiveApplications"><a (click)="onApplicationChange(application.ApplicationID)">{{application.Title}} </a></li>
+                        
+                    </ul>
+              </div>
+         
+            </div>
+</div>
+</div>
+<ng-container *ngIf="isCurrentApplicationExist; else elseTemplate">
+    <ul class="collection">
+        <li class="collection-item"> <div class="basic-info-title left width-100">Job Title</div>  {{CurrentAppliationStatus.Title}}</li>
+        <li class="collection-item"><div class="basic-info-title left width-100">Destination</div>{{CurrentAppliationStatus.Company}}</li>
+        <li class="collection-item"><div class="basic-info-title left width-100">Department</div>{{CurrentAppliationStatus.Dept_Name}}</li>
+        <li class="collection-item"><div class="basic-info-title left width-100">Line Manager</div>{{CurrentAppliationStatus.Dept_Head}}</li>
+        <li class="collection-item"><div class="basic-info-title left width-100">Division Head</div>{{CurrentAppliationStatus.Division_Head}}</li>
+        <li class="collection-item"><div class="basic-info-title left width-100 ">Status</div><span class="status-info-box-dodgerblue">{{CurrentAppliationStatus.RequestStatus}}</span></li>
+    </ul>
+</ng-container>
+<ng-template #elseTemplate>
+ No application exist.
+</ng-template>
+

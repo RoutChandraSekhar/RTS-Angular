@@ -21,30 +21,67 @@ import { AddCandidateFormWhyshurooqComponent } from './add-candidate/add-candida
 import { AddCandidateFormUploadcvComponent } from './add-candidate/add-candidate-form-uploadcv/add-candidate-form-uploadcv.component';
 import { AddCandidateFormEmploymentProfilesComponent } from './add-candidate/add-candidate-form-employment-profiles/add-candidate-form-employment-profiles.component';
 import { AddCandidateFormAcademicProfilesComponent } from './add-candidate/add-candidate-form-academic-profiles/add-candidate-form-academic-profiles.component';
-
+import { CandidateDetailsComponent } from './candidate-details/candidate-details.component';
+import { ApplicantPersonalProfileService } from '../shared/services/applicants/applicant-personal-profile.service';
+import { ApplicantListService } from '../shared/services/applicants/applicant-list.service';
+import { BsDatepickerModule } from 'ngx-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import{MatInput, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatCheckboxModule} from "@angular/material";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 var myroutes : Routes=[
-  {path:"candidates",  data:{depth:2}, component:CvDatabaseComponent,
+  {path:"candidates",  data:{depth:2000}, component:CvDatabaseComponent,
        children: [
     { path: '', redirectTo: 'overview', pathMatch: 'full' },
-    { path: 'overview',  data:{depth:1}, component: ApplicantOverviewComponent },
+    { path: 'overview/:mode',  data:{depth:1}, component: ApplicantOverviewComponent },
     { path: 'status',  data:{depth:2}, component: ApplicantApplicationStatusComponent },
-    { path: 'logs',  data:{depth:3}, component: ApplicantApplicationLogComponent }
+    { path: 'logs',  data:{depth:3}, component: ApplicantApplicationLogComponent },
+    { path: 'overview',  data:{depth:200}, component: ApplicantOverviewComponent },
+    { path: 'overviewx',  data:{depth:205}, component: ApplicantOverviewComponent },
     
   ]
-  }
+  },
+  {path:"candidatesx",  data:{depth:301}, component:CvDatabaseComponent,
+  children: [
+{ path: '', redirectTo: 'overview', pathMatch: 'full' },
+{ path: 'overview/:mode',  data:{depth:1}, component: ApplicantOverviewComponent },
+{ path: 'status',  data:{depth:2}, component: ApplicantApplicationStatusComponent },
+{ path: 'logs',  data:{depth:3}, component: ApplicantApplicationLogComponent },
+{ path: 'overview',  data:{depth:200}, component: ApplicantOverviewComponent },
+{ path: 'overviewx',  data:{depth:205}, component: ApplicantOverviewComponent },
+
+]
+}
  ];
  
  var myroutesCVDatabase = RouterModule.forChild(myroutes);
 
 @NgModule({
   imports: [
+    BsDatepickerModule.forRoot(),
+    CommonModule,
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     SharedModule,
     AppRoutingModule,
-    myroutesCVDatabase
+    myroutesCVDatabase,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatInputModule
+
+
+   
+
+  
   ],
-  declarations: [CvDatabaseComponent, BreadcrumbCvDatabaseComponent, CvDatabaseQuickActionButtonsComponent, AddCandidateComponent, BreadcrumbAddCandidateComponent, AddCandidateQuickAcionButtonsComponent, AddCandidateFormPostionAppliedComponent, AddCandidateFormPersonalProfileComponent, AddCandidateFormWorkExperienceComponent, AddCandidateFormEmploymentProfileComponent, AddCandidateFormAcademicProfileComponent, AddCandidateFormWhyshurooqComponent, AddCandidateFormUploadcvComponent, AddCandidateFormEmploymentProfilesComponent, AddCandidateFormAcademicProfilesComponent],
-  exports:[CvDatabaseComponent]
+  declarations: [CvDatabaseComponent, BreadcrumbCvDatabaseComponent, CvDatabaseQuickActionButtonsComponent, AddCandidateComponent, BreadcrumbAddCandidateComponent, AddCandidateQuickAcionButtonsComponent, AddCandidateFormPostionAppliedComponent, AddCandidateFormPersonalProfileComponent, AddCandidateFormWorkExperienceComponent, AddCandidateFormEmploymentProfileComponent, AddCandidateFormAcademicProfileComponent, AddCandidateFormWhyshurooqComponent, AddCandidateFormUploadcvComponent, AddCandidateFormEmploymentProfilesComponent, AddCandidateFormAcademicProfilesComponent, CandidateDetailsComponent],
+  exports:[CvDatabaseComponent],
+  providers:
+  [
+    ApplicantPersonalProfileService,
+    ApplicantListService
+  ]
 })
 export class CvDatabaseModule { 
 

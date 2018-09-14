@@ -1,0 +1,12 @@
+.datecalendar{
+  
+    font-size: 0.8rem;
+    -webkit-transform: translateY(-140%);
+    transform: translateY(-140%);
+}
+
+#datecalendar{
+    font-size: 0.8rem;
+    -webkit-transform: translateY(-140%);
+    transform: translateY(-140%);
+}

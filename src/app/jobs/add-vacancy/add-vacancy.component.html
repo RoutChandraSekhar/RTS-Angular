@@ -1,224 +1,238 @@
+<ng-container *ngIf="isLoaded; else elseTemplate">
+    
 <div class="row">
-  <div class="col s12" style="background-color:#e2e1e1; padding-top:5px">
-              <div class="breadcrumb"><a href="../dashboard.aspx" class="breadcrumb-nav">Home | Jobs </a> | Add Vancancy </div>
-              <div id="filter-applied" class="page-title right">
-                <!--
-                  <a class="waves-effect waves-grey btn-flat tooltipped" data-position="left" data-delay="50" data-tooltip="Add new job" data-tooltip-id="97e33378-66e1-829c-cfdb-9ea0c768ab2b"><i class="fas fa-address-card"></i> Add New Job Vacancy</a>
-              -->
-              </div>
-          </div>
-
-<div class="col s12 m12 l12 job-application-form-s12" style="  padding:15px;" >
-
-<div class="card">
-          <div class="card-content">
-              <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Job Profile</span>
-              <div class="row" style="margin-bottom:0px;">
-                  <div class="input-field col s5">
-                               <select style="width:100%;">
-                         
-                          <option value="1">Option 1</option>
-                          <option value="2">Option 2</option>
-                          <option value="3">Option 3</option>
-                      </select>
-                              <label for="last_name" class="active">Designation</label>
-           
-                          </div>
-
-                  <div class="input-field col s7">
-                               <input id="last_name" type="text" class="validate">
-                              <label for="last_name" class="">Job Title</label>
-                          </div>
-              </div>
-
-              <div class="row" style="margin-bottom:15px;">
-
-                  <div class="input-field col s12">
-                               <select style="width:100%;">
-                         
-                          <option value="1">Option 1</option>
-                          <option value="2">Option 2</option>
-                          <option value="3">Option 3</option>
-                      </select>
-                              <label for="last_name" class="active">Primary Interviewer</label>
-           
-                          </div>
-                 
-              </div>
-
-              <div class="row">
-                   <div class="input-field col s12">
-                                 <textarea id="textarea1" class="materialize-textarea" ></textarea>
-                              <label for="last_name" class="">Job Description</label>
-                          </div>
-
-                  <div class="input-field col s12">
-                                 <textarea id="textarea1" class="materialize-textarea" ></textarea>
-                              <label for="last_name" class="">Job Skills</label>
-                          </div>
-
-                  <div class="input-field col s12">
-                                 <textarea id="textarea1" class="materialize-textarea" ></textarea>
-                              <label for="last_name" class="">Job Duty</label>
-                          </div>
-
-                  <div class="input-field col s12">
-                                 <textarea id="textarea1" class="materialize-textarea" ></textarea>
-                              <label for="last_name" class="">Education Info</label>
-                          </div>
-
-                  <div class="input-field col s12">
-                                 <textarea id="textarea1" class="materialize-textarea" ></textarea>
-                              <label for="last_name" class="">Nationality Info</label>
-                          </div>
-              </div>
-
-              
-          </div>
-      </div>
-
-      <div class="card">
-          <div class="card-content">
-              <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Employee Request Details</span>
-              <div class="row">
-                          <div class="input-field col s2">
-                               <input id="last_name" type="text" class="validate">
-                               <label for="last_name" class="">Ref No (Takamul)</label>
-                          </div>
-
-                          <div class="input-field col s5">
-                               <select style="width:100%;">
-                         
-                          <option value="1">Option 1</option>
-                          <option value="2">Option 2</option>
-                          <option value="3">Option 3</option>
-                      </select>
-                              <label for="last_name" class="active">Requested By</label>
-           
-                          </div>
-
-                  <div class="input-field col s5">
-                               <select style="width:100%;">
-                         
-                          <option value="1">Option 1</option>
-                          <option value="2">Option 2</option>
-                          <option value="3">Option 3</option>
-                      </select>
-                              <label for="last_name" class="active">Requesting Department</label>
-           
-                          </div>
-
-                       
-               </div>    
-              <div class="row">
-                  <div class="input-field col s3">
-                               <input id="last_name" type="text" class="validate">
-                               <label for="last_name" class="">Requested On</label>
-                          </div>
-
-                          <div class="input-field col s2">
-                               <input id="last_name" type="text" class="validate">
-                              <label for="last_name" class="">Open positions</label>
-                          </div>
-                          <div class="input-field col s4">
-                               <select style="width:100%;">
-                         
-                          <option value="1">Option 1</option>
-                          <option value="2">Option 2</option>
-                          <option value="3">Option 3</option>
-                      </select>
-                              <label for="last_name" class="active">Position Type</label>
-           
-                          </div>
-
-                          
-
-                       <div class="input-field col s3">
-                               <input id="last_name" type="text" class="validate">
-                               <label for="last_name" class="">Target Joining Date</label>
-                          </div>
-
-                         
-               </div> 
-          </div>
-      </div>
-
-
-
-<div class="card">
-<div class="card-content">
-  <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Interview Details</span>
-  
-
-  <div class="row">
-                  <div class="input-field col s8">
-                               <select style="width:100%;">
-                         
-                          <option value="1">Option 1</option>
-                          <option value="2">Option 2</option>
-                          <option value="3">Option 3</option>
-                      </select>
-                              <label for="last_name" class="active">Additional Interviewer</label>
-           
-                          </div>
-      <div class="input-field col s4" style="padding-top:15px" >
-                   
-                      
-
-                               <p class="p-v-xs1">
-                         
-                                   <input type="checkbox" id="chk1" >
-                          <label for="chk1" style="padding-left: 25px; padding-right:30px;">Evaluator</label>     
-                      </p>
-                              
-                  </div>
-              </div>
-
-
-
-  <div class="row">
-                  <div class="input-field col s8">
-                               <select style="width:100%;">
-                         
-                          <option value="1">Option 1</option>
-                          <option value="2">Option 2</option>
-                          <option value="3">Option 3</option>
-                      </select>
-                              <label for="last_name" class="active">Interviewer</label>
-           
-                          </div>
-      <div class="input-field col s4" style="padding-top:15px" >
-                   
-                      
-
-                               <p class="p-v-xs1">
-                        
-                                   <input type="checkbox" id="chk2" >
-                          <label for="chk2" style="padding-left: 25px; padding-right:30px;">Evaluator</label>     
-                      </p>
-                              
-                  </div>
-              </div>
-
-
-  <div class="row"><div class="col s8"><a class="waves-effect waves-light btn right" ><i class="material-icons right">add_box</i>Add more interviewer</a></div></div>
-
-  
-</div>
-</div>
-
-
-
+        <div class="col s12" style="background-color:#e2e1e1; padding-top:5px">
+                    <div class="breadcrumb"><a routerLink="/home" class="breadcrumb-nav">Home</a> | <a routerLink="/jobs" class="breadcrumb-nav">Jobs </a> | Add Vacancy </div>
+                    <div id="filter-applied" class="page-title right">
+                      <!--
+                        <a class="waves-effect waves-grey btn-flat tooltipped" data-position="left" data-delay="50" data-tooltip="Add new job" data-tooltip-id="97e33378-66e1-829c-cfdb-9ea0c768ab2b"><i class="fas fa-address-card"></i> Add New Job Vacancy</a>
+                    -->
+                    </div>
+                </div>
       
+      <div class="col s12 m12 l12 job-application-form-s12" style="  padding:15px;" >
+      
+      <div class="card">  
+                <div class="card-content">
+                    <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Job Profile</span>
+                    <div class="row" style="margin-bottom:0px;">
+                        <div class="input-field col s6">
+                          <mat-form-field style="width:100%; margin-top:3px;"> 
+                              <mat-select [(ngModel)]="DesignationID"   name="Designation" >
+                                      <mat-option *ngFor="let Designation of DesignationsList" [value]="Designation.designationid">{{Designation.designation}}</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                         <label class="active" >Designation(*)</label>
+                 
+                                </div>
+      
+                        <div class="input-field col s6">
+                                     <input id="JobTitle" type="text"  [(ngModel)]="JobTitle" name="JobTitle">
+                                    <label for="JobTitle" class="">Job Title(*)</label>
+                                </div>
+      
+                                
+                    </div>
+      
+                    <div class="row" style="margin-bottom:15px;">
+      
+                      <div class="input-field col s6">
+                                  
+                          <mat-form-field style="width:100%; margin-top:3px;" > 
+                              <mat-select  name="RequestingEntity" [(ngModel)]="RequestingEntityID">
+                                      <mat-option *ngFor="let Destination of DestinationsList" [value]="Destination.entityID">{{Destination.Entity}}</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                         <label class="active">Destination(*)</label>
+      
+                     </div>
+      
+                        <div class="input-field col s6">       
+                          <mat-form-field style="width:100%; margin-top:3px;" > 
+                              <mat-select name="PrimaryInterviewer" [(ngModel)]="PrimaryInterviewerID">
+                                      <mat-option *ngFor="let user of UsersList" [value]="user.userID">{{user.UserFullName}}</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                                      <label class="active">Primary Interviewer(*)</label>
+                       
+                       
+                       
+                                  </div>
+      
+                                
+                       
+                    </div>
+      
+                    <div class="row">
+                         <div class="input-field col s12">
+                                       <textarea id="JobDescription" class="materialize-textarea" [(ngModel)]="JobDescription" name="JobDescription" ></textarea>
+                                    <label for="JobDescription" class="">Job Description (*)</label>
+                                </div>
+      
+                        <div class="input-field col s12">
+                                       <textarea id="JobSkill" class="materialize-textarea" [(ngModel)]="JobSkill" name="JobSkill" ></textarea>
+                                    <label for="JobSkill" class="">Job Skills</label>
+                                </div>
+      
+                        <div class="input-field col s12">
+                                       <textarea id="JobDuty" class="materialize-textarea" [(ngModel)]="JobDuty" name="JobDuty" ></textarea>
+                                    <label for="JobDuty" class="">Job Duty</label>
+                                </div>
+      
+                        <div class="input-field col s12">
+                                       <textarea id="EducationInfo" class="materialize-textarea" [(ngModel)]="EducationInfo" name="EducationInfo" ></textarea>
+                                    <label for="EducationInfo" class="">Education Info</label>
+                                </div>
+      
+                        <div class="input-field col s12">
+                                       <textarea id="NationalityInfo" class="materialize-textarea" [(ngModel)]="NationalityInfo" name="NationalityInfo" ></textarea>
+                                    <label for="NationalityInfo" class="">Nationality Info</label>
+                                </div>
+                    </div>
+      
+                    
+                </div>
+            </div>
+      
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Employee Request Details</span>
+                    <div class="row">
+                                <div class="input-field col s2">
+                                     <input id="RefNo" type="text" class="validate" [(ngModel)]="RefNo" name="RefNo">
+                                     <label for="RefNo" class="">Ref No (Takamul)</label>
+                                </div>
+      
+                                <div class="input-field col s5">
+                                  <mat-form-field style="width:100%; margin-top:3px;"> 
+                                      <mat-select   name="RequestedByUser" [(ngModel)]="RequestedByUserID" name="RequestedByUserID">
+                                          <mat-option *ngFor="let user of UsersList" [value]="user.userID">{{user.UserFullName}}</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                 <label class="active">Requested By(*)</label>
+                 
+                                </div>
+      
+                        <div class="input-field col s5">
+                          <mat-form-field style="width:100%; margin-top:3px;"> 
+                              <mat-select   name="RequestingDepartment" [(ngModel)]="RequestingDepartmentID">
+                                      <mat-option *ngFor="let department of DepartmentsList" [value]="department.DepartmentID">{{department.Department}}</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                         <label class="active">Requesting Department(*)</label>
+                 
+                                </div>
+      
+                             
+                     </div>    
+                    <div class="row">
+                        <div class="input-field col s3">
+                                     <input id="RequestedOn" name="RequestedOn" type="text" class="validate" [(ngModel)]="RequestedOn"  bsDatepicker style="z-index: 100" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" placement="right">
+                                     <label for="RequestedOn" class="active">Requested On</label>
+                                </div>
+      
+                                <div class="input-field col s2">
+                                     <input id="OpenPositions" type="number" class="validate" [(ngModel)]="OpenPositions" name="OpenPositions">
+                                    <label for="OpenPositions" class="active">Open positions(*)</label>
+                                </div>
+                                <div class="input-field col s4">
+                                  <mat-form-field style="width:100%; margin-top:3px;"  >
+                                      <mat-select   name="PositionType" [(ngModel)]="PositionTypeID">
+                                              <mat-option *ngFor="let position of PositionTypesList" [value]="position.PositionTypeID">{{position.Position}}</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                 <label class="active">Position Type(*)</label>
+                 
+                                </div>
+      
+                                
+      
+                             <div class="input-field col s3">
+                                    <label for="targetjoiningdate" class="datecalendar" >Target Joining Date(*)</label>
+                              <input id="targetjoiningdate" type="text" [(ngModel)]="TargetJoiningDate"  name="targetjoiningdate" class="form-control" bsDatepicker style="z-index: 100" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" placement="left">
+                                     
+                                </div>
+      
+                               
+                     </div> 
+                </div>
+            </div>
+      
+      
+      
+      <div class="card">
+      <div class="card-content">
+        <span class="card-title" style="margin-bottom:0px; padding-left:10px;">Interview Details</span>
+        
+      
+        <div class="row">
+            <div *ngFor="let interviewer of JobInterviewers let i = index">
+      
+                  <div class="col s12">
+                       
+                  </div>
+      
+                        <div class="input-field col s10">
+                          <mat-form-field style="width:100%; margin-top:3px;" > 
+                              <mat-select   name="DrpAdditionalInterviweer" [(ngModel)]="interviewer.InterviewerUserID">
+                                  <mat-option *ngFor="let user of UsersList" [value]="user.userID">{{user.UserFullName}}</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                         <label class="active">Additional Interviewer</label>
+                 
+                                </div>
+            <div class="input-field col s2" style="padding-top:15px; cursor:pointer;" >
+                         
+                            
+      
+                               
+                                      <mat-checkbox  [(ngModel)]="interviewer.isEvaluator" name="Evaluator">Evaluator</mat-checkbox>
+                                      
+                                      <div class="right" *ngIf="isJobInterviewerDeletable()">
+                                              <a style="cursor:pointer" (click)="RemoveJobInterviewer(i)">
+                                               <i class="material-icons" >close</i> </a>
+                                           </div>
+                                <!-- <label for="chk1" style="padding-left: 25px; padding-right:30px;">Evaluator</label>    --> 
+                            
+                                    
+                        </div>
+      
+                      </div>      
+                    </div>
+      
+      
+      
+        <div class="row"><div class="col s10"><a class="waves-effect waves-light btn right" (click)="onAddNewJobInterviewer()" ><i class="material-icons right">add_box</i>Add more interviewer</a></div></div>
+      
+        
+      </div>
+      </div>
+      
+      
+      
+            
+      
+      <div class="row">
+      <button (click)="AddNewJob()" class="waves-effect waves-light green btn" style="margin-right:10px;" [disabled]="isSubmitButtonDisabled"><i class="material-icons right">event_seat</i>Create Vacancy</button>
+      <a (click)="ResetForm()" class="waves-effect waves-light red btn"><i class="material-icons right">delete</i>Reset</a>
+      
+      </div>
+           
+        </div>
+      
+      
+        
+      </div>
+      
+      
+</ng-container>
+<ng-template #elseTemplate>
 
-<div class="row">
-<a class="waves-effect waves-light green btn"><i class="material-icons right">done</i>Create Vacancy</a>
-<a class="waves-effect waves-light red btn"><i class="material-icons right">delete</i>Reset</a>
-
-</div>
-     
-  </div>
+    <div align="center" style="margin:35px;">
+        <img src="/assets/images/fluid-loader.gif" />
+    </div>
+    
+</ng-template>
 
 
-  
-</div>
+

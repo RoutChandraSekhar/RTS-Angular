@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {trigger, transition, group, query, style,animate} from '@angular/animations';
+import { LoginService } from '../shared/services/login/login.service';
+import { LoggedInUserDetails } from '../shared/common/LoggedInUserDetails';
+import { Router,NavigationEnd  } from '@angular/router';
 declare var $:any;
 @Component({
   selector: 'app-master',
@@ -39,9 +42,27 @@ declare var $:any;
 })
 export class MasterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private LoginService : LoginService,
+    private router: Router
+  ) { }
 
+  UserFullName :string="";
+  LoggedInUserDetails:LoggedInUserDetails=new LoggedInUserDetails("","","","","","","","")
   ngOnInit() {
+
+    this.router.events.subscribe((evt) => {
+        if (!(evt instanceof NavigationEnd)) {
+            return;
+        }
+        window.scrollTo(0, 0)
+    });
+
+
+
+    this.LoginService.cast.subscribe(LoggedInUserDetails=>this.LoggedInUserDetails=LoggedInUserDetails[0]);
+    this.UserFullName=this.LoggedInUserDetails.user_person_name;
+
   }
 
 

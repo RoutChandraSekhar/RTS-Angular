@@ -1,24 +1,15 @@
 <div id="filter" class="row" style="background-color:#f4f4f4; padding:10px 20px 0px 20px;margin-bottom:0px;">
     <div class="s12">
-        <div class="input-field col s12 l8 left no-padding margin-top-zero">
-            <input id="icon_prefix" type="text" class="validate" placeholder="Search Jobs" autocomplete="off">
+        <div class="input-field col s12 l9 left no-padding margin-top-zero">
+            <input id="icon_prefix" type="text" class="validate" placeholder="Search Jobs" autocomplete="off"  [(ngModel)]="SearchQuery" (keyup)="filterJobs()">
         </div>
-        <div class="right">
-            <select class="browser-default" class="location-select">
-                <option value="" selected>All Location</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
-            </select>
-  
-            <select class="browser-default" style="width:150px;">
-                <option value="" selected>All Department</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
-            </select>
-  
-           
+
+       
+        <div class="right" style="padding-top:15px;">
+        <a class="waves-effect waves-light btn indigo m-b-xs"  (click)="showJobs()" >{{ShowActiveOrClosedJobsButtonDisplayText}}</a>
+
         </div>
+
+  
     </div>
   </div>

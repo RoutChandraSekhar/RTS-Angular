@@ -30,14 +30,26 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ApplicantService } from './services/applicant.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TestComponentComponent } from './components/test-component/test-component.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ApplicantPersonalProfileService } from './services/applicants/applicant-personal-profile.service';
+import { ApplicantWhyShurooqComponent } from './components/applicants/applicant-overview/applicant-why-shurooq/applicant-why-shurooq.component';
+import { ApplicantExperienceSummaryComponent } from './components/applicants/applicant-overview/applicant-experience-summary/applicant-experience-summary.component';
+import { MatSelectModule } from '@angular/material';
+
 
 
 
 @NgModule({
   imports: [
+    CommonModule,
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatSelectModule
+    
   ],
   declarations: [
     ApplicantApplicationLogComponent,
@@ -63,7 +75,9 @@ import { TestComponentComponent } from './components/test-component/test-compone
     ApplicantJobTitleComponent,
     ApplicantDocumentsComponent,
     ApplicantComponent,
-    TestComponentComponent //check the use of this
+    TestComponentComponent,
+    ApplicantWhyShurooqComponent,
+    ApplicantExperienceSummaryComponent //check the use of this
 
 
   ],
@@ -82,6 +96,6 @@ import { TestComponentComponent } from './components/test-component/test-compone
     ApplicantFilterComponent,
     ApplicantDocumentsComponent
   ],
-  providers:[ApplicantService]
+  providers:[ApplicantPersonalProfileService]
 })
 export class SharedModule { }

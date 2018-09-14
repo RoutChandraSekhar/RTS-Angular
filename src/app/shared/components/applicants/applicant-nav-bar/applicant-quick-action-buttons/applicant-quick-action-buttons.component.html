@@ -12,14 +12,17 @@
 <div class="row">
 
 <div class="input-field col s12">
-<h4 style="margin-bottom:0px;">Shortlist Mr. Kevin Pieterson for a job.</h4>
-<select placeholder="Select Stage" id="qJob" style="width:100%;">
-
-<option value="1" selected disabled>Select a job</option>
-<option value="2">Marketing Analyst, Marketing Department, Al Majaz</option>
-<option value="3">HR Consultant, HR Department, Shurooq</option>
+<h4 style="margin-bottom:0px;">Shortlist {{SelectedCandidateBasicInfo.FullName}}  for a job.</h4>
+<select  id="qJob" style="width:100%;" [(ngModel)]="SelectedJobToShortList">
+  <option value="0" selected>Select a Job to Shortlist</option>
+  <option *ngFor="let c of ShortListableJobs" [ngValue]="c.VacancyID">{{c.Title}}</option>  
+                
 </select>
-
+<!--
+<select style="width:100%;" [(ngModel)]="ShortListableJob"  name="ShortListableJob" >
+  <option *ngFor="let c of ShortListableJobs" [ngValue]="c.VacancyID">{{c.Title}}</option>
+</select>
+-->
 </div>
 </div>
 

@@ -1,45 +1,66 @@
 <!-- Modal Document Structure -->
-<div id="modalApplicantDocuments" class="modal" style="width:80%;">
-    <div class="modal-content">
+<div id="modalApplicantDocuments" class="modal" style="width:90%;">
+    
+    <div class="modal-content" style="padding-top:15px;">
     
     <div class="row" style="margin:0px;">
     <div class="col12" style="margin:0px; padding:0px;">
-        <h4 class="left" style="margin-left:10px; font-size:18px; margin:0px; padding:0px;"> Documents of Mr. Kevin Pieterson</h4>
+
+        <!--
+      Name  {{CandidateName}} <br/>
+      ID {{CandidateID}}
+      -->
+        
+        <h4 class="left" style="margin-left:10px; font-size:18px; margin:0px; padding:0px;"> Documents of {{CandidateName}}</h4>
+     
         <div class="right modal-action modal-close"><i class="far fa-window-close"></i> Close</div>
     </div>
     
+<!--
+<div class="col s12">
+        <input #myFileUpload  type="file" id="file" multiple  
+        (change)="getFileDetails($event)">
+
+    <button (click)="uploadFiles()" [disabled]="isUpbloadButtonDisabled">{{UploadButtonText}}</button>
+
+</div>
+-->
+
     
     <div class="col s12" style="margin:0px; padding:0px;">
         <div class="card-panel #fafafa grey lighten-4">
                  <div class="row" style="margin:0px;">
                       <div class="input-field col s3">
       
-     <select placeholder="Select Stage" style="width:100%;">
+     <select placeholder="Select Stage" style="width:100%;" id="DrpDocument"> 
     
-          <option value="1" selected disabled>Select Document</option>
-          <option value="2">Passport Copy</option>
-          <option value="3">Degree Certificate</option>
+          <option value="0" selected disabled>Select Document</option>
+          <option value="1">Passport Copy</option>
+          <option value="2">Degree Certificate</option>
          <option value="3">Marriage Certificate</option>
-         <option value="3">Experience Certificate</option>
+         <option value="4">Experience Certificate</option>
+         <option value="5">Visa  Copy</option>
       </select>
     </div>
     
+    <!--
                      <div class="input-field col s3">
       
-      <input placeholder=""  type="text" class="validate">
-      <label for="first_name">File Name (Display Name)</label>
+      <input placeholder=""  type="text" class="validate" [(ngModel)]="FileName" name="FileName">
+      <label for="FileName">File Name (Display Name)</label>
     </div>
-    <div class="file-field input-field col s4">
+-->
+    <div class="file-field input-field col s7">
                                       <div class="btn  teal">
-                                          <span>Select File</span>
-                                          <input type="file" multiple="">
+                                          <span>Select Files</span>
+                                          <input #myFileUpload type="file" id="file" multiple="" (change)="getFileDetails($event)">
                                       </div>
                                       <div class="file-path-wrapper">
-                                          <input class="file-path validate" type="text" placeholder="Click to select file">
+                                          <input #myFileUploadFileName id="filename" class="file-path validate" type="text" placeholder="Click to select file">
                                       </div>
                                   </div>
-      <a href="#!" onclick="fileUploaded();"class="s2 modal-action  waves-effect deep-purple lighten-1 white-text  btn-flat" style="margin-right:5px; margin-top:20px;">Upload File</a>
-    
+      <button  (click)="uploadFiles()" class="s2 modal-action  waves-effect deep-purple lighten-1 white-text  btn" style="margin-right:5px; margin-top:20px;"  [disabled]="isUpbloadButtonDisabled">{{UploadButtonText}}</button>
+ 
                  </div>
     
             
@@ -47,41 +68,51 @@
     </div>
     
     
-    <div class="col s12" style="margin:0px; padding:0px;">
-      <div class="card-panel">
-          <table class="bordered highlight">
-                          <thead>
-                              <tr>
-                                  <th data-field="id" style="width:250px;">Title</th>
-                                  <th data-field="name">File</th>
-                                  
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr>
-                                  <td>Passport Copy</td>
-                                  <td><a href="#"> Page1.jpg</a> |<a href="#"> Page2.jpg</a></td>
-                                  
-                              </tr>
-                              <tr>
-                                  <td>Degree Certificate</td>
-                                  <td><a href="#">certificate1.pdf</a></td>
-                                  
-                              </tr>
-                              <tr>
-                                  <td>Marriage Certificate</td>
-                                  <td><a href="#">certificate1.pdf</a></td>
-                                  
-                              </tr>
-                              <tr>
-                                  <td>Experience Certificate</td>
-                                  <td><a href="#">cert1.pdf</a> | <a href="#">cert2.pdf</a></td>
-                                 
-                              </tr>
-                          </tbody>
-                      </table>
-      </div>
-    </div>
+    <ng-container *ngIf="isDocumentExist; else elseTemplate">
+        <div class="col s12" style="margin:0px; padding:0px;">
+            <div class="card-panel">
+                <table class="bordered highlight">
+                                <thead>
+                                    <tr>
+                                        <th data-field="id" style="width:250px;">Title</th>
+                                        <th data-field="name">File</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let document of Documents;  let i=index">
+                                        <td>{{document.DocumentType}}</td>
+                                        
+                                        <td> <span  *ngFor="let item of document.Document; let j=index">&nbsp; |&nbsp; 
+                                            <a href="{{DownloadLocation}}={{item.FileLocation}}&DownloadFileName={{item.DocumentType}}-{{j+1}}{{item.MimeType}}" target="_blank"> 
+                                            {{item.DocumentType}}-{{j+1}}</a></span>  
+                                        </td>
+                                        
+                                    </tr>
+                                
+                                </tbody>
+                            </table>
+            </div>
+          </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <div align="center">
+            <div class="row">
+                <div class="col s12">
+
+           
+            <div style="clear:both"></div>
+            <p></p>
+       
+            <h4 style="font-size:20px;">No Documents Found</h4>
+            <img src="/assets/images/no-documents.png" style="height:125px;" />
+        </div>
+        </div>
+        </div>
+    </ng-template>
+    
+
+    
     
     </div>
     

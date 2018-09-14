@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-breadcrumb-jobs-home',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./breadcrumb-jobs-home.component.css']
 })
 export class BreadcrumbJobsHomeComponent implements OnInit {
-
+@Input() BreadCrumb:string;
   constructor() { }
 
   ngOnInit() {

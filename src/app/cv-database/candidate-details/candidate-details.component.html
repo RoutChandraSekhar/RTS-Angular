@@ -1,0 +1,21 @@
+<div class="col s12 m7 l8">
+
+
+  <!--Job Title Heading Goes Here-->
+
+            <div class="mailbox-options">
+             
+                <!-- Applicant Menu Here-->
+                <app-applicant-nav-bar></app-applicant-nav-bar>
+            </div>
+
+            <div class="mailbox-view col s12">
+              <div id="cInfo" class="routeContainer" [@routeAnimation]="getDepth(myOutlet)">
+              
+                  <router-outlet #myOutlet="outlet"></router-outlet>
+                  </div>
+              
+                
+                
+            </div>
+        </div>

@@ -1,22 +1,50 @@
-<div class="col s3">
+<div class="col s4">
     <div class="card card-light">
         <div class="card-content">
             <div class="center"><img src="/assets/images/profile-image-2.png" alt="" class="circle mailbox-profile-image job-interview-candidate-pic "></div>
-            <div class="center">MR. KEVIN PEITERSON</div>
-            <div class="center"><a href="#" onclick="salert();" class=""><i class="fas fa-calendar-check job-interview-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click here if interview is conducted">    </i></a>   
-               <a href="#" onclick="candidateRejected();" > <i class="fas fa-times-circle job-interview-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click here to reject the candidate"></i></a> </div>
-        </div>
+            <div class="center">{{RequestList.CandidateDisplayID}}/A{{RequestList.ApplicationID}} <br/>{{RequestList.FullName}}
+            <br/>
+            
+            </div>
+            
+            <div class="center" style="min-height:55px;">
+               <div *ngFor="let item of RequestList.RequestDetails">
+                  Current State ID {{item.CurrentStateID}} | Next StateID {{item.NextStateID}}
+                    <br/>
+                   {{ item.DisplayName}}
+               </div>
+
+              <a *ngFor="let actioninfo of RequestList.RequestDetails"    
+              (click)="salert(actioninfo.ModalTitle,'You will not be able to recover tsdfhis imaginary file nice!',
+              'warning',actioninfo.ShowCancelButton,'Yes, delesdfte it!','No, keep11 it','Deletedsdf!','Your imaginasdfry file has been deleted.','success',true,'Cancelled12',
+              'Your imaginary file is safe cool :)','error')" class="" style="cursor: pointer;">
+                <i 
+                class="{{actioninfo.DisplayIcon}} 
+                job-interview-icons tooltipped" 
+                data-position="bottom" 
+                data-delay="50" 
+                attr.data-tooltip="{{actioninfo.Tooltip}}"
+               
+                >
+            </i>
+          
+              </a>  
+              <!-- 
+              <a href="#" onclick="candidateRejected();" > <i class="fas fa-times-circle job-interview-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click here to reject the candidate"></i></a> </div>
+              -->
+    </div>
         <div class="card-action">
                <div class="right history-button-card-view">
                  <a style="cursor: pointer;" (click)="showApplicantDocuments()" class="card-view-history-link tooltipped" data-position="left" data-delay="50" data-tooltip="Upload and View files"><i class="fas fa-copy"></i></a>
                  <a style="cursor: pointer;" (click)="showApplicantHistory()" class="card-view-history-link tooltipped" data-position="left" data-delay="50" data-tooltip="View history"><i class="fas fa-history"></i></a>
                </div>
-            <span class="lime darken-2 white">Interview  scheduled</span><br /> 
-            Post : Marketing Analyst <br /> 
-            Department : Corporate Marketing <br /> 
-            Destination : Al Majaz <br /> 
+            <span class="lime darken-2 white">{{RequestList.DisplayName}}</span><br /> 
+            Post : {{RequestList.Title}} <br /> 
+            <!--
+            Department : {{RequestList.Department}} <br /> 
+            Destination : {{RequestList.Entity}}<br /> 
             Interview date : 21-JUN-18 11:00 AM
-
+                -->
 
         </div>
     </div>

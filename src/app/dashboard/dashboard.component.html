@@ -9,8 +9,9 @@
                     </ul>
                 </div>
                 <span class="card-title">Candidates</span>
-                <span class="stats-counter"><span class="counter">21450</span><small></small></span>
+                <span class="stats-counter"><span class="counter">{{TotalCandidates}}</span><small></small></span>
             </div>
+            
             <div id="sparkline-bar"></div>
         </div>
     </div>
@@ -23,7 +24,7 @@
                     </ul>
                 </div>
                 <span class="card-title">Active Jobs</span>
-                <span class="stats-counter"><span class="counter">97</span><small></small></span>
+                <span class="stats-counter"><span class="counter">{{TotalActiveJobs}}</span><small></small></span>
             </div>
             <div id="sparkline-line"></div>
         </div>
@@ -32,7 +33,7 @@
         <div class="card stats-card">
             <div class="card-content">
                 <span class="card-title">Applicants</span>
-                <span class="stats-counter"><span class="counter">649</span><small></small></span>
+                <span class="stats-counter"><span class="counter">{{TotalActiveApplicants}}</span><small></small></span>
                <!-- <div class="percent-info green-text">8% <i class="material-icons">trending_up</i></div>-->
             </div>
             <div class="progress stats-card-progress">
@@ -42,11 +43,17 @@
     </div>
 </div>
 
-<div class="row no-m-t no-m-b" style="display:none; visibility:hidden;" >
+<!--
+<div class="row no-m-t no-m-b" >
         <div class="col s12">
                 <h3 class="card-title" style="font-size:16px;">Test</h3>
             </div>
 
+            <ul>
+                <li *ngFor="let v of VacancyList">
+                ID - {{v.VacancyID}} Title - {{v.Title}}
+                </li>
+            </ul>
             <form>
             <select class="browser-default" multiple style="height:200px"  [(ngModel)]="country" name="country">
                           
@@ -81,6 +88,8 @@
                 
                     </div>
                 </div>
+
+            -->
     <div class="row no-m-t no-m-b">
         <div class="col s12 m12 l8">
             <div class="card visitors-card">
@@ -92,8 +101,10 @@
                         </ul>
                         -->
                     </div>
+
+                   
                     <span class="card-title">Applicants<span class="secondary-title">Showing stats of the applicants</span></span>
-                            <div id="flotchart1"></div>
+                            <div id="flotchart1" class="flowchart2"></div>
                 </div>
             </div>
         </div>
@@ -144,6 +155,7 @@
 
                      <span class="card-title" style="margin-bottom:5px;">Nationality Summary</span>
                      <div class="stats-info">
+                           
                         <ul>
                             <li>UAE <div class="percent-info green-text right">256 <!--<i class="material-icons">trending_up</i> --></div></li>
                             <li>Australia <div class="percent-info green-text right">265 <!--<i class="material-icons">trending_up</i> --></div></li>
@@ -159,20 +171,13 @@
 <div class="inner-sidebar">
     <span class="inner-sidebar-title">Newly registered Candidates</span>
     <div class="message-list">
-    <div class="info-item message-item"><img class="circle" src="assets/images/profile-image-2.png" alt=""><div class="message-info"><div class="message-author">Ned Flanders</div><small>3 hours ago</small></div></div>
-    <div class="info-item message-item"><img class="circle" src="assets/images/profile-image.png" alt=""><div class="message-info"><div class="message-author">Peter Griffin</div><small>4 hours ago</small></div></div>
-    <div class="info-item message-item"><img class="circle" src="assets/images/profile-image-1.png" alt=""><div class="message-info"><div class="message-author">Lisa Simpson</div><small>2 days ago</small></div></div>
-     <div class="info-item message-item"><img class="circle" src="assets/images/profile-image-2.png" alt=""><div class="message-info"><div class="message-author">Ned Flanders</div><small>3 hours ago</small></div></div>
-    <div class="info-item message-item"><img class="circle" src="assets/images/profile-image.png" alt=""><div class="message-info"><div class="message-author">Peter Griffin</div><small>4 hours ago</small></div></div>
-    <div class="info-item message-item"><img class="circle" src="assets/images/profile-image-1.png" alt=""><div class="message-info"><div class="message-author">Lisa Simpson</div><small>2 days ago</small></div></div>
-    <div class="info-item message-item"><img class="circle" src="assets/images/profile-image-2.png" alt=""><div class="message-info"><div class="message-author">Ned Flanders</div><small>3 hours ago</small></div></div>
-    <div class="info-item message-item"><img class="circle" src="assets/images/profile-image.png" alt=""><div class="message-info"><div class="message-author">Peter Griffin</div><small>4 hours ago</small></div></div>
-     <div class="info-item message-item"><img class="circle" src="assets/images/profile-image-1.png" alt=""><div class="message-info"><div class="message-author">Lisa Simpson</div><small>2 days ago</small></div></div>
-     <div class="info-item message-item"><img class="circle" src="assets/images/profile-image-2.png" alt=""><div class="message-info"><div class="message-author">Ned Flanders</div><small>3 hours ago</small></div></div>
-    <div class="info-item message-item"><img class="circle" src="assets/images/profile-image.png" alt=""><div class="message-info"><div class="message-author">Peter Griffin</div><small>4 hours ago</small></div></div>
-     <div class="info-item message-item"><img class="circle" src="assets/images/profile-image-1.png" alt=""><div class="message-info"><div class="message-author">Lisa Simpson</div><small>2 days ago</small></div></div>
-   
-
+    <div class="info-item message-item" *ngFor="let candidate of RecentCandidates;">
+        <img class="circle" src="assets/images/{{candidate.pic}}" alt="" data-tooltip="">
+        <div class="message-info">
+            <div class="message-author truncate"
+            
+            >{{candidate.FullName}}</div><small>{{candidate.PostedAgo}}</small></div></div>
+    
 
 
 </div>

@@ -1,3 +1,4 @@
+
 <div class="row no-m-t no-m-b">
   <div class="col s12 m12 l12 no-p-h">
       <div class="card mailbox-content">
@@ -12,42 +13,49 @@
             <!--Filter Bar starts Here-->
             <app-applicant-filter></app-applicant-filter>
 
+
+           <ng-container *ngIf="isApplicantExist; else elseTemplate">
+               
               <div class="row no-m-t no-m-b">
-                  <div class="col s12 m5 l4">
-                      <!--Candidate List will go Here-->
-                      <app-applicants-list></app-applicants-list>
-                      
-                  </div>
-                  
-                  <app-applicant-job-title></app-applicant-job-title>
-                  <div class="col s12 m7 l8">
-
-
-            <!--Job Title Heading Goes Here-->
-
-                      <div class="mailbox-options">
-                       
-                          <!-- Applicant Menu Here-->
-                          <app-applicant-nav-bar></app-applicant-nav-bar>
-                      </div>
-
-                      <div class="mailbox-view col s12">
-                        <div id="cInfo" class="routeContainer" [@routeAnimation]="getDepth(myOutlet)">
+                    <div class="col s12 m5 l4">
+                        <!--Candidate List will go Here-->
+                        <app-applicants-list ></app-applicants-list>
                         
-                            <router-outlet #myOutlet="outlet"></router-outlet>
+                    </div>
+                    
+                    <app-applicant-job-title></app-applicant-job-title>
+                    <app-candidate-details></app-candidate-details> 
+                </div>
+           </ng-container>
+           <ng-template #elseTemplate>
+                <div class="row no-m-t no-m-b" style="min-height:750px; background-color: #f4f5f8;">
+                        <div class="col s12 m5 l12">
+                            <div align="center" style="padding:20px;">
+                                    <h5 style="padding-top:15px;">There are no applicants with the mentioned criteria.</h5>
+                                <img src="/assets/images/no-results.gif" />
                             </div>
-                        
-                          
-                          
-                      </div>
-                  </div>
-              </div>
+                                
+                            </div>
+                            </div>
+
+               
+           </ng-template>
+           
+             
+              
+
+             
+          
+
+
           </div>
       </div>
   </div>
 </div>
 
 <app-applicant-floating-buttons></app-applicant-floating-buttons>
+
+
 
 
 

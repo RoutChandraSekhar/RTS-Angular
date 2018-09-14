@@ -1,20 +1,26 @@
-<div class="row no-m-t no-m-b">
-    <div class="col s12 m12 l12 no-p-h">
-        <div class="card mailbox-content">
-            <div class="card-content">
-                <div class="col s12" style="background-color:#e2e1e1; padding-top:5px">
-                    <app-breadcrumb-jobs-home></app-breadcrumb-jobs-home>
-                    <app-jobs-home-quick-action-buttons></app-jobs-home-quick-action-buttons>
+<ng-container *ngIf="isLoaded; else elseTemplate">
+        <div class="row no-m-t no-m-b">
+                <div class="col s12 m12 l12 no-p-h">
+                    <div class="card mailbox-content">
+                        <div class="card-content">
+                            <div class="col s12" style="background-color:#e2e1e1; padding-top:5px">
+                                <app-breadcrumb-jobs-home [BreadCrumb]="BreadCrumb"></app-breadcrumb-jobs-home>
+                                <app-jobs-home-quick-action-buttons></app-jobs-home-quick-action-buttons>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-  </div>
-  
-  <app-jobs-home-top-bar></app-jobs-home-top-bar>
-  
-  <div id="main-boxes">
-      <app-job-summary-container></app-job-summary-container>
-      <app-job-summary-container></app-job-summary-container>
-      <app-job-summary-container></app-job-summary-container>    
-  </div>
+              </div>
+              
+              <app-jobs-home-top-bar (onSelectedJobType)="onChangeBreadCrumb($event)"></app-jobs-home-top-bar>
+              
+              <div id="main-boxes">
+                 
+                  <app-job-summary-container *ngFor="let info of JobInfoFiltered" [JobInfo]="info" ></app-job-summary-container>
+               
+              </div>
+</ng-container>
+<ng-template #elseTemplate>
+     
+            <div align="center" style="margin-top:75px;"><img src="/assets/images/fluid-loader.gif"></div>
+</ng-template>

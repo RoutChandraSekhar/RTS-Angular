@@ -6,7 +6,10 @@
       </li> 
 
 <li class="no-padding" id="menucandidates" runat="server">
-  <a class="collapsible-header waves-effect waves-grey" routerLink="candidates" ><i class="material-icons">contacts</i>Candidates</a>
+  <a class="collapsible-header waves-effect waves-grey" 
+  [routerLink]="['/candidates','overview']"
+  [queryParams]="{pid:'1'}"
+   routerLinkActive="router-link-active"  ><i class="material-icons">contacts</i>Candidates</a>
 </li>      
 
 

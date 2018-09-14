@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
+import { ApplicantShortlistableJobs } from '../../../models/applicant-shortlistable-jobs';
 
 @Component({
   selector: 'app-applicant-nav-bar',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./applicant-nav-bar.component.css']
 })
 export class ApplicantNavBarComponent implements OnInit {
-
+  ShortListableJobs: ApplicantShortlistableJobs[];
   constructor() { }
 
   ngOnInit() {

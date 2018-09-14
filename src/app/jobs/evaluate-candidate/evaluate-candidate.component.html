@@ -16,61 +16,61 @@
                 <span class="card-title" style="margin-bottom:15px; padding-left:10px;">Candidate Information</span>
                 <div class="row">
                             <div class="input-field col s4">
-                                 <input id="last_name" type="text" readonly="readonly" value="Abdul Shabbeer" style="color:gray">
-                                <label for="last_name" class="active" style="color:silver ">Candidate Name</label>
+                                 <input id="CandidateName" type="text" readonly="readonly" [(ngModel)]="CandidateName" style="color:gray">
+                                <label for="CandidateName" class="active" style="color:silver ">Candidate Name</label>
              
                             </div>
 
                             <div class="input-field col s2">
-                                <input id="last_name" type="text" readonly="readonly" value="ERF-23424" style="color:gray">
-                                <label for="last_name" class="active" style="color:silver ">ERF#</label>
+                                <input id="ERFNo" type="text" readonly="readonly" [(ngModel)]="ERFNo" style="color:gray">
+                                <label for="ERFNo" class="active" style="color:silver ">ERF#</label>
                             </div>
                     <div class="input-field col s2">
-                                <input id="last_name" type="text" readonly="readonly" value="CX-23424" style="color:gray">
-                                <label for="last_name" class="active" style="color:silver ">Candidate#</label>
+                                <input id="CandidateNo" type="text" readonly="readonly" [(ngModel)]="CandidateNo" style="color:gray">
+                                <label for="CandidateNo" class="active" style="color:silver ">Candidate#</label>
                             </div>
 
                             <div class="input-field col s2">
-                                <input id="last_name" type="text" readonly="readonly" value="AX-23424" style="color:gray">
-                                <label for="last_name" class="active" style="color:silver ">Application#</label>
+                                <input id="ApplciationNo" type="text" readonly="readonly" [(ngModel)]="ApplciationNo" style="color:gray">
+                                <label for="ApplciationNo" class="active" style="color:silver ">Application#</label>
                             </div>
 
                      <div class="input-field col s2">
-                                 <input id="last_name" type="text" readonly="readonly" value="Mar 12, 2018" style="color:gray">
-                                <label for="last_name" class="active" style="color:silver ">Interview Date</label>
+                                 <input id="InterviewDate" type="text" readonly="readonly"  [(ngModel)]="InterviewDate" style="color:gray">
+                                <label for="InterviewDate" class="active" style="color:silver ">Interview Date</label>
                             </div>
                  </div>    
                 
                 <div class="row" style="padding-top:15px;">
                      <div class="input-field col s4">
-                                <input id="last_name" type="text" readonly="readonly" value="Angular Developer" style="color:gray">
-                                <label for="last_name" class="active" style="color:silver ">Position Interviewed for</label>
+                                <input id="PositionInterviewedFor" type="text" readonly="readonly" [(ngModel)]="PositionInterviewedFor" style="color:gray">
+                                <label for="PositionInterviewedFor" class="active" style="color:silver ">Position Interviewed for</label>
              
                             </div>
 
                     <div class="input-field col s4">
-                                 <input id="last_name" type="text" readonly="readonly" value="Corporate Services" style="color:gray">
-                                <label for="last_name" class="active" style="color:silver ">Division</label>
+                                 <input id="Division" type="text" readonly="readonly" [(ngModel)]="Division" style="color:gray">
+                                <label for="Division" class="active" style="color:silver ">Division</label>
              
                             </div>
 
                     <div class="input-field col s4">
-                                 <input id="last_name" type="text" readonly="readonly" value="IT Department" style="color:gray">
-                                <label for="last_name" class="active" style="color:silver ">IT Department</label>
+                                 <input id="Department" type="text" readonly="readonly" [(ngModel)]="Department" style="color:gray">
+                                <label for="Department" class="active" style="color:silver ">IT Department</label>
              
                             </div>
                 </div>
 
                  <div class="row" style="padding-top:15px;">
                      <div class="input-field col s7">
-                                <input id="last_name" type="text" readonly="readonly" value="Mahendra Kakumanu" style="color:gray">
-                                <label for="last_name" class="active" style="color:silver ">Interviewer</label>
+                                <input id="Interviewer" type="text" readonly="readonly" [(ngModel)]="Interviewer" style="color:gray">
+                                <label for="Interviewer" class="active" style="color:silver ">Interviewer</label>
              
                             </div>
 
                     <div class="input-field col s5">
-                                <input id="last_name" type="text" readonly="readonly" value="Application Developer" style="color:gray">
-                                <label for="last_name" class="active" style="color:silver ">Job Title</label>
+                                <input id="JobTitle" type="text" readonly="readonly" [(ngModel)]="JobTitle" style="color:gray">
+                                <label for="JobTitle" class="active" style="color:silver ">Job Title</label>
              
                             </div>
 
@@ -95,18 +95,7 @@
     <div class="row">
                     <div class="input-field col s3">
                         <p>Job Knowledge</p>
-                           <select class="js-states browser-default" tabindex="-1" style="width: 100%" id="multiple">
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
-                            <option value="50">50</option>
-                            <option value="60">60</option>
-                            <option value="70">70</option>
-                            <option value="80">80</option>
-                            <option value="90">90</option>
-                            <option value="100">100</option>
-                        </select>
+                        <input id="JobTitle" type="number" name="JobTitle" [(ngModel)]="JobKnowledge" min="0" max="10" (change)="CalculateScore()" >
                                      
                                 
              
@@ -114,67 +103,23 @@
 
                    <div class="input-field col s3">
                         <p>Innovation</p>
-                           <select class="js-states browser-default" tabindex="-1" style="width: 100%" id="multiple">
-                           <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
-                            <option value="50">50</option>
-                            <option value="60">60</option>
-                            <option value="70">70</option>
-                            <option value="80">80</option>
-                            <option value="90">90</option>
-                            <option value="100">100</option>
-                        </select>
-                            </div>
+                        <input id="Innovation" type="number" name="Innovation" [(ngModel)]="Innovation" min="0" max="10" (change)="CalculateScore()">
+                        </div>
 
                    <div class="input-field col s3">
                         <p>Relevant Job Experience</p>
-                           <select class="js-states browser-default" tabindex="-1" style="width: 100%" id="multiple">
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
-                            <option value="50">50</option>
-                            <option value="60">60</option>
-                            <option value="70">70</option>
-                            <option value="80">80</option>
-                            <option value="90">90</option>
-                            <option value="100">100</option>
-                        </select>
+                        <input id="RelevantJobExperience" type="number" name="RelevantJobExperience" [(ngModel)]="RelevantJobExperience" min="0" max="10" (change)="CalculateScore()">
                             </div>
 
                     <div class="input-field col s3">
                         <p>Service Excellence</p>
-                           <select class="js-states browser-default" tabindex="-1" style="width: 100%" id="multiple">
-                           <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
-                            <option value="50">50</option>
-                            <option value="60">60</option>
-                            <option value="70">70</option>
-                            <option value="80">80</option>
-                            <option value="90">90</option>
-                            <option value="100">100</option>
-                        </select>
-                            </div>
+                        <input id="ServiceExcellence" type="number" name="ServiceExcellence" [(ngModel)]="ServiceExcellence" min="0" max="10" (change)="CalculateScore()">
+                    </div>
                 </div>
     <div class="row">
                     <div class="input-field col s3">
                         <p>Relevant Education/Training</p>
-                           <select class="js-states browser-default" tabindex="-1" style="width: 100%" id="multiple">
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
-                            <option value="50">50</option>
-                            <option value="60">60</option>
-                            <option value="70">70</option>
-                            <option value="80">80</option>
-                            <option value="90">90</option>
-                            <option value="100">100</option>
-                        </select>
+                        <input id="RelevantEducation" type="number" name="RelevantEducation" [(ngModel)]="RelevantEducation" min="0" max="10" (change)="CalculateScore()">
                                      
                                 
              
@@ -182,56 +127,24 @@
 
                    <div class="input-field col s3">
                         <p>Attention to Details</p>
-                           <select class="js-states browser-default" tabindex="-1" style="width: 100%" id="multiple">
-                           <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
-                            <option value="50">50</option>
-                            <option value="60">60</option>
-                            <option value="70">70</option>
-                            <option value="80">80</option>
-                            <option value="90">90</option>
-                            <option value="100">100</option>
-                        </select>
+                        <input id="AttentionToDetails" type="number" name="AttentionToDetails" [(ngModel)]="AttentionToDetails" min="0" max="10" (change)="CalculateScore()">
                             </div>
 
                    <div class="input-field col s3">
                         <p>Market Intelligence</p>
-                           <select class="js-states browser-default" tabindex="-1" style="width: 100%" id="multiple">
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
-                            <option value="50">50</option>
-                            <option value="60">60</option>
-                            <option value="70">70</option>
-                            <option value="80">80</option>
-                            <option value="90">90</option>
-                            <option value="100">100</option>
-                        </select>
+                        <input id="MarketIntelligence" type="number" name="MarketIntelligence" [(ngModel)]="MarketIntelligence" min="0" max="10" (change)="CalculateScore()">
                             </div>
 
                     <div class="input-field col s3">
                         <p>Leadership Skills</p>
-                           <select class="js-states browser-default" tabindex="-1" style="width: 100%" id="multiple">
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
-                            <option value="50">50</option>
-                            <option value="60">60</option>
-                            <option value="70">70</option>
-                            <option value="80">80</option>
-                            <option value="90">90</option>
-                            <option value="100">100</option>
-                        </select>
+                        <input id="LeadershipSkills" type="number" name="LeadershipSkills" [(ngModel)]="LeadershipSkills" min="0" max="10" (change)="CalculateScore()">
                             </div>
                 </div>
 </div>
 </div>
 
-<div class="row"><div class="waves-effect waves-light btn right" style="cursor:default;">Total Score : 72</div> <div class="waves-effect waves-light btn right" style="cursor:default; margin-right:15px;">Total Percentage : 90%</div></div>
+<div class="row"><div class="waves-effect waves-light btn right" style="cursor:default;">Total Score : {{TotalScore}} </div>
+ <div class="waves-effect waves-light btn right" style="cursor:default; margin-right:15px;">Total Percentage : {{TotalPercentage}}%</div></div>
 
 
         <div class="card">
@@ -248,8 +161,7 @@
 
                 <p class="p-v-xs1" style="margin-left:10px;">
                             
-                                     <input type="checkbox" id="chk5"  >
-                            <label for="chk5" style="padding-left: 25px; padding-right:30px;">Suitable for another position</label>     
+                        <mat-checkbox  [(ngModel)]="isSuitableForAnotherPosition" name="Evaluator">Suitable for another position</mat-checkbox> 
                         </p>
     
     <div class="row">
@@ -260,10 +172,10 @@
         </div>
 
 <div class="row">
-<a class="waves-effect waves-light green btn"><i class="material-icons right">done</i>Select Candidate</a>
-<a class="waves-effect waves-light red btn"><i class="material-icons right">close</i>Reject Candidate</a>
-<a class="waves-effect waves-light blue btn"><i class="material-icons right">mic</i>Need Further Interview</a>
-<a class="waves-effect waves-light grey btn"><i class="material-icons right">arrow_back</i>Reset and Go Back</a>
+<a (click)="onHireCandidate()" class="waves-effect waves-light green btn" style="margin-right:10px"><i class="material-icons right">done</i>Select Candidate</a>
+<a (click)="onRejectCandidate()" class="waves-effect waves-light red btn" style="margin-right:10px"><i class="material-icons right">close</i>Reject Candidate</a>
+<a (click)="onFurherInteview()" class="waves-effect waves-light blue btn" style="margin-right:10px"><i class="material-icons right">mic</i>Need Further Interview</a>
+<a (click)="onReset()" class="waves-effect waves-light grey btn" style="margin-right:10px"><i class="material-icons right">arrow_back</i>Reset and Go Back</a>
 </div>
 
 
@@ -278,11 +190,12 @@
 
                     
                 </div>
-    <p class="p-v-xs1" style="margin-left:10px;">
+   
+                <p class="p-v-xs1" style="margin-left:10px;">
                             
-                                     <input type="checkbox" id="chk51"  >
-                            <label for="chk51" style="padding-left: 25px; padding-right:30px;">Suitable for another position</label>     
+                        <mat-checkbox  [(ngModel)]="isSuitableForAnotherPosition" name="Evaluator">Suitable for another position</mat-checkbox> 
                         </p>
+  
     
     <div class="row">
     <div class="input-field col s12" >
@@ -295,10 +208,10 @@
 
 
 <div class="row">
-<a class="waves-effect waves-light green btn"><i class="material-icons right">done</i>Hire Candidate</a>
-<a class="waves-effect waves-light red btn"><i class="material-icons right">close</i>Reject Candidate</a>
-<a class="waves-effect waves-light blue btn"><i class="material-icons right">mic</i>Need Further Interview</a>
-<a class="waves-effect waves-light grey btn"><i class="material-icons right">arrow_back</i>Reset and Go Back</a>
+<a class="waves-effect waves-light green btn" style="margin-right:10px" (click)="onHireCandidate()" ><i class="material-icons right">done</i>Hire Candidate</a>
+<a class="waves-effect waves-light red btn" style="margin-right:10px" (click)="onRejectCandidate()"><i class="material-icons right">close</i>Reject Candidate</a>
+<a class="waves-effect waves-light blue btn" style="margin-right:10px" (click)="onFurherInteview()"><i class="material-icons right">mic</i>Need Further Interview</a>
+<a class="waves-effect waves-light grey btn" style="margin-right:10px" (click)="onReset()"><i class="material-icons right">arrow_back</i>Reset and Go Back</a>
 </div>
        
     </div>
