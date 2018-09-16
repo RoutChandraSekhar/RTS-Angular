@@ -28,6 +28,7 @@
 </div>
 <ng-container *ngIf="isCurrentApplicationExist; else elseTemplate">
     <ul class="collection">
+            <li class="collection-item"> <div class="basic-info-title left width-100">Application No</div>  {{CurrentAppliationStatus.ApplicationID}}</li>
         <li class="collection-item"> <div class="basic-info-title left width-100">Job Title</div>  {{CurrentAppliationStatus.Title}}</li>
         <li class="collection-item"><div class="basic-info-title left width-100">Destination</div>{{CurrentAppliationStatus.Company}}</li>
         <li class="collection-item"><div class="basic-info-title left width-100">Department</div>{{CurrentAppliationStatus.Dept_Name}}</li>

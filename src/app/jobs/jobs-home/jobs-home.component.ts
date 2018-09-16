@@ -22,11 +22,19 @@ export class JobsHomeComponent implements OnInit,OnDestroy {
 
   ) { }
  
-  isLoaded:boolean=true  ;
+  isLoaded:boolean=false  ;
   ngOnInit() {
    
+     
+   
+    
+    this.LoadInitialContents();
+   
+    /*
+    setTimeout(() => {
       this.LoadInitialContents();
- 
+      }, 400);
+*/
     
   }
 
@@ -38,13 +46,13 @@ export class JobsHomeComponent implements OnInit,OnDestroy {
 
   LoadInitialContents(){
     this.JobInfoFiltered=[];
-   // this.isLoaded=true;  //change to false to enable loader
+    this.isLoaded=false;  //change to false to enable loader
   this.JobInfoSubcription=  this.JobinfoService.cast.subscribe(JobInfoFiltered=>
       {
 
         this.JobInfoFiltered=JobInfoFiltered;
 
-    //  this.isLoaded=true;
+      this.isLoaded=true;
       }
       
     

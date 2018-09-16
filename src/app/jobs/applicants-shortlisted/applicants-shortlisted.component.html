@@ -1,3 +1,102 @@
-<p>
-  applicants-shortlisted works!
-</p>
+<div class="row no-m-t no-m-b">
+    <div class="col s12 m12 l12 no-p-h">
+        <div class="card mailbox-content">
+            <div class="card-content">
+                <div class="col s12" style="background-color:#e2e1e1; padding-top:5px">
+                      <div class="breadcrumb">
+            <a routerLink="/home"   class="breadcrumb-nav">Home</a> | <a routerLink="/jobs"  class="breadcrumb-nav">Jobs</a> | Interviews
+  
+          
+        </div>
+                  <!--
+
+                    <div id="filter-applied" class="page-title right">
+                     
+                        
+                        <a class='dropdown-button btn-flat' href='#' data-activates='dropdown2'><i class="fas fa-id-card interview-list-display-icons"></i> Card View <i class="fas fa-angle-down"></i></a> 
+                       
+
+                        <ul id='dropdown2' class='dropdown-content'>
+                            <li><a href="#!">Card View</a></li>
+                            
+                            <li><a href="#!">List View</a></li>
+                            
+  
+  
+                        </ul>
+                      
+  
+  
+                    </div>
+                </div>
+                -->
+  
+  
+               
+  
+  
+         
+  
+  
+  
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  <app-shortlist-fliter></app-shortlist-fliter>
+  
+  <div id="main-boxes-inverview">
+    
+  
+    <div class="row approved-candidates-summary-portlet  z-depth-1">
+        <div class="s12 padding-12px">
+            <div class="left"></div>
+            <div class="right padding-bottom-5px">
+             
+  
+            </div>
+        </div>
+       
+        <div class="clear-both"></div>
+  
+        <div *ngIf="!isContentExist" align="center" style="padding:25px; background-color:#f4f5f8 !important; margin-top:10px;">
+          <img src="/assets/images/no-results.gif" />
+
+        </div>
+        
+        <ng-container *ngIf="isContentLoaded; else loadertemplate">
+          <app-applicant-info-card *ngFor="let request of RequestList" [RequestList]="request" (onDocumentUploadModalShow)="onDocumentUploadModalShow($event)"></app-applicant-info-card>
+    
+        </ng-container>
+        <ng-template #loadertemplate>
+            <div align="center" style="margin:20px">
+          <img src="/assets/images/fluid-loader.gif">
+          </div>
+        </ng-template>
+        
+     
+       
+    </div>
+  
+  </div>
+  
+  <!--
+  <app-applicant-floating-filter-button></app-applicant-floating-filter-button>
+  -->
+  
+  <app-applicant-history></app-applicant-history>
+  <app-applicant-documents></app-applicant-documents>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

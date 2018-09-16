@@ -4,6 +4,7 @@ import { Vacancy } from '../shared/models/vacancy';
 import { Dashboard, RecentCandidates } from '../shared/models/dashboard/dashboard';
 import { DashboardService } from '../shared/services/dashboard/dashboard.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 declare var $:any;
@@ -26,6 +27,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   DashboardSubscription:Subscription;
   constructor(
       @Inject(CandidateService) private candidateService : CandidateService,
+      private router : Router
      // @Inject(DashboardService ) private DashboardService : DashboardService
 ) { }
 
@@ -53,11 +55,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 
    $('.tooltipped').tooltip();
- this.DashboardSubscription=  this.candidateService.GetDashboard("1","25").subscribe(
+ this.DashboardSubscription=  this.candidateService.GetDashboard( "1","25").subscribe(
         (response)=>{
+            /*
             console.log(response);
             console.log(response["dashboard"][0]);
+            */
             let dash =response["dashboard"][0];
+            
             this.Dashboard=dash;
             this.TotalActiveJobs=this.Dashboard.ActiveJobs;
             this.TotalCandidates=this.Dashboard.TotalCandidates;
@@ -67,10 +72,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
             this.RecentCandidates=response["recentcandidates"];
 
+            /*
             console.log(response);
             console.log(this.Dashboard.ChartData)
             console.log( this.RecentCandidates)
-            
+            */
 
 
             /*
@@ -135,7 +141,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
 
- 
+  GotToCandidatesPage(){
+    this.router.navigateByUrl("/candidates");
+  }
+
+  GotToActiveJobs(){
+    this.router.navigateByUrl("/jobs");
+  }
 
 
   

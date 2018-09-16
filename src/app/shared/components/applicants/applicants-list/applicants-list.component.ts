@@ -62,16 +62,6 @@ export class ApplicantsListComponent implements OnInit {
         this.MaxPage= Math.ceil(this.TotalCandidates/this.PageSize);
       }
     );
-    
-    /*
-    this.CurrentSelectedCandidatePageService.castCurrentSelectedApplicantID.subscribe(
-      SelectedCandidateID=>{
-      this.SelectedCandidateID=SelectedCandidateID.toString()
-      console.log(this.SelectedCandidateID);
-    }
-
-    );
-    */
   }
 
   GetCandidatePageInfo(){
@@ -94,7 +84,15 @@ setCandidatePageInfo(){
   this.setCandidatePageInfo()
   //alert(this.cPageInfo.PageFitler.Filter.Keywords)
   this.CurrentSlectedCandidateListService.LoadCandidates(this.cPageInfo.PageFitler)
-  this.router.navigateByUrl('/candidates/overview');
+
+  let CurrentURL:string=this.router.url.toString().toLowerCase()
+  if(CurrentURL.indexOf("candidatesx")>=0){
+    this.router.navigateByUrl('/candidatesx/overview');
+  } else 
+  {
+    this.router.navigateByUrl('/candidates/overview');
+  }
+  
 
 }
 
@@ -108,7 +106,13 @@ setCandidatePageInfo(){
    // alert(this.cPageInfo.PageFitler.Filter.Keywords)
 
    this.CurrentSlectedCandidateListService.LoadCandidates(this.cPageInfo.PageFitler)
-   this.router.navigateByUrl('/candidates/overview');
+   let CurrentURL:string=this.router.url.toString().toLowerCase()
+   if(CurrentURL.indexOf("candidatesx")>=0){
+     this.router.navigateByUrl('/candidatesx/overview');
+   } else 
+   {
+     this.router.navigateByUrl('/candidates/overview');
+   }
         
  }
 

@@ -9,6 +9,7 @@ import { ApplicantsInterviewsComponent } from '../jobs/applicants-interviews/app
 import { AddVacancyComponent } from '../jobs/add-vacancy/add-vacancy.component';
 import { AddCandidateComponent } from '../cv-database/add-candidate/add-candidate.component';
 import { EvaluateCandidateComponent } from '../jobs/evaluate-candidate/evaluate-candidate.component';
+import { ApplicantsShortlistedComponent } from '../jobs/applicants-shortlisted/applicants-shortlisted.component';
 
 
 var myroutes : Routes=[
@@ -19,6 +20,7 @@ var myroutes : Routes=[
    {path:"jobsclosed",  data:{depth:5}, component:JobsComponent},
    {path:"evaluatecandidate",  data:{depth:6}, component:EvaluateCandidateComponent},
    
+   {path:"shortlisted",  data:{depth:11}, component:ApplicantsShortlistedComponent},
    {path:"interviews",  data:{depth:7}, component:ApplicantsInterviewsComponent},
    {path:"addjob",  data:{depth:8}, component:AddVacancyComponent},
    {path:"addcandidate",  data:{depth:9}, component:AddCandidateComponent},

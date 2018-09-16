@@ -3,6 +3,7 @@ import { JobInfo } from '../../../shared/models/jobs/JobInfo';
 import { CandidateService } from '../../../shared/services/candidate.service';
 import { JobinfoService } from '../../../shared/services/jobs/jobinfo.service';
 import {Router} from "@angular/router";
+import { Subscription } from 'rxjs';
 declare var $:any;
 
 @Component({
@@ -32,7 +33,7 @@ export class JobsHomeTopBarComponent implements OnInit {
 
  CandidateList :any[];
  @Output() onSelectedJobType: EventEmitter<string> = new EventEmitter();
-
+ GetJobListingSummarySubscription:Subscription;
   constructor(
     @Inject(CandidateService) private candidateService : CandidateService,
     private JobinfoService : JobinfoService,
@@ -41,6 +42,11 @@ export class JobsHomeTopBarComponent implements OnInit {
 
   ) { }
 
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.GetJobListingSummarySubscription.unsubscribe();
+  }
   ngOnInit() {
         $("select").select2();
        $('select').material_select();
@@ -63,7 +69,7 @@ export class JobsHomeTopBarComponent implements OnInit {
       
 
 
-       this.candidateService.GetJobListingSummary(this.ShowOnlyClosedJobs).subscribe(
+     this.GetJobListingSummarySubscription=  this.candidateService.GetJobListingSummary(this.ShowOnlyClosedJobs).subscribe(
         (response)=>{
           let rep = response["JobListSummary"];
           let rep1 = rep["JobInfo"];

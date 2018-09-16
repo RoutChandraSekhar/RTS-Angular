@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, Inject, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { JobInfo, JobApplicationsInfo } from '../../../shared/models/jobs/JobInfo';
 declare var $:any;
 import Swal, { SweetAlertType } from 'sweetalert2';
@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { JobinfoService } from '../../../shared/services/jobs/jobinfo.service';
 import { CandidateService } from '../../../shared/services/candidate.service';
 import { CurrentSelectedCandidatePageService } from '../../../shared/services/current-selected-candidate-page.service';
+import { Subscription } from 'rxjs';
 
 
 
@@ -14,7 +15,7 @@ import { CurrentSelectedCandidatePageService } from '../../../shared/services/cu
   templateUrl: './job-summary-container.component.html',
   styleUrls: ['./job-summary-container.component.css']
 })
-export class JobSummaryContainerComponent implements OnInit {
+export class JobSummaryContainerComponent implements OnInit,OnDestroy {
 
   constructor(
     @Inject(CandidateService) private candidateService : CandidateService,
@@ -24,10 +25,33 @@ export class JobSummaryContainerComponent implements OnInit {
   JobApplicationsInfo: JobApplicationsInfo[]=[];
   ShowActionButtons:boolean=true;
 
- 
+  PublishUnpublishJobSubscription:Subscription;
+  CloseJobSubscription: Subscription;
+  GetJobListingSummarySubscription:Subscription;
+  
+
+ ngOnDestroy(): void {
+   //Called once, before the instance is destroyed.
+   //Add 'implements OnDestroy' to the class.
+   if (this.PublishUnpublishJobSubscription != null || this.PublishUnpublishJobSubscription !=undefined){
+    this.PublishUnpublishJobSubscription.unsubscribe();
+   }
+
+   if (this.CloseJobSubscription != null || this.CloseJobSubscription !=undefined){
+    this.CloseJobSubscription.unsubscribe();
+   }
+   if (this.GetJobListingSummarySubscription != null || this.GetJobListingSummarySubscription !=undefined){
+    this.GetJobListingSummarySubscription.unsubscribe();
+   }
+  
+   
+  
+ }
 
   ngOnInit() {
    this.JobApplicationsInfo=this.JobInfo["JobApplicationsInfo"];
+   //console.clear();
+   console.log(this.JobApplicationsInfo);
    this.showJobs();
 
   }
@@ -54,7 +78,7 @@ export class JobSummaryContainerComponent implements OnInit {
         if (result.value) {
 
         // Publish Code Here
-        this.candidateService.PublishUnpublishJob(+VacancyID,"false").subscribe(
+      this.PublishUnpublishJobSubscription=  this.candidateService.PublishUnpublishJob(+VacancyID,"false").subscribe(
           ()=>{
             Swal('Unpublished!','This job is now unpublished from SHUROOQ career portal ','success')
             this.RefreshJobs(false);
@@ -79,7 +103,7 @@ export class JobSummaryContainerComponent implements OnInit {
         if (result.value) {
 
         // Publish Code Here
-        this.candidateService.CloseJob(VacancyID,"true").subscribe(
+       this.CloseJobSubscription= this.candidateService.CloseJob(VacancyID,"true").subscribe(
           ()=>{
             Swal('Unpublished!','This job is closed and archived ','success')
             this.RefreshJobs(false);
@@ -105,7 +129,7 @@ export class JobSummaryContainerComponent implements OnInit {
         if (result.value) {
 
         // Publish Code Here
-        this.candidateService.PublishUnpublishJob(VacancyID,"true").subscribe(
+       this.PublishUnpublishJobSubscription= this.candidateService.PublishUnpublishJob(VacancyID,"true").subscribe(
           ()=>{
             Swal('Published!','This job is now published at SHUROOQ career portal ','success')
             this.RefreshJobs(false);
@@ -121,7 +145,7 @@ export class JobSummaryContainerComponent implements OnInit {
 
 
     RefreshJobs(ShowOnlyClosedJobs){
-      this.candidateService.GetJobListingSummary(ShowOnlyClosedJobs).subscribe(
+   this.GetJobListingSummarySubscription= this.candidateService.GetJobListingSummary(ShowOnlyClosedJobs).subscribe(
         (response)=>{
           let rep = response["JobListSummary"];
           let rep1 = rep["JobInfo"];
@@ -146,6 +170,28 @@ export class JobSummaryContainerComponent implements OnInit {
           
      }
 
+}
+
+GetRouteLink(GroupName:string, VacancyID:number){
+  var URL= ""
+  if(GroupName.toLowerCase()=="applicants"){
+    URL="/candidates/overview?mode=applicants&vacancyID="+ VacancyID +"&frompage=jobapplicants"
+  } else if (GroupName.toLowerCase()=="shortlist"){
+    URL="/candidates/overview?mode=shortlist&vacancyID="+ VacancyID +"&frompage=jobapplicants"
+  } else if (GroupName.toLowerCase()=="approved"){
+    URL="/shortlisted?mode=approved&vacancyID="+ VacancyID +"&frompage=jobapplicants&groupid=3"
+  } else if (GroupName.toLowerCase()=="interview"){
+    URL="/shortlisted?mode=interview&vacancyID="+ VacancyID +"&frompage=jobapplicants&groupid=4"
+  }  else if (GroupName.toLowerCase()=="security"){
+    URL="/shortlisted?mode=security&vacancyID="+ VacancyID +"&frompage=jobapplicants&groupid=5"
+  }  else if (GroupName.toLowerCase()=="offer"){
+    URL="/shortlisted?mode=offer&vacancyID="+ VacancyID +"&frompage=jobapplicants&groupid=6"
+  }   else if (GroupName.toLowerCase()=="hired"){
+    URL="/shortlisted?mode=hired&vacancyID="+ VacancyID +"&frompage=jobapplicants&groupid=7"
+  }  else if (GroupName.toLowerCase()=="joined"){
+    URL="/shortlisted?mode=joined&vacancyID="+ VacancyID +"&frompage=jobapplicants&groupid=8"
+  }  
+  this.router.navigateByUrl(URL);     
 }
     
 }

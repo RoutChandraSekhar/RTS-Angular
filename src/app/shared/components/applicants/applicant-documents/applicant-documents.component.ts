@@ -49,7 +49,7 @@ DownloadLocation:string=environment.FileStorageURL;
 
 
   ngOnInit() {
-    console.clear();
+   // console.clear();
     this.LoadInditialContents()
 
   }
@@ -61,7 +61,7 @@ DownloadLocation:string=environment.FileStorageURL;
   this.sub=  this.CandidateService.GetCandidateDocumentsActive(CandidateID).subscribe(
     
       (response)=>{
-        console.clear();
+       // console.clear();
         console.log(JSON.stringify(response));
         this.isDocumentExist=false;
         

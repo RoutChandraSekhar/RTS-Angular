@@ -1,22 +1,30 @@
 <div class="middle-content">
     <div class="row no-m-t no-m-b">
     <div class="col s12 m12 l4">
-        <div class="card stats-card">
+
+        
+        <div class="card stats-card" (click)="GotToCandidatesPage()" style="cursor:pointer;">
+               
             <div class="card-content">
                 <div class="card-options">
                     <ul>
                        <!-- <li class="red-text"><span class="badge cyan lighten-1">gross</span></li>-->
                     </ul>
                 </div>
+               
                 <span class="card-title">Candidates</span>
                 <span class="stats-counter"><span class="counter">{{TotalCandidates}}</span><small></small></span>
+               
             </div>
-            
-            <div id="sparkline-bar"></div>
+     
+            <div class="progress stats-card-progress">
+                    <div class="determinate" style="width: 70%"></div>
+                </div>
         </div>
+
     </div>
         <div class="col s12 m12 l4">
-        <div class="card stats-card">
+        <div class="card stats-card"  (click)="GotToActiveJobs()" style="cursor:pointer;">
             <div class="card-content">
                 <div class="card-options">
                     <ul>
@@ -26,7 +34,9 @@
                 <span class="card-title">Active Jobs</span>
                 <span class="stats-counter"><span class="counter">{{TotalActiveJobs}}</span><small></small></span>
             </div>
-            <div id="sparkline-line"></div>
+            <div class="progress stats-card-progress">
+                    <div class="determinate" style="width: 70%"></div>
+                </div>
         </div>
     </div>
     <div class="col s12 m12 l4">

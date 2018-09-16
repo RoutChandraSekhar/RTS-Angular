@@ -102,7 +102,10 @@ export class AddCandidateComponent implements OnInit,OnDestroy {
   isLoaded:boolean=false;
 
   @ViewChild('myFileUpload') myInputVariable: ElementRef;
+
   LoadDropDownConetnsSubscription:Subscription;
+  candidateServiceSubscription:Subscription;
+  CreateCandidateSubscription:Subscription;
 
   ngOnInit() {
 
@@ -129,7 +132,18 @@ export class AddCandidateComponent implements OnInit,OnDestroy {
 ngOnDestroy(): void {
   //Called once, before the instance is destroyed.
   //Add 'implements OnDestroy' to the class.
-  this.LoadDropDownConetnsSubscription.unsubscribe();
+  if (this.LoadDropDownConetnsSubscription!=null || this.LoadDropDownConetnsSubscription!=undefined){
+    this.LoadDropDownConetnsSubscription.unsubscribe();
+  }
+
+  if (this.candidateServiceSubscription!=null || this.candidateServiceSubscription!=undefined){
+    this.candidateServiceSubscription.unsubscribe();
+  }
+
+  if (this.CreateCandidateSubscription!=null || this.CreateCandidateSubscription!=undefined){
+    this.CreateCandidateSubscription.unsubscribe();
+  }
+
 }
 
 LoadDropDownContents(){
@@ -307,7 +321,7 @@ LoadDropDownContents(){
         
         }
         
-        this.candidateService.uploadCV(frmData).subscribe(result => {
+    this.candidateServiceSubscription=this.candidateService.uploadCV(frmData).subscribe(result => {
           this.myFiles=[];
          
           this.UploadButtonText="Saving Data...Please Wait"
@@ -477,7 +491,7 @@ LoadDropDownContents(){
         a.PrefferedLocation=this.GetPrefferedLocation();
         a.JobIndustry=this.GetSelectedJobIndustry();
      
-        this.candidateService.CreateCandidate(JSON.stringify(a)).subscribe(result => {
+        this.CreateCandidateSubscription=  this.candidateService.CreateCandidate(JSON.stringify(a)).subscribe(result => {
       
 
           Swal({

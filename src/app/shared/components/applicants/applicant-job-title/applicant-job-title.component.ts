@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-applicant-job-title',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApplicantJobTitleComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  isShowTitle:boolean=false;
 
   ngOnInit() {
+    let CurrentURL:string=this.router.url;
+    if(CurrentURL.toLowerCase().indexOf("mode=applicants")>=0){
+      this.isShowTitle=true;
+    } else  if(CurrentURL.toLowerCase().indexOf("mode=shortlist")>=0){
+      this.isShowTitle=true;
+    } 
   }
+
+
 
 }

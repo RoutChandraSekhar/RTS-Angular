@@ -80,6 +80,7 @@ export class LoginComponent implements OnInit {
        //console.log(response);
       //  let UserDetails = response["UserDetails"];
       //console.log(this.Password);
+      
       if (response["UserDetails"].length>0){
        this.LoggedInUserDetails=(response["UserDetails"]);
         this.isLoggedIn=true;

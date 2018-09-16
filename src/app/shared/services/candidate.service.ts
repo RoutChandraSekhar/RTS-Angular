@@ -130,6 +130,10 @@ public CreateNewVacancy(Vacancy:string ){
 
   */
 
+ public transitstate(ActionTypeID:number,  ActionID:number,  ApplicationID:number,  ReuqesterUserID:number,  DesiredStateID:number,  RequestID:number,  TransactionUserID:number,  TransitionID:number){
+  return this.http.get<any>(this.ApiEndPoint + "api/request/transitstate?ActionTypeID="+ ActionTypeID + "&ActionID=" + ActionID + "&ApplicationID=" + ApplicationID + "&ReuqesterUserID=" + ReuqesterUserID + "&DesiredStateID=" + DesiredStateID + "&RequestID=" + RequestID + "&TransactionUserID=" + TransactionUserID + "&TransitionID=" + TransitionID,{responseType:"json"});
+}
+
  public getCandidateDetails(CandidateID :number){
   return this.http.get<any>(this.ApiEndPoint + "api/candidate/" + CandidateID,{responseType:"json"});
 }
@@ -197,8 +201,12 @@ public CreateNewVacancy(Vacancy:string ){
     return this.http.get<any>(this.ApiEndPoint + "api/jobs/listingsummary?isClosed="+ isClosed ,{responseType:"json"});
   }
 
-  public GetRequestDetailsGroupWise(GroupID:number){
-    return this.http.get<any>(this.ApiEndPoint + "api/request/groupdetails/2/"+ GroupID ,{responseType:"json"});
+  public GetRequestDetailsGroupWiseSingleRequest(UserID:number,GroupID:number, RequestID:number){
+    return this.http.get<any>(this.ApiEndPoint + "api/request/groupdetailssinglerequest/" + UserID + "/"+ GroupID + "/" + RequestID,{responseType:"json"});
+  }
+
+  public GetRequestDetailsGroupWise(UserID:number,GroupID:number){
+    return this.http.get<any>(this.ApiEndPoint + "api/request/groupdetails/" + UserID + "/"+ GroupID ,{responseType:"json"});
   }
 
   uploadCV(payload: FormData) {

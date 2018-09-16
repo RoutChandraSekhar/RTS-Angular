@@ -114,7 +114,7 @@ export class CvDatabaseComponent implements OnInit,OnDestroy {
       console.log ("page mode is" + pagemode )
       if (pagemode=="none")  {
           console.log("page mode is none");
-         f= new Filter("0","","","0","","","","","","","",false, false)
+         f= new Filter("0","","","0","","","","","","","",false, false,"")
          ft = new CandidateFilter("2","active","none","candidates","1",PageSize, f)
       } else if(pagemode=="globalsearch"){
         console.log("page mode is not none..it is " + pagemode);
@@ -124,10 +124,21 @@ export class CvDatabaseComponent implements OnInit,OnDestroy {
             searchkeword= this.route.snapshot.queryParams['keyword'];
           
         }
-        f= new Filter("0",searchkeword,"","0","","","","","","","",false, false)
+        f= new Filter("0",searchkeword,"","0","","","","","","","",false, false,"")
         ft = new CandidateFilter("2","active","filtered","candidates","1",PageSize, f)
-      }
-    
+      }else if(pagemode=="applicants"){
+        console.log("page mode is not none..it is " + pagemode);
+       let vacancyID = this.route.snapshot.queryParams['vacancyID'];
+     
+        f= new Filter(vacancyID,"","","0","","","","","","","",false, false,"")
+         ft = new CandidateFilter("2","active","filtered","applicants","1",PageSize, f)
+        }else if(pagemode=="shortlist"){
+            console.log("page mode is not none..it is " + pagemode);
+           let vacancyID = this.route.snapshot.queryParams['vacancyID'];
+         
+            f= new Filter(vacancyID,"","","0","","","","","","","",false, false,"2000")
+             ft = new CandidateFilter("2","active","filtered","applicants","1",PageSize, f)
+            }
     
 
 

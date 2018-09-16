@@ -1,0 +1,139 @@
+<div class="col s12 header-filter-margin-padding-zero" style="padding:0px;">
+    <ul class="collapsible  collapsable-candidate-filter-header header-filter-margin-padding-zero" data-collapsible="accordion">
+        <li>
+            <div class="collapsible-header collapsable-candidate-filter-header" style="background:#f9f9f9;"><i class="fas fa-filter" style="margin-right:3px;"></i><div style="float:left; margin-right:6px;">Filters Applied : 6 </div><i class="fas fa-chevron-circle-down"></i></div>
+            <div class="collapsible-body">
+                <div class="collapsable-candidate-filter-body">
+                    <div class="chip">Skill: Kubernetes</div> <div class="chip">Skill : Angular</div> <div class="chip">Skill: Devops</div> <div class="chip">Experience: 5+ years</div>   <div class="chip">Nationality : India, UAE</div> <div class="chip">Worked at : Google, Microsoft, Amazon</div>
+  
+                    <div style="padding-top:10px;">
+                    <a (click)="showFilterModal()" class=" modal-action  waves-effect waves-green green btn  " style="margin-right:8px;"><i class="fas fa-filter"></i> Filter Options</a>
+                    <a class=" modal-action modal-close waves-effect waves-green red btn"><i class="fas fa-times-circle"></i> Reset</a>
+                    </div>
+  
+                </div>
+            </div>
+        </li>
+    </ul>
+  
+   
+  
+  </div>
+  
+  
+  <div id="modal_filter_candidates" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4> <i class="fas fa-filter"></i> Filter Candidates</h4>
+        <div class="row" style="margin:0px;">
+  
+            <div class="input-field col s12">
+                <input placeholder="" id="Search" type="text" class="validate">
+                <label for="first_name">Search CV</label>
+            </div>
+        </div>
+           
+  
+        <div class="row" style="margin:0px;">
+            <div class="input-field col s3">
+                <select placeholder="Select Stage" style="width:100%;">
+  
+                    <option value="1" selected disabled>By Job Role</option>
+                    <option value="2">All Stages</option>
+                    <option value="3">Option 3</option>
+                </select>
+  
+            </div>
+  
+            <div class="input-field col s3">
+                <select placeholder="Select Stage" style="width:100%;">
+  
+                    <option value="1" selected disabled>By Experience</option>
+                    <option value="2">All Candidates</option>
+                    <option value="3">Option 3</option>
+                </select>
+  
+            </div>
+  
+            <div class="input-field col s2">
+                <select placeholder="Select Stage" style="width:100%;">
+  
+                    <option value="1" selected disabled>By Age</option>
+                    <option value="2">All Candidates</option>
+                    <option value="3">Option 3</option>
+                </select>
+  
+            </div>
+  
+  
+  
+  
+            <div class="input-field col s4">
+                <select placeholder="Select Stage" style="width:100%;">
+  
+                    <option value="1" selected disabled>By Candidate Status</option>
+                    <option value="2">All Candidates</option>
+                    <option value="3">Option 3</option>
+                </select>
+  
+            </div>
+  
+  </div>
+        
+  
+        <div class="row" style="margin:0px;">
+            <div class="input-field col s3">
+                <select placeholder="Select Stage" style="width:100%;">
+  
+                    <option value="1" selected disabled>By Gender</option>
+                    <option value="2">All Candidates</option>
+                    <option value="3">Option 3</option>
+                </select>
+  
+            </div>
+  
+            <div class="input-field col s3">
+                <select placeholder="Select Stage" style="width:100%;" >
+  
+                   
+                    <option value="2">All Candidates</option>
+                    <option value="3">Option 3</option>
+                    <option value="3">Option 3</option>
+                    <option value="3">Option 3</option>
+                    <option value="3">Option 3</option>
+                    <option value="3">Option 3</option>
+                </select>
+                
+            </div>
+  
+            <div class="input-field col s3">
+                <select placeholder="Select Stage" style="width:100%;">
+  
+                    <option value="1" selected disabled>By Education</option>
+                    <option value="2">All Candidates</option>
+                    <option value="3">Option 3</option>
+                </select>
+  
+            </div>
+  
+            <div class="input-field col s3">
+                <select placeholder="Select Stage" style="width:100%;">
+  
+                    <option value="1" selected disabled>By Language Skills</option>
+                    <option value="2">All Candidates</option>
+                    <option value="3">Option 3</option>
+                </select>
+  
+            </div>
+  
+          
+  
+            <div class="input-field  col s5" style="padding-top:10px;">
+                <a id="filterCandidates" class=" modal-action modal-close waves-effect waves-green green btn" style="margin-right: 8px;"><i class="fas fa-filter"></i> Filter Candidates</a>
+                <a id="resetFilterCandidates" class=" modal-action modal-close waves-effect waves-green red btn"><i class="fas fa-times-circle"></i> Reset</a>
+            </div>
+        </div>
+    </div>
+    <!--<div class="modal-footer">
+        
+    </div>-->
+  </div>

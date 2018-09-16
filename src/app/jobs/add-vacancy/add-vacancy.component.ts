@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, OnDestroy } from '@angular/core';
 import { CandidateService } from '../../shared/services/candidate.service';
 import { JobInterviewerList, JobsAddNewJob } from '../../shared/models/jobs/addnewjob';
 import Swal, { SweetAlertType } from 'sweetalert2';
@@ -6,7 +6,7 @@ import { DatePipe } from '@angular/common';
 import swal from 'sweetalert2';
 import { NgForm, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 declare var $:any;
 
@@ -15,7 +15,7 @@ declare var $:any;
   templateUrl: './add-vacancy.component.html',
   styleUrls: ['./add-vacancy.component.css']
 })
-export class AddVacancyComponent implements OnInit {
+export class AddVacancyComponent implements OnInit,OnDestroy {
 
   constructor(
     private router: Router,
@@ -56,6 +56,25 @@ export class AddVacancyComponent implements OnInit {
   isLoaded:boolean=false;
   isSubmitButtonDisabled:boolean=false;
 
+  GetJobAddFormDisplayComponentsSubscription:Subscription;
+  CreateNewVacancySubscription:Subscription;
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+
+    if (this.GetJobAddFormDisplayComponentsSubscription !=null || this.GetJobAddFormDisplayComponentsSubscription!=undefined){
+      this.GetJobAddFormDisplayComponentsSubscription.unsubscribe();
+    }
+
+    if (this.CreateNewVacancySubscription !=null || this.CreateNewVacancySubscription!=undefined){
+      this.CreateNewVacancySubscription.unsubscribe();
+    }
+    
+   
+    
+  }
+
   ngOnInit() {
 
    
@@ -68,15 +87,17 @@ export class AddVacancyComponent implements OnInit {
   
     setTimeout(() => {
       this.LoadJobControls();
-    }, 1500);
+    }, 500);
 
     
   }
 
 
   LoadJobControls(){
-    this.candidateService.GetJobAddFormDisplayComponents().subscribe(
+    this.isLoaded=false;
+  this.GetJobAddFormDisplayComponentsSubscription= this.candidateService.GetJobAddFormDisplayComponents().subscribe(
       (response)=>{
+        
       this.DesignationsList=response["Designations"];
       this.DestinationsList=response["Destinations"];
       this.UsersList=response["Users"];
@@ -162,7 +183,7 @@ export class AddVacancyComponent implements OnInit {
         
           //console.log();
 
-          this.candidateService.CreateNewVacancy(JSON.stringify(a)).subscribe(
+         this.CreateNewVacancySubscription=  this.candidateService.CreateNewVacancy(JSON.stringify(a)).subscribe(
             (response)=>{
 
                // console.log(response);

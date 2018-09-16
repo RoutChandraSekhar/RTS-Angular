@@ -70,11 +70,6 @@ ApplicantsList: ApplicantBasicInfo[];
 
         //Reset All to zero/blank
         this.CurrentSelectedCandidatePageService.UpdateCandidatesCount(0);
-
-        //this.CurrentSelectedCandidatePageService.UpdateApplicantListPageNo(1); // Page 1 is the default
-      
-     
-          //this.CandidateList=data["Candidates"];
           this.ApplicantsList=data["Candidates"];
           this.ApplicantListResultInfo=data["GeneralInfo"][0];
          // alert(this.CurrentPageNo + " from acandiadate comp");

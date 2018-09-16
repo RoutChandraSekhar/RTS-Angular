@@ -35,6 +35,7 @@ private CurrentSelectedCandidatePageService:CurrentSelectedCandidatePageService
 
  this.VacancyDetailsSubscription=this.CurrentSelectedCandidatePageService.castCurrentSelectedJobID.subscribe(VacancyID=>
       {
+      
         this.VacancyID=VacancyID;
         this.candidateService.GetVacancyDetails(this.VacancyID).subscribe(
           (response)=>{
@@ -42,13 +43,16 @@ private CurrentSelectedCandidatePageService:CurrentSelectedCandidatePageService
             if (response["VacancyDetails"][0] != undefined && response["VacancyDetails"][0] != null){
               if (response !=null && response != undefined){
                 let rep = response["VacancyDetails"][0]
-                if (rep.length>0){
+               
+         
+                //if (rep.length>0){
                   this.Title=rep["Title"];
                   this.JobDescription=rep["JobDescription"] ;
                   this.JobSkill=rep["JobSkill"] ;
                   this.JobDuty=rep["JobDuty"];
                   this.EducationInfo=rep["EducationInfo"] ;
-                }
+                 
+               // }
                 
               }
             }

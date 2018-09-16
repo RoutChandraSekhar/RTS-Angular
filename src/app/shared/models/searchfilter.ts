@@ -8,6 +8,7 @@
             PageNo: string;
             Count: string;
             Filter: Filter;
+
             constructor(
                 UserID: string,
                 isGetType: string,
@@ -43,6 +44,7 @@
         VisaStatusList:string;
         showOnlyFavourites: boolean;
         showOnlyBanned: boolean;
+        StateGroupID:string;
         constructor(
             VacanyID: string,
             Keywords: string,
@@ -56,7 +58,8 @@
             LanguageSkills: string,
             VisaStatusList:string,
             showOnlyFavourites: boolean,
-            showOnlyBanned: boolean
+            showOnlyBanned: boolean,
+            StateGroupID:string
     
         ){
             this.VacanyID=VacanyID;
@@ -72,6 +75,7 @@
             this.VisaStatusList=VisaStatusList;
             this.showOnlyFavourites=showOnlyFavourites;
             this.showOnlyBanned=showOnlyBanned;
+            this.StateGroupID=StateGroupID;
     
         }
     }

@@ -8,7 +8,7 @@
        
        
         <div class="right" style="padding-bottom: 6px;" *ngIf="ShowActionButtons">
-          <a class="waves-effect waves-teal btn-flat tooltipped" style="margin-right: 8px;" data-position="left" data-delay="50" data-tooltip="Search candidates for this job" href="../candidates/applicants.aspx">Find Candidates</a> 
+          <a class="waves-effect waves-teal btn-flat tooltipped" style="margin-right: 8px;" data-position="left" data-delay="50" data-tooltip="Search candidates for this job" [routerLink]="['/candidates']" [queryParams]="{'frompage': 'jobsfindcandidates'}"  >Find Candidates</a> 
           
           <ng-container *ngIf="GetBoolean(JobInfo.isPublished); else elseTemplate1">
             <a (click)="unpublishjob(JobInfo.VacancyID)" class="waves-effect waves-teal btn-flat tooltipped"  style="margin-right: 8px;" data-position="left" data-delay="50" data-tooltip="Unpublish this job from career portal">Unpublish</a>
@@ -26,7 +26,11 @@
     <div class="clear-both"></div>
 
     <span *ngFor="let summary of JobApplicationsInfo">
-    <div class="col l1point5"><a href="../candidates/applicants.aspx"><div class="card"><div class="card-content center"><h4>{{summary.GroupValue}}</h4> {{summary.DisplayText}}</div></div></a></div>
+    <div class="col l1point5">
+           
+        <a (click) = "GetRouteLink(summary.GroupName,JobInfo.VacancyID)" style="cursor:pointer;"
+         
+       ><div class="card"><div class="card-content center"><h4>{{summary.GroupValue}}</h4> {{summary.DisplayText}}</div></div></a></div>
     </span> 
     
     <div class="s12 padding-12px">

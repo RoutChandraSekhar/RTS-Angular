@@ -8,27 +8,43 @@
             </div>
             
             <div class="center" style="min-height:55px;">
+                  <!--
                <div *ngFor="let item of RequestList.RequestDetails">
-                  Current State ID {{item.CurrentStateID}} | Next StateID {{item.NextStateID}}
+                
+              
+                Current State ID {{item.CurrentStateID}} | Next StateID {{item.NextStateID}}
+                  <br/> Request ID {{item.RequestID}}
                     <br/>
-                   {{ item.DisplayName}}
+                
+                   {{ item.DisplayName}} <br/>
                </div>
+                   -->
 
               <a *ngFor="let actioninfo of RequestList.RequestDetails"    
-              (click)="salert(actioninfo.ModalTitle,'You will not be able to recover tsdfhis imaginary file nice!',
-              'warning',actioninfo.ShowCancelButton,'Yes, delesdfte it!','No, keep11 it','Deletedsdf!','Your imaginasdfry file has been deleted.','success',true,'Cancelled12',
-              'Your imaginary file is safe cool :)','error')" class="" style="cursor: pointer;">
+              (click)="onTakeAction(actioninfo.ModalTitle,actioninfo.ModalText,
+              actioninfo.ModalType,actioninfo.ShowCancelButton,actioninfo.ConfirmButtonText,
+              actioninfo.CancelButtonText, actioninfo.SuccessMesssageTitle,actioninfo.SuccessText,
+               actioninfo.SuccessIcon,actioninfo.ShowFailureMessage,actioninfo.FailureMessageTitle,
+                actioninfo.FailureMessageText,actioninfo.FailureMessageIcon,
+                actioninfo.ActionTypeID,actioninfo.ActionID,actioninfo.ApplicationID,
+                actioninfo.RequesterUserID,actioninfo.NextStateID,actioninfo.RequestID,actioninfo.TransitionID
+                )" class="tooltipped" style="cursor: pointer;"
+              data-delay="50" 
+              attr.data-tooltip="{{actioninfo.Tooltip}}"
+              >
                 <i 
                 class="{{actioninfo.DisplayIcon}} 
-                job-interview-icons tooltipped" 
+                job-interview-icons" 
                 data-position="bottom" 
                 data-delay="50" 
-                attr.data-tooltip="{{actioninfo.Tooltip}}"
-               
-                >
+                attr.data-tooltip="{{actioninfo.Tooltip}}">
             </i>
-          
+      
+
+            
               </a>  
+              <br/>
+            
               <!-- 
               <a href="#" onclick="candidateRejected();" > <i class="fas fa-times-circle job-interview-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click here to reject the candidate"></i></a> </div>
               -->

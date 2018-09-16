@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-menu',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  LoadCandidateURL(){
+    let CurrentURL= this.router.url;
+    if (CurrentURL.indexOf("candidates/")>=0){
+      this.router.navigateByUrl("/candidatesx");
+    }else{
+      this.router.navigateByUrl("/candidates");
+    }
   }
 
 }

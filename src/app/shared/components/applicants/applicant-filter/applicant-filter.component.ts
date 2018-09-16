@@ -148,7 +148,8 @@ export class ApplicantFilterComponent implements OnInit {
   showVisaStatusChip:boolean=false;
   VisaStatusChip:string;
 
-
+  isFilterDisabled:boolean=false;
+  FilterCandidatesDisplayText:string="Filter Candidates";
   ngOnInit() {
     //$('.dropdown-button').dropdown();
    // $('.collapsible').collapsible();
@@ -300,17 +301,14 @@ export class ApplicantFilterComponent implements OnInit {
               }
    
   
-    
-   
-   
-    
-
-    // var abc = $('#DrpJobIndustry :selected').text();
-     // console.log(abc);
+    this.isFilterDisabled=true;
+    this.FilterCandidatesDisplayText="Searching...";
+  
     this.GetCandidatePageInfo();
     this.AppliedFilterCount=0;
     this.cPageInfo.PageFitler.FilterType="filtered";
     this.cPageInfo.PageFitler.Filter.Keywords=this.Enteredkeywords.toString();
+    this.cPageInfo.PageFitler.PageNo="1";
     
   
     this.cPageInfo.PageFitler.Filter.JobIndustryIDList=this.SelectedJobIndustry.toString();
@@ -325,13 +323,24 @@ export class ApplicantFilterComponent implements OnInit {
 
 
    if (this.AppliedFilterCount>0){
+
     this.CurrentSlectedCandidateListService.LoadCandidates(this.cPageInfo.PageFitler);
+    
+      Swal('Filter Applied', 'Filter applied successfully ', 'success')
+    
 
-
-
-
-    Swal('Filter Applied', 'Filter applied successfully ', 'success')
-    this.router.navigateByUrl('/candidates/overview');
+    this.isFilterDisabled=false;
+    this.FilterCandidatesDisplayText="Filter Candiates";
+    
+    //console.clear();
+    console.log(this.cPageInfo.PageFitler  );
+    let CurrentURL = this.router.url;
+    if (CurrentURL.indexOf("candidates/")>=0){
+      this.router.navigateByUrl('/candidates/overview');
+    } else{
+      this.router.navigateByUrl('/candidatesx/overview');
+    }
+    
 
     $('#modal_filter_candidates').closeModal(); 
     this.cPageInfo.PageFitler.PageNo="1";
@@ -351,18 +360,21 @@ export class ApplicantFilterComponent implements OnInit {
 
 
       this.GetCandidatePageInfo();
-      this.cPageInfo.PageFitler.FilterType="none"
-      
+      if(this.cPageInfo.PageFitler.RequestType.toLowerCase()=="applicants"){
+        this.cPageInfo.PageFitler.FilterType="filtered"
+      } else if(this.cPageInfo.PageFitler.RequestType.toLowerCase()=="candidates"){
+        this.cPageInfo.PageFitler.FilterType="none"
+      }
+     
       this.cPageInfo.PageFitler.Filter.Keywords="";
-      
       this.cPageInfo.PageFitler.Filter.JobIndustryIDList="";
-    
       this.cPageInfo.PageFitler.Filter.NationalityID="";
       this.cPageInfo.PageFitler.Filter.LanguageSkills="";
       this.cPageInfo.PageFitler.Filter.Education="";
       this.cPageInfo.PageFitler.Filter.Gender="";
       this.cPageInfo.PageFitler.Filter.Experience="0";
       this.cPageInfo.PageFitler.Filter.VisaStatusList="";
+      this.cPageInfo.PageFitler.Filter.StateGroupID="0"
 
       this.AppliedFilterCount=0;
 

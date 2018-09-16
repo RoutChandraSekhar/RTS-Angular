@@ -27,6 +27,7 @@ import { RouterModule } from '@angular/router';
 import { InterviewFilterComponent } from './applicants-interviews/interview-filter/interview-filter.component';
 import { MatSelectModule, MatCheckboxModule, MatInputModule, MatAutocomplete, MatAutocompleteModule } from '@angular/material';
 import { BsDatepickerModule } from 'ngx-bootstrap';
+import { ShortlistFliterComponent } from './applicants-shortlisted/shortlist-fliter/shortlist-fliter.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap';
     ApplicantHistoryComponent,
     AddVacancyComponent,
     EvaluateCandidateComponent,
-    InterviewFilterComponent
+    InterviewFilterComponent,
+    ShortlistFliterComponent
   ],
   exports:[
     JobsComponent,

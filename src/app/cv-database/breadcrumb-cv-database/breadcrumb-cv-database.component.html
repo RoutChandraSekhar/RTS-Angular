@@ -1,3 +1,7 @@
 <div class="breadcrumb">
-    <a  routerLink="/home" routerLinkActive="router-link-active"  class="breadcrumb-nav">Home</a> | Candidates
+    <a  routerLink="/home" routerLinkActive="router-link-active"  class="breadcrumb-nav">Home</a> 
+    <span *ngIf="isShowJobsLink">
+    | <a  routerLink="/jobs" routerLinkActive="router-link-active"  class="breadcrumb-nav">Jobs</a>
+    </span>
+    | Candidates
 </div>

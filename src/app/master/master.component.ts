@@ -60,8 +60,14 @@ export class MasterComponent implements OnInit {
 
 
 
-    this.LoginService.cast.subscribe(LoggedInUserDetails=>this.LoggedInUserDetails=LoggedInUserDetails[0]);
-    this.UserFullName=this.LoggedInUserDetails.user_person_name;
+    this.LoginService.cast.subscribe(
+        LoggedInUserDetails=>{
+            this.LoggedInUserDetails=LoggedInUserDetails[0]
+            this.UserFullName=this.LoggedInUserDetails.user_person_name;
+        }
+        
+    );
+    
 
   }
 

@@ -3,7 +3,8 @@ export class RequestList{
         StateID: string;
         RequesterUserID: string;
         CurrentStateID: string;
-        StateGroupID: string;
+        isCurrentStatePartialUpdated:string;
+        CurrentStateGroupID: string;
         GroupName: string;
         ApplicationID: string;
         VacancyID: string;
@@ -35,7 +36,8 @@ export class RequestList{
         StateID: string,
         RequesterUserID: string,
         CurrentStateID: string,
-        StateGroupID: string,
+        isCurrentStatePartialUpdated:string,
+        CurrentStateGroupID: string,
         GroupName: string,
         ApplicationID: string,
         VacancyID: string,
@@ -68,7 +70,8 @@ export class RequestList{
         this.StateID=StateID;
         this.RequesterUserID=RequesterUserID;
         this.CurrentStateID=CurrentStateID;
-        this.StateGroupID=StateGroupID;
+        this.isCurrentStatePartialUpdated=isCurrentStatePartialUpdated;
+        this.CurrentStateGroupID=CurrentStateGroupID;
         this.GroupName=GroupName;
         this.ApplicationID=ApplicationID;
         this.VacancyID=VacancyID;

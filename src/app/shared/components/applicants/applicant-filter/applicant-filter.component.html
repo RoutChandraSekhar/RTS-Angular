@@ -159,7 +159,9 @@
         
 
           <div class="input-field  col s5" style="padding-top:10px;">
-              <a id="filterCandidates" class=" waves-effect waves-green green btn" style="margin-right: 8px;" (click)="onSubmitFilterCandidate()" ><i class="fas fa-filter"></i> Filter Candidates</a>
+              <button id="filterCandidates"  class=" waves-effect waves-green green btn" style="margin-right: 8px;" (click)="onSubmitFilterCandidate()" [disabled]="isFilterDisabled" ><i class="fas fa-filter"></i> 
+                {{FilterCandidatesDisplayText}}
+              </button>
 
               <a id="filterCandidatesClear" class=" modal-action modal-close waves-effect waves-green red btn" style="margin-right: 8px;" (click)="onClearFilterCandidate()" ><i class="fas fa-filter"></i> Reset</a>
             <!--

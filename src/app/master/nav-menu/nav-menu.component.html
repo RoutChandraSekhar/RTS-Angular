@@ -5,14 +5,19 @@
           <a class="collapsible-header waves-effect waves-grey" routerLink="home" ><i class="material-icons">settings_input_svideo</i>Dashboard</a>
       </li> 
 
+      <!--
 <li class="no-padding" id="menucandidates" runat="server">
   <a class="collapsible-header waves-effect waves-grey" 
   [routerLink]="['/candidates','overview']"
   [queryParams]="{pid:'1'}"
    routerLinkActive="router-link-active"  ><i class="material-icons">contacts</i>Candidates</a>
-</li>      
+</li>      -->
 
-
+<li class="no-padding" id="menucandidates" runat="server">
+  <a class="collapsible-header waves-effect waves-grey" 
+ (click)="LoadCandidateURL()"
+  ><i class="material-icons">contacts</i>Candidates</a>
+</li>    
 
 <li class="no-padding">
   <a class="collapsible-header waves-effect waves-grey" routerLink="jobs" ><i class="material-icons">input</i>Job Openings</a>

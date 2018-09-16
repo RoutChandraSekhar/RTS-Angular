@@ -27,8 +27,9 @@ export class AppComponent {
 }
 
   isLoggedIn($event){
+
     this.isLogged=$event;
-  //  alert(this.isLogged);
+   
    // this.router.navigate(['/home'];
     }
 
