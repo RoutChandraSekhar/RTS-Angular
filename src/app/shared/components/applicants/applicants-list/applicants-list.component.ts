@@ -45,6 +45,8 @@ export class ApplicantsListComponent implements OnInit,OnDestroy {
   CurrentSelectedCandidatePageServiceSubscription:Subscription;
   CurrentSelectedCandidatePageServiceSubscriptionTotalCandidates:Subscription
 
+  isLoaded:boolean=true;
+
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
@@ -67,7 +69,18 @@ export class ApplicantsListComponent implements OnInit,OnDestroy {
   }
   ngOnInit() {
     this.GetCandidatePageInfo()
+   
+    this.isLoaded=false;
     
+      this.LoadIntialContents();
+  
+   
+ 
+  }
+
+
+  LoadIntialContents(){
+    this.isLoaded=false;
     this.CurrentPageNo=+this.cPageInfo.PageFitler.PageNo;
     this.ApplicantListServiceSubscription= this.ApplicantListService.cast.subscribe(ApplicantsList=>this.ApplicantsList=ApplicantsList)
     this.ApplicantBasicInfoService.cast.subscribe(
@@ -75,11 +88,11 @@ export class ApplicantsListComponent implements OnInit,OnDestroy {
       {
       this.SelectedCandidateBasicInfo=SelectedCandidateBasicInfo
       this.SelectedCandidateID=this.SelectedCandidateBasicInfo.CandidateID
-    
+      this.isLoaded=true;
       }
 
     );
-    this.GetCandidatePageInfo();
+    //this.GetCandidatePageInfo();
     this.CurrentSelectedCandidatePageServiceSubcription= this.CurrentSelectedCandidatePageService.cast.subscribe(CurrentPageNo=>this.CurrentPageNo=CurrentPageNo);
     this.CurrentSelectedCandidatePageServiceSubscriptionTotalCandidates= this.CurrentSelectedCandidatePageService.casTotalCandidates.subscribe(
       
