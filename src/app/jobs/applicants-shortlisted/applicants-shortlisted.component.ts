@@ -37,7 +37,9 @@ export class ApplicantsShortlistedComponent implements OnInit,OnDestroy {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.RequestGroupwiseSubscription.unsubscribe();
+    if(this.RequestGroupwiseSubscription !=undefined){
+      this.RequestGroupwiseSubscription.unsubscribe();
+    }
   }
 
   LoadContents(){

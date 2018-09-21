@@ -36,8 +36,11 @@ DownloadLocation:string=environment.FileStorageURL;
   CandidateName:string="";
   @ViewChild('myFileUpload') myInputVariable: ElementRef;
   @ViewChild('myFileUploadFileName') myFileUploadFileName: ElementRef;
-  sub:Subscription;
-  DoucmentSubscription:Subscription;
+
+  GetCandidateDocumentsActiveSubcription:Subscription;
+  CandidateDocumentUploadDetailsSubscription:Subscription;
+  uploadDocumentsSubscription:Subscription;
+
   Documents:any[]=[];
 
   isDocumentExist:boolean=false;
@@ -58,7 +61,7 @@ DownloadLocation:string=environment.FileStorageURL;
   LoadDocuments(CandidateID:number){
 
     this.Documents=[];
-  this.sub=  this.CandidateService.GetCandidateDocumentsActive(CandidateID).subscribe(
+  this.GetCandidateDocumentsActiveSubcription=  this.CandidateService.GetCandidateDocumentsActive(CandidateID).subscribe(
     
       (response)=>{
        // console.clear();
@@ -93,21 +96,23 @@ DownloadLocation:string=environment.FileStorageURL;
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
   
-    if(!this.sub==null && !this.sub==undefined){
-   this.sub.unsubscribe();
-  }
+      if(this.GetCandidateDocumentsActiveSubcription !=undefined){
+         this.GetCandidateDocumentsActiveSubcription.unsubscribe();
+      }
 
-  if(!this.DoucmentSubscription==null && !this.DoucmentSubscription==undefined){
-    this.DoucmentSubscription.unsubscribe();
+      if(this.CandidateDocumentUploadDetailsSubscription !=undefined){
+        this.CandidateDocumentUploadDetailsSubscription.unsubscribe();
+     }
+      
+     if(this.uploadDocumentsSubscription !=undefined){
+      this.uploadDocumentsSubscription.unsubscribe();
    }
- 
 
- 
 
   }
 
   getUserDetails(){
-    this.DoucmentSubscription=  this.CurrentSelectedCandidatePageService.castCandidateDocumentUploadDetails.subscribe( 
+    this.CandidateDocumentUploadDetailsSubscription=  this.CurrentSelectedCandidatePageService.castCandidateDocumentUploadDetails.subscribe( 
     
       ApplicantInfoDocuments=>
       {
@@ -201,7 +206,7 @@ LoadInditialContents(){
     frmData.append("FileDisplayName",this.FileName);
     frmData.append("RequestID",this.RequestID);
 
-   this.sub= this.CandidateService.uploadDocuments(frmData).subscribe(result => {
+   this.uploadDocumentsSubscription= this.CandidateService.uploadDocuments(frmData).subscribe(result => {
       this.myFiles=[];
       this.myInputVariable.nativeElement.value = "";
       

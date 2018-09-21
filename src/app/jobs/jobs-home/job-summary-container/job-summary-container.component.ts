@@ -33,14 +33,14 @@ export class JobSummaryContainerComponent implements OnInit,OnDestroy {
  ngOnDestroy(): void {
    //Called once, before the instance is destroyed.
    //Add 'implements OnDestroy' to the class.
-   if (this.PublishUnpublishJobSubscription != null || this.PublishUnpublishJobSubscription !=undefined){
+   if (this.PublishUnpublishJobSubscription !=undefined){
     this.PublishUnpublishJobSubscription.unsubscribe();
    }
 
-   if (this.CloseJobSubscription != null || this.CloseJobSubscription !=undefined){
+   if (this.CloseJobSubscription !=undefined){
     this.CloseJobSubscription.unsubscribe();
    }
-   if (this.GetJobListingSummarySubscription != null || this.GetJobListingSummarySubscription !=undefined){
+   if (this.GetJobListingSummarySubscription !=undefined){
     this.GetJobListingSummarySubscription.unsubscribe();
    }
   

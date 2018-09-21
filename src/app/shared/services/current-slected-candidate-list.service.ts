@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, OnDestroy } from '@angular/core';
 import { CandidateService } from './candidate.service';
 import { ApplicantListService } from './applicants/applicant-list.service';
 import { ApplicantShortlistableJobsService } from './applicants/applicant-shortlistable-jobs.service';
@@ -17,11 +17,12 @@ import { ApplicantListResultInfo } from '../models/applicant-list-result-info';
 import { CurrentSelectedCandidate, CurrentSelectedCandidateCVInfo } from '../models/current-selected-candidate';
 import { CurrentSelectedCandidatePageService } from './current-selected-candidate-page.service';
 import { ApplicantTimeline } from '../models/applicant-timeline';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CurrentSlectedCandidateListService {
+export class CurrentSlectedCandidateListService implements OnDestroy {
 
   constructor( @Inject(CandidateService) private candidateService : CandidateService,
   private ApplicantListService : ApplicantListService,
@@ -33,6 +34,9 @@ export class CurrentSlectedCandidateListService {
   private CurrentSelectedCandidateService: CurrentSelectedCandidateService,
   private CurrentSelectedCandidatePageService:CurrentSelectedCandidatePageService
 ) { }
+
+
+
 ApplicantsList: ApplicantBasicInfo[];
     SelectedCandidateBasicInfo : ApplicantBasicInfo;
     //CandidateList :any[];
@@ -50,7 +54,20 @@ ApplicantsList: ApplicantBasicInfo[];
     ApplicantTimeline:ApplicantTimeline[]=[];
 
     CurrentSelectedCandidateCVInfo:CurrentSelectedCandidateCVInfo = new CurrentSelectedCandidateCVInfo("","","")
+    getCandidatesSubscription:Subscription;
+    GetCandidateParticularApplicationTimeLineSubscription:Subscription;
 
+    ngOnDestroy(): void {
+      //Called once, before the instance is destroyed.
+      //Add 'implements OnDestroy' to the class.
+      if(this.getCandidatesSubscription!=undefined){
+        this.getCandidatesSubscription.unsubscribe();
+      }
+
+      if(this.GetCandidateParticularApplicationTimeLineSubscription!=undefined){
+        this.GetCandidateParticularApplicationTimeLineSubscription.unsubscribe();
+      }
+    }
 
   LoadCandidates(CandidateFilterOptions){
 
@@ -65,7 +82,7 @@ ApplicantsList: ApplicantBasicInfo[];
     //this.CurrentSelectedCandidatePageService.UpdateCandidatesCount(0);
 
 
-    this.candidateService.getCandidates(CandidateFilterOptions).subscribe(
+   this.getCandidatesSubscription= this.candidateService.getCandidates(CandidateFilterOptions).subscribe(
       (data:any)=>{
 
         //Reset All to zero/blank
@@ -134,7 +151,7 @@ ApplicantsList: ApplicantBasicInfo[];
 
 
   GetCandidateApplicationTimeLine(ApplicationID:number){
-    this.candidateService.GetCandidateParticularApplicationTimeLine(ApplicationID).subscribe(
+   this.GetCandidateParticularApplicationTimeLineSubscription= this.candidateService.GetCandidateParticularApplicationTimeLine(ApplicationID).subscribe(
       (response)=>{
       var ApplicationTimeline : any[] = response["ApplicationTimeline"]
 

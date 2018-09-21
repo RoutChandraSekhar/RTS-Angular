@@ -45,7 +45,10 @@ export class JobsHomeTopBarComponent implements OnInit {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.GetJobListingSummarySubscription.unsubscribe();
+    if(this.GetJobListingSummarySubscription !=null){
+      this.GetJobListingSummarySubscription.unsubscribe();
+    }
+   
   }
   ngOnInit() {
         $("select").select2();

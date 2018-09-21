@@ -24,9 +24,18 @@ private CurrentSelectedCandidatePageService:CurrentSelectedCandidatePageService
   EducationInfo:string="";
 
   VacancyDetailsSubscription:Subscription;
+  candidateServiceSubscription: Subscription;
 
   ngOnDestroy(): void {
-    this.VacancyDetailsSubscription.unsubscribe();
+
+    if (this.VacancyDetailsSubscription !=undefined){
+      this.VacancyDetailsSubscription.unsubscribe();
+    }
+
+    if (this.candidateServiceSubscription !=undefined){
+      this.candidateServiceSubscription.unsubscribe();
+    }
+   
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     
@@ -37,7 +46,7 @@ private CurrentSelectedCandidatePageService:CurrentSelectedCandidatePageService
       {
       
         this.VacancyID=VacancyID;
-        this.candidateService.GetVacancyDetails(this.VacancyID).subscribe(
+       this.candidateServiceSubscription= this.candidateService.GetVacancyDetails(this.VacancyID).subscribe(
           (response)=>{
 
             if (response["VacancyDetails"][0] != undefined && response["VacancyDetails"][0] != null){

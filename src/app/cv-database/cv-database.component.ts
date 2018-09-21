@@ -90,7 +90,10 @@ export class CvDatabaseComponent implements OnInit,OnDestroy {
   ngOnDestroy(): void {
       //Called once, before the instance is destroyed.
       //Add 'implements OnDestroy' to the class.
-      this.ApplicantExistSubscription.unsubscribe();
+      if (this.ApplicantExistSubscription != undefined) {
+        this.ApplicantExistSubscription.unsubscribe();
+      }
+     
       
   }
   SetCandidatePageInof(){

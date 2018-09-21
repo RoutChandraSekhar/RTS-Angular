@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { CandidateService } from '../../../services/candidate.service';
 import { CurrentApplicationStatus } from '../../../models/current-application-status';
 import { ApplicantTimeline } from '../../../models/applicant-timeline';
@@ -6,13 +6,14 @@ import { ApplicantPastApplicationStatus } from '../../../models/applicant-past-a
 import { CurrentSelectedCandidateService } from '../../../services/current-selected-candidate.service';
 import { CurrentSelectedCandidate } from '../../../models/current-selected-candidate';
 import { CurrentSelectedCandidatePageService } from '../../../services/current-selected-candidate-page.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-applicant-application-status',
   templateUrl: './applicant-application-status.component.html',
   styleUrls: ['./applicant-application-status.component.css']
 })
-export class ApplicantApplicationStatusComponent implements OnInit {
+export class ApplicantApplicationStatusComponent implements OnInit,OnDestroy {
 
   constructor(
     @Inject(CandidateService) private candidateService : CandidateService,
@@ -28,11 +29,28 @@ export class ApplicantApplicationStatusComponent implements OnInit {
   isCurrentApplicationExist:boolean;
   isPastApplicationExist:boolean;
   ActiveApplications: any[]=[];
-  
+  CurrentSelectedCandidateServiceSubscription:Subscription;
+  GetApplicationStatusDetailsSubscription:Subscription;
 
   isLoaded:boolean=false;
+
+ngOnDestroy(): void {
+  //Called once, before the instance is destroyed.
+  //Add 'implements OnDestroy' to the class.
+  if (this.CurrentSelectedCandidateServiceSubscription !=undefined){
+    this.CurrentSelectedCandidateServiceSubscription.unsubscribe();
+  }
+
+  if (this.GetApplicationStatusDetailsSubscription !=undefined){
+    this.GetApplicationStatusDetailsSubscription.unsubscribe();
+  }
+
+
+  
+}
+
   ngOnInit() {
-    this.CurrentSelectedCandidateService.cast.subscribe(CurrentSelectedCandidate=>this.CurrentSelectedCandidate=CurrentSelectedCandidate);
+  this.CurrentSelectedCandidateServiceSubscription=  this.CurrentSelectedCandidateService.cast.subscribe(CurrentSelectedCandidate=>this.CurrentSelectedCandidate=CurrentSelectedCandidate);
     this.CurrentCandidateID=+this.CurrentSelectedCandidate.CandidateID;
     //alert(this.CurrentSelectedCandidate.CandidateID);
    // alert(this.CurrentCandidateID);
@@ -46,7 +64,7 @@ export class ApplicantApplicationStatusComponent implements OnInit {
 
 
   LoadContents(){
-    this.candidateService.GetApplicationStatusDetails(this.CurrentCandidateID).subscribe(
+ this.GetApplicationStatusDetailsSubscription=   this.candidateService.GetApplicationStatusDetails(this.CurrentCandidateID).subscribe(
       (response)=>{
     
       

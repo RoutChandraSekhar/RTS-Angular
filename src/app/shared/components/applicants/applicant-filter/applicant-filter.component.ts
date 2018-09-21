@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { ApplicantBasicInfo } from '../../../models/applicant-basic-info';
 import { ApplicantShortlistableJobs } from '../../../models/applicant-shortlistable-jobs';
 import { ApplicantEmploymentProfile } from '../../../models/applicant-employment-profile';
@@ -23,6 +23,7 @@ import { CurrentSelectedCandidatePageService } from '../../../services/current-s
 import { CandidateAddFormVacancyList, CandidateAddLocationList, CandidateReligionList, CandidateCasteList, CandidateLanguageList, CandidateJobIndustryList, CountryNationalityList } from '../../../models/candidate-addform/candidate-form-displaycompnents';
 import Swal, { SweetAlertType } from 'sweetalert2';
 import {Router} from '@angular/router';
+import { Subscription } from 'rxjs';
 
 declare var $:any;
 
@@ -31,7 +32,7 @@ declare var $:any;
   templateUrl: './applicant-filter.component.html',
   styleUrls: ['./applicant-filter.component.css']
 })
-export class ApplicantFilterComponent implements OnInit {
+export class ApplicantFilterComponent implements OnInit,OnDestroy {
   
   Enteredkeywords:string="";
   SelectedJobIndustry:string="";
@@ -150,6 +151,18 @@ export class ApplicantFilterComponent implements OnInit {
 
   isFilterDisabled:boolean=false;
   FilterCandidatesDisplayText:string="Filter Candidates";
+
+  GetCandidateAddFormDisplayComponentsSubscription:Subscription;
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if(this.GetCandidateAddFormDisplayComponentsSubscription !=undefined){
+      this.GetCandidateAddFormDisplayComponentsSubscription.unsubscribe();
+    }
+  
+}
+
   ngOnInit() {
     //$('.dropdown-button').dropdown();
    // $('.collapsible').collapsible();
@@ -175,15 +188,6 @@ export class ApplicantFilterComponent implements OnInit {
    this.LoadFilterDropDowns();
    
  
-    //$('select').material_select();
-  
-   
-   /*
-   if (localStorage.getItem('filtertype') !=null && (localStorage.getItem('filtertype')!=undefined)){
-    this.CandidateFilterOptions= JSON.parse( localStorage.getItem('filter'));
-   }
-   */
-    //localStorage.getItem('filter', JSON.stringify(this.CandidateFilterOptions))
 
    
   this.GetCandidatePageInfo()
@@ -191,15 +195,10 @@ export class ApplicantFilterComponent implements OnInit {
   this.CurrentSlectedCandidateListService.LoadCandidates(this.cPageInfo.PageFitler);
   }
 
-  ngAfterViewInit() {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-  
-  }
  
 
   LoadFilterDropDowns(){
-    this.candidateService.GetCandidateAddFormDisplayComponents().subscribe(
+    this.GetCandidateAddFormDisplayComponentsSubscription= this.candidateService.GetCandidateAddFormDisplayComponents().subscribe(
       (response)=>{
        
       this.VacancyList=response["VacancyList"];
@@ -334,6 +333,7 @@ export class ApplicantFilterComponent implements OnInit {
     
     //console.clear();
     console.log(this.cPageInfo.PageFitler  );
+    console.log(JSON.stringify(this.cPageInfo.PageFitler));
     let CurrentURL = this.router.url;
     if (CurrentURL.indexOf("candidates/")>=0){
       this.router.navigateByUrl('/candidates/overview');

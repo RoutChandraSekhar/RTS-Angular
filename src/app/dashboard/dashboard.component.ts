@@ -1,11 +1,11 @@
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, AfterViewInit } from '@angular/core';
 import { CandidateService } from '../shared/services/candidate.service';
 import { Vacancy } from '../shared/models/vacancy';
 import { Dashboard, RecentCandidates } from '../shared/models/dashboard/dashboard';
 import { DashboardService } from '../shared/services/dashboard/dashboard.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-
+import {Chart} from 'chart.js'
 
 declare var $:any;
 
@@ -14,17 +14,19 @@ declare var $:any;
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
  TotalCandidates:string;
  TotalActiveJobs:string;
  TotalActiveApplicants:string;
- ChartTicks:String;
- ChartData:String;
+ ChartTicks:  string[]= [];
+ ChartData:number[]=[];
  RecentCandidates:RecentCandidates[]=[];
 
   Dashboard:Dashboard=new Dashboard("","","","","",[],[]);
   DashboardSubscription:Subscription;
+
+  LineChart=[];
   constructor(
       @Inject(CandidateService) private candidateService : CandidateService,
       private router : Router
@@ -34,28 +36,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
  ngOnDestroy(): void {
      //Called once, before the instance is destroyed.
      //Add 'implements OnDestroy' to the class.
-     this.DashboardSubscription.unsubscribe();
+
+     if (this.DashboardSubscription != undefined) {
+        this.DashboardSubscription.unsubscribe();
+      }
+
      
  }
 
   ngOnInit() {
 
-    /*
-    $('.datepicker').pickadate(
-        {
-        selectMonths: true,
-        selectYears: 200, 
-        format: 'dd/mm/yyyy',
-        autoClose:true
-      },
-    
-    );
-
-    */
+  
 
 
    $('.tooltipped').tooltip();
- this.DashboardSubscription=  this.candidateService.GetDashboard( "1","25").subscribe(
+ this.DashboardSubscription=  this.candidateService.GetDashboard( "1","7").subscribe(
         (response)=>{
             /*
             console.log(response);
@@ -67,9 +62,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.TotalActiveJobs=this.Dashboard.ActiveJobs;
             this.TotalCandidates=this.Dashboard.TotalCandidates;
             this.TotalActiveApplicants=this.Dashboard.ActiveApplicants;
-            this.ChartData=this.Dashboard.ChartData;
-            this.ChartTicks=this.Dashboard.ChartTicks;
 
+           let chartData=(response["chart"]);
+           for (let d of chartData) {
+            this.ChartTicks.push(d.ApplicationDate);
+            this.ChartData.push(d.Candidates);
+        }
+        
             this.RecentCandidates=response["recentcandidates"];
 
             /*
@@ -87,20 +86,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
                }
                 ,2000)
             */
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
         
         },
         (error)=>{console.log(error)}
@@ -140,6 +125,79 @@ export class DashboardComponent implements OnInit, OnDestroy {
   
   }
 
+  ngAfterViewInit(): void {
+      //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+      //Add 'implements AfterViewInit' to the class.
+      setTimeout(() => {
+        this.RenderCharts(this.ChartTicks,this.ChartData);
+      }, 500);
+      
+  }
+
+  RenderCharts(ChartTicks:string[], chartData:number[]){
+      //console.log(ChartTicks);
+     // console.log(chartData);
+    this.LineChart = new Chart('lineChart',{
+        type: 'line',
+        data:{
+            labels: ChartTicks,
+            datasets: [{
+                label : 'Applicants registered',
+                data:chartData,
+                fill:false,
+                lineTension:0.8,
+                borderColor:"#00acc1",
+                borderWidth:3
+            }
+            /*
+            ,
+            {
+                label : 'Applicants shorlisted',
+                data:[9,8,4,7,5,2,4],
+                fill:false,
+                lineTension:0.6,
+                borderColor:"#CD5C5C",
+                borderWidth:2
+            }
+            */
+        
+        ]
+        },
+        options:{
+            title:{
+                text:"Latest Registrations",
+                display:false
+            },
+            legend: {
+                display: false
+             },
+            
+            scales:{
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Month'
+                    },
+                    gridLines: {
+                        display:false
+                    }
+                }],
+                yAxes:[{
+                    ticks: {
+                        beginAtZero:true
+                    },
+                    gridLines: {
+                        display:false
+                    }
+                }]
+            }
+        }
+    }
+
+)
+  }
+
 
   GotToCandidatesPage(){
     this.router.navigateByUrl("/candidates");
@@ -171,114 +229,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
 
- flot1(ChartData, ChartTicks) {
-    // var data = [[0, 50], [1, 42], [2, 40], [3, 65], [4, 48], [5, 56], [6, 80]];
-     var data= [];
-     //var data2 = [[0, 25], [1, 19], [2, 20], [3, 35], [4, 23], [5, 28], [6, 45]];
-    var data2 = ChartData;
-    //alert(data2);
-     //data2=[[0,2],[1,1],[2,16],[3,8],[4,1]];
-  
-     //var ticks = [[0, "JAN 1"], [1, "JAN 2"], [2, "Wed"], [3, "Thu"], [4, "Fri"], [5, "Sat"], [6, "Sun"]];
-    var ticks=ChartTicks;
-    alert(ticks);
-    //ticks=[[0,"Jan 04"],[1,"Jul 23"],[2,"Aug 01"],[3,"Aug 09"],[4,"Aug 15"]]
-     
-   
-   
-   
 
-   setTimeout(() => {
-    var dataset =  [
-        {
-            data: data,
-            color: "#E0E0E0",
-            lines: {
-                show: true,
-                fill: 0.4,
-            },
-            shadowSize: 0,
-        }, {
-            data: data,
-            color: "#E0E0E0",
-            lines: {
-                show: false,
-            },
-            points: {
-                show: true,
-                fill: true,
-                radius: 4,
-                fillColor: "#fff",
-                lineWidth: 2
-            },
-            curvedLines: {
-                apply: false,
-            },
-            shadowSize: 0
-        }, {
-            data: data2,
-            color: "#26A69A",
-            lines: {
-                show: true,
-                fill: 0.4,
-            },
-            shadowSize: 0,
-        },{
-            data: data2,
-            color: "#26A69A",
-            lines: {
-                show: false,
-            },
-            curvedLines: {
-                apply: false,
-            },
-            points: {
-                show: true,
-                fill: true,
-                radius: 4,
-                fillColor: "#fff",
-                lineWidth: 2
-            },
-            shadowSize: 0
-        }
-    ];
-
-    $.plot(".flowchart2", dataset, {
-        series: {
-            color: "#14D1BD",
-            lines: {
-                show: true,
-                fill: 0.2
-            },
-            shadowSize: 0,
-            curvedLines: {
-                apply: true,
-                active: true
-            }
-        },
-        xaxis: {
-            ticks: ticks,
-        },
-        legend: {
-            show: false
-        },
-        grid: {
-            color: "#AFAFAF",
-            hoverable: true,
-            borderWidth: 0,
-            backgroundColor: '#FFF'
-        },
-        tooltip: true,
-        tooltipOpts: {
-           // content: "%yK",
-           content: '%y',
-            defaultTheme: false
-        }
-    });
-   }, 5000);
-     
- };
- 
 
 
 

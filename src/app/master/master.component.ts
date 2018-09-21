@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {trigger, transition, group, query, style,animate} from '@angular/animations';
 import { LoginService } from '../shared/services/login/login.service';
 import { LoggedInUserDetails } from '../shared/common/LoggedInUserDetails';
 import { Router,NavigationEnd  } from '@angular/router';
+import { Subscription } from 'rxjs';
 declare var $:any;
 @Component({
   selector: 'app-master',
@@ -40,7 +41,10 @@ declare var $:any;
 ]
 
 })
-export class MasterComponent implements OnInit {
+export class MasterComponent implements OnInit, OnDestroy {
+
+ LoginServiceSubscription:Subscription;
+ RouterSubscription:Subscription;
 
   constructor(
     private LoginService : LoginService,
@@ -49,9 +53,22 @@ export class MasterComponent implements OnInit {
 
   UserFullName :string="";
   LoggedInUserDetails:LoggedInUserDetails=new LoggedInUserDetails("","","","","","","","")
+
+ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+        if(this.LoginServiceSubscription !=undefined){
+            this.LoginServiceSubscription.unsubscribe();
+        }
+
+        if(this.RouterSubscription !=undefined){
+            this.RouterSubscription.unsubscribe();
+        }
+}
+
   ngOnInit() {
 
-    this.router.events.subscribe((evt) => {
+  this.RouterSubscription=  this.router.events.subscribe((evt) => {
         if (!(evt instanceof NavigationEnd)) {
             return;
         }
@@ -60,7 +77,7 @@ export class MasterComponent implements OnInit {
 
 
 
-    this.LoginService.cast.subscribe(
+   this.LoginServiceSubscription= this.LoginService.cast.subscribe(
         LoggedInUserDetails=>{
             this.LoggedInUserDetails=LoggedInUserDetails[0]
             this.UserFullName=this.LoggedInUserDetails.user_person_name;

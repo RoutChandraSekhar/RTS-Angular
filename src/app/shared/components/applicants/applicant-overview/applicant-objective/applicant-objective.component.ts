@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { ApplicantDetailsInfo } from '../../../../models/applicant-details-info';
 import { ApplicantPersonalProfileService } from '../../../../services/applicants/applicant-personal-profile.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,10 +10,11 @@ import { ApplicantPersonalProfileService } from '../../../../services/applicants
   templateUrl: './applicant-objective.component.html',
   styleUrls: ['./applicant-objective.component.css']
 })
-export class ApplicantObjectiveComponent implements OnInit {
+export class ApplicantObjectiveComponent implements OnInit, OnDestroy {
 
   ApplicantProfileInfo : ApplicantDetailsInfo;
   FullName :string;
+  ApplicantPersonalProfileServiceSubscripiton:Subscription;
   constructor(
     private ApplicantPersonalProfileService : ApplicantPersonalProfileService
 
@@ -20,9 +22,18 @@ export class ApplicantObjectiveComponent implements OnInit {
 
   //applicant=new ApplicantDetails(null,null, null,null,null, null);
   
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if(this.ApplicantPersonalProfileServiceSubscripiton !=undefined){
+      this.ApplicantPersonalProfileServiceSubscripiton.unsubscribe();
+    }
+
+  }
+
   ngOnInit() {
     
-    this.ApplicantPersonalProfileService.cast.subscribe(ApplicantProfileInfo=>this.ApplicantProfileInfo=ApplicantProfileInfo);
+  this.ApplicantPersonalProfileServiceSubscripiton=  this.ApplicantPersonalProfileService.cast.subscribe(ApplicantProfileInfo=>this.ApplicantProfileInfo=ApplicantProfileInfo);
   
    //console.log (this.ApplicantProfileInfo);
  

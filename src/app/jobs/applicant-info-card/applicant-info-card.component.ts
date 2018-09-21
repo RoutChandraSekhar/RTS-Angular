@@ -33,10 +33,11 @@ requdetails:RequestDetails[];
   ParialUpdateDisplayName:string="-";
   isCurrentStatePartialUpdated:string;
   LoggedInUserID:number=2;
-  LoginServiceSubscription:Subscription;
+ 
   LoggedInUserDetails:LoggedInUserDetails;
-  CandidateServiceSubcription:Subscription;
-  
+  CandidateServiceSubcriptionTransitState:Subscription;
+  LoginServiceSubscription:Subscription;
+  GetRequestDetailsGroupWiseSingleRequestSubscription:Subscription;
   ngOnInit() {
     $('.tooltipped').tooltip();
   this.GetLoggedInUserID();
@@ -49,15 +50,19 @@ requdetails:RequestDetails[];
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    if( this.LoginServiceSubscription !=null &&  this.LoginServiceSubscription != undefined){
+    if( this.LoginServiceSubscription != undefined){
       this.LoginServiceSubscription.unsubscribe();
     }
+
+    if(this.CandidateServiceSubcriptionTransitState != undefined){
+      this.CandidateServiceSubcriptionTransitState.unsubscribe();
+    }
    
-    if( this.CandidateServiceSubcription !=null &&  this.CandidateServiceSubcription != undefined){
-      this.CandidateServiceSubcription.unsubscribe();
+    if(this.GetRequestDetailsGroupWiseSingleRequestSubscription != undefined){
+      this.GetRequestDetailsGroupWiseSingleRequestSubscription.unsubscribe();
     }
 
-    
+  
   }
 
   showApplicantDocuments(){
@@ -147,7 +152,7 @@ requdetails:RequestDetails[];
       }
 
       //Update tranist state
-      this.CandidateServiceSubcription=this.candidateService.transitstate(ActionTypeID,ActionID,ApplicationID,ReuqesterUserID,
+      this.CandidateServiceSubcriptionTransitState=this.candidateService.transitstate(ActionTypeID,ActionID,ApplicationID,ReuqesterUserID,
         DesiredStateID,RequestID,TransactionUserID,TransitionID).subscribe(
           (Data)=>{
             this.LoadUpdatedRequestDetails(this.LoggedInUserID,this.CurrentPageDisplayedGroupID,+this.RequestList.RequestID)
@@ -171,7 +176,7 @@ requdetails:RequestDetails[];
 
 
   LoadUpdatedRequestDetails(UserID:number, GroupID:number, RequestID:number){
-    this.candidateService.GetRequestDetailsGroupWiseSingleRequest(UserID, GroupID, RequestID).subscribe(
+ this.GetRequestDetailsGroupWiseSingleRequestSubscription=   this.candidateService.GetRequestDetailsGroupWiseSingleRequest(UserID, GroupID, RequestID).subscribe(
       (response)=>{
        // console.clear();
         console.log(response);

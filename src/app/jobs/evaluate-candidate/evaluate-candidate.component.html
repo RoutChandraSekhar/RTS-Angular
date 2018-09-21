@@ -102,7 +102,13 @@
                             </div>
 
                    <div class="input-field col s3">
-                        <p>Innovation</p>
+
+                       
+
+                        <p>Innovation s</p>
+                        <input [ngxTimepicker]="picker" readonly>
+                        <ngx-material-timepicker #picker></ngx-material-timepicker>
+
                         <input id="Innovation" type="number" name="Innovation" [(ngModel)]="Innovation" min="0" max="10" (change)="CalculateScore()">
                         </div>
 

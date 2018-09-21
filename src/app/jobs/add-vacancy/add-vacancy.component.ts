@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { CandidateService } from '../../shared/services/candidate.service';
 import { JobInterviewerList, JobsAddNewJob } from '../../shared/models/jobs/addnewjob';
 import Swal, { SweetAlertType } from 'sweetalert2';
@@ -19,7 +19,8 @@ export class AddVacancyComponent implements OnInit,OnDestroy {
 
   constructor(
     private router: Router,
-    @Inject(CandidateService) private candidateService : CandidateService
+    @Inject(CandidateService) private candidateService : CandidateService,
+    private datePipe: DatePipe
   ) { }
 
 
@@ -63,11 +64,11 @@ export class AddVacancyComponent implements OnInit,OnDestroy {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
 
-    if (this.GetJobAddFormDisplayComponentsSubscription !=null || this.GetJobAddFormDisplayComponentsSubscription!=undefined){
+    if (this.GetJobAddFormDisplayComponentsSubscription!=undefined){
       this.GetJobAddFormDisplayComponentsSubscription.unsubscribe();
     }
 
-    if (this.CreateNewVacancySubscription !=null || this.CreateNewVacancySubscription!=undefined){
+    if ( this.CreateNewVacancySubscription!=undefined){
       this.CreateNewVacancySubscription.unsubscribe();
     }
     
@@ -156,9 +157,25 @@ export class AddVacancyComponent implements OnInit,OnDestroy {
   return isValidated
   }
 
+  transformDate(myDate:string) {
+    if (myDate.indexOf("-")>=0){
+      myDate = myDate.split("-").reverse().join("-");
+    } else {
+      myDate = myDate.split("/").reverse().join("/");
+
+    }
+    var datePipe = new DatePipe("en-US");
+    return datePipe.transform(myDate, 'MM-dd-yyyy');
+
+ // return  this.datePipe.transform(myDate, 'yyyy-MM-dd'); //whatever format you need. 
+  }
+
   AddNewJob(){
         if (this.ValidateForm()==true){
         
+
+          
+
           this.isSubmitButtonDisabled=true
 
           let a = new JobsAddNewJob
@@ -176,12 +193,16 @@ export class AddVacancyComponent implements OnInit,OnDestroy {
           a.RequestingEntityID=this.RequestingEntityID;
           a.PositionTypeID=this.PositionTypeID;
           a.RefNo=this.RefNo;
-          a.RequestedOn=this.RequestedOn;
+          a.TargetJoiningDate=this.transformDate(this.TargetJoiningDate.toString())
+          a.RequestedOn=this.transformDate(this.RequestedOn.toString());
+          
 
          
           a.JobInterviewerList=this.FormatJobInterviewerList(this.JobInterviewers);
         
           //console.log();
+          console.clear();
+          console.log(JSON.stringify(a));
 
          this.CreateNewVacancySubscription=  this.candidateService.CreateNewVacancy(JSON.stringify(a)).subscribe(
             (response)=>{

@@ -21,18 +21,20 @@ import { ApplicantHistoryComponent } from './applicant-history/applicant-history
 import { AddVacancyComponent } from './add-vacancy/add-vacancy.component';
 import { EvaluateCandidateComponent } from './evaluate-candidate/evaluate-candidate.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { InterviewFilterComponent } from './applicants-interviews/interview-filter/interview-filter.component';
 import { MatSelectModule, MatCheckboxModule, MatInputModule, MatAutocomplete, MatAutocompleteModule } from '@angular/material';
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import { ShortlistFliterComponent } from './applicants-shortlisted/shortlist-fliter/shortlist-fliter.component';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 
 @NgModule({
   imports: [
     BsDatepickerModule.forRoot(),
+    NgxMaterialTimepickerModule.forRoot(),
     CommonModule,
     BrowserModule,
     FormsModule,
@@ -41,6 +43,7 @@ import { ShortlistFliterComponent } from './applicants-shortlisted/shortlist-fli
     RouterModule,
     MatSelectModule,
     MatCheckboxModule,
+
    
   ],
   declarations: [
@@ -67,6 +70,7 @@ import { ShortlistFliterComponent } from './applicants-shortlisted/shortlist-fli
     InterviewFilterComponent,
     ShortlistFliterComponent
   ],
+  providers:[DatePipe],
   exports:[
     JobsComponent,
     ApplicantsComponent,

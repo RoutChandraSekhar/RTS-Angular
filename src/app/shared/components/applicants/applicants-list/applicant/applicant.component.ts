@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Component, OnInit, Inject, Input, OnDestroy } from '@angular/core';
 import {Router,ActivatedRoute} from "@angular/router";
 import { Applicant } from '../../../../models/applicant';
 
@@ -19,13 +19,14 @@ import { ApplicantPastApplicationStatus } from '../../../../models/applicant-pas
 import { CurrentSelectedCandidateService } from '../../../../services/current-selected-candidate.service';
 import { CurrentSelectedCandidate } from '../../../../models/current-selected-candidate';
 import { CurrentSelectedCandidatePageService } from '../../../../services/current-selected-candidate-page.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-applicant',
   templateUrl: './applicant.component.html',
   styleUrls: ['./applicant.component.css']
 })
-export class ApplicantComponent implements OnInit {
+export class ApplicantComponent implements OnInit,OnDestroy {
 
   @Input() Applicant: ApplicantBasicInfo;
   ApplicantsList : Applicant[];
@@ -37,7 +38,8 @@ export class ApplicantComponent implements OnInit {
   SelectedCandidateShortListableJobs : ApplicantShortlistableJobs[]=[];
   SelectedCandidateID:string;
   CurrentSelectedCandidate:CurrentSelectedCandidate=new CurrentSelectedCandidate("");
-
+  CurrentSelectedCandidatePageServiceSubscription:Subscription;
+  getCandidateDetailsSubscription:Subscription;
 
   @Input() ActiveCandidateID:number;
   isSelectedCandidate:boolean=false;
@@ -58,11 +60,23 @@ export class ApplicantComponent implements OnInit {
    }
 
 
+   ngOnDestroy(): void {
+     //Called once, before the instance is destroyed.
+     //Add 'implements OnDestroy' to the class.
+     if(this.CurrentSelectedCandidatePageServiceSubscription!=undefined){
+      this.CurrentSelectedCandidatePageServiceSubscription.unsubscribe();
+    }
+
+    if(this.getCandidateDetailsSubscription!=undefined){
+      this.getCandidateDetailsSubscription.unsubscribe();
+    }
+    
+   }
    
    
   ngOnInit() { 
     
-    this.CurrentSelectedCandidatePageService.castCurrentSelectedApplicantID.subscribe(
+  this.CurrentSelectedCandidatePageServiceSubscription= this.CurrentSelectedCandidatePageServiceSubscription= this.CurrentSelectedCandidatePageService.castCurrentSelectedApplicantID.subscribe(
       SelectedCandidateID=>{
       
         this.ActiveCandidateID=SelectedCandidateID;
@@ -93,7 +107,7 @@ export class ApplicantComponent implements OnInit {
   this.isSelectedCandidate=true;
 
   
-  this.candidateService.getCandidateDetails(+this.SelectedCandidateID).subscribe(
+ this.getCandidateDetailsSubscription= this.candidateService.getCandidateDetails(+this.SelectedCandidateID).subscribe(
     (response)=>{
       this.ApplicantDetails=response;
       let candidateDetails =response["CandidateDetails"];
@@ -139,7 +153,7 @@ export class ApplicantComponent implements OnInit {
    let pageno= localStorage.getItem("currentpage");
  var currentURL = this.router.url;
  //alert(currentURL);
-      if( currentURL.indexOf('candidates/overviewx') >= 0 ||  currentURL.indexOf('candidates/logs') >= 0 ||  currentURL.indexOf('candidates/status') >= 0) {
+      if( currentURL.indexOf('candidates/overviewx') >= 0 ||  currentURL.indexOf('candidates/logsx') >= 0 ||  currentURL.indexOf('candidates/statusx') >= 0) {
        // alert("p1");
       this.router.navigateByUrl('candidates/overview?pid=' + pageno);
 
@@ -147,11 +161,11 @@ export class ApplicantComponent implements OnInit {
        // alert("p2");
         this.router.navigateByUrl('/candidates/overviewx?pid=' + pageno);
 
-      }else  if( currentURL.indexOf('/candidatesx/overviewx') >= 0 ||  currentURL.indexOf('candidates/logs') >= 0 ||  currentURL.indexOf('candidates/status') >= 0){
+      }else  if( currentURL.indexOf('/candidatesx/overviewx') >= 0 ||  currentURL.indexOf('candidatesx/logs') >= 0 ||  currentURL.indexOf('candidatesx/status') >= 0){
         //alert("p3");
         this.router.navigateByUrl('/candidatesx/overview?pid=' + pageno);
       }
-      else  if( currentURL.indexOf('/candidatesx/overview') >= 0 ||  currentURL.indexOf('candidates/logs') >= 0 ||  currentURL.indexOf('candidates/status') >= 0){
+      else  if( currentURL.indexOf('/candidatesx/overview') >= 0 ||  currentURL.indexOf('candidatesx/logs') >= 0 ||  currentURL.indexOf('candidatesx/status') >= 0){
         
         this.router.navigateByUrl('/candidatesx/overviewx?pid=' + pageno);
       }

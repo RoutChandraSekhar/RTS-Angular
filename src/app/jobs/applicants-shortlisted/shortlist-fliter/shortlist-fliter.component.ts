@@ -34,8 +34,15 @@ export class ShortlistFliterComponent implements OnInit,OnDestroy {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.GetRequestDetailsGroupWiseSubscription.unsubscribe();
-    this.LoginServiceSubscription.unsubscribe();
+    if(this.GetRequestDetailsGroupWiseSubscription !=undefined){
+      this.GetRequestDetailsGroupWiseSubscription.unsubscribe();
+    }
+    if(this.LoginServiceSubscription !=undefined){
+      this.LoginServiceSubscription.unsubscribe();
+    }
+    
+   
+   
   }
 
   ngOnInit() {

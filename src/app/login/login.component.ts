@@ -1,9 +1,10 @@
-import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Inject, OnDestroy } from '@angular/core';
 import {Router} from '@angular/router';
 import { CandidateService } from '../shared/services/candidate.service';
 import Swal, { SweetAlertType } from 'sweetalert2';
 import { LoggedInUserDetails } from '../shared/common/LoggedInUserDetails';
 import { LoginService } from '../shared/services/login/login.service';
+import { Subscription } from 'rxjs';
 
 declare var $:any;
 
@@ -13,13 +14,14 @@ declare var $:any;
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   UserName:string;
   Password:String;
   isLoggedIn:boolean;
   isSigninDisabled:boolean=false;
   SigninBtnText:string="Login"
+  LoginUserSubscripiton:Subscription;
 
   LoggedInUserDetails:LoggedInUserDetails=new LoggedInUserDetails("","","","","","","","")
   constructor(private router: Router,
@@ -37,6 +39,12 @@ export class LoginComponent implements OnInit {
 
  
 
+  }
+
+  ngOnDestroy(): void {
+    if (this.LoginUserSubscripiton!=undefined){
+      this.LoginUserSubscripiton.unsubscribe();
+    }
   }
 
 
@@ -75,7 +83,7 @@ export class LoginComponent implements OnInit {
   }  
 
    CheckLogin(){
-    this.candidateService.LoginUser(this.UserName,this.Password).subscribe(response => {
+  this.LoginUserSubscripiton=  this.candidateService.LoginUser(this.UserName,this.Password).subscribe(response => {
       
        //console.log(response);
       //  let UserDetails = response["UserDetails"];

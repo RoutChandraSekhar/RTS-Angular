@@ -41,21 +41,20 @@ export class JobsHomeComponent implements OnInit,OnDestroy {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.JobInfoSubcription.unsubscribe();
+    if(this.JobInfoSubcription !=undefined){
+      this.JobInfoSubcription.unsubscribe();
+    }
+    
   }
 
   LoadInitialContents(){
     this.JobInfoFiltered=[];
     this.isLoaded=false;  //change to false to enable loader
-  this.JobInfoSubcription=  this.JobinfoService.cast.subscribe(JobInfoFiltered=>
+    this.JobInfoSubcription=  this.JobinfoService.cast.subscribe(JobInfoFiltered=>
       {
-
         this.JobInfoFiltered=JobInfoFiltered;
-
-      this.isLoaded=true;
-      }
-      
-    
+        this.isLoaded=true;
+      } 
     );
 
   }

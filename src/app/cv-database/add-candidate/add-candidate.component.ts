@@ -132,15 +132,15 @@ export class AddCandidateComponent implements OnInit,OnDestroy {
 ngOnDestroy(): void {
   //Called once, before the instance is destroyed.
   //Add 'implements OnDestroy' to the class.
-  if (this.LoadDropDownConetnsSubscription!=null || this.LoadDropDownConetnsSubscription!=undefined){
+  if (this.LoadDropDownConetnsSubscription!=undefined){
     this.LoadDropDownConetnsSubscription.unsubscribe();
   }
 
-  if (this.candidateServiceSubscription!=null || this.candidateServiceSubscription!=undefined){
+  if (this.candidateServiceSubscription!=undefined){
     this.candidateServiceSubscription.unsubscribe();
   }
 
-  if (this.CreateCandidateSubscription!=null || this.CreateCandidateSubscription!=undefined){
+  if (this.CreateCandidateSubscription!=undefined){
     this.CreateCandidateSubscription.unsubscribe();
   }
 
@@ -490,6 +490,9 @@ LoadDropDownContents(){
         a.LanguagesKnown=this.GetKnownLanguages();
         a.PrefferedLocation=this.GetPrefferedLocation();
         a.JobIndustry=this.GetSelectedJobIndustry();
+
+        console.clear();
+        console.log(JSON.stringify(a));
      
         this.CreateCandidateSubscription=  this.candidateService.CreateCandidate(JSON.stringify(a)).subscribe(result => {
       

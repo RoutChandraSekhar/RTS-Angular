@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import {Router,ActivatedRoute} from "@angular/router";
 import { ApplicantBasicInfo } from '../../../models/applicant-basic-info';
 import { ApplicantListService } from '../../../services/applicants/applicant-list.service';
@@ -11,13 +11,14 @@ import { SelectedCandidatePageService } from '../../../services/pages/selected-c
 import { CandidatePageInfo } from '../../../models/pages/candidate-page-info';
 import { CurrentSelectedCandidatePageService } from '../../../services/current-selected-candidate-page.service';
 import { environment } from '../../../../../environments/environment';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-applicants-list',
   templateUrl: './applicants-list.component.html',
   styleUrls: ['./applicants-list.component.css']
 })
-export class ApplicantsListComponent implements OnInit {
+export class ApplicantsListComponent implements OnInit,OnDestroy {
 
   constructor( 
   private router: Router,
@@ -39,11 +40,36 @@ export class ApplicantsListComponent implements OnInit {
   PageSize: number = +environment.CandidatePageListSize;
  
   SelectedCandidateID:string;
+  ApplicantListServiceSubscription:Subscription;
+  CurrentSelectedCandidatePageServiceSubcription:Subscription;
+  CurrentSelectedCandidatePageServiceSubscription:Subscription;
+  CurrentSelectedCandidatePageServiceSubscriptionTotalCandidates:Subscription
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if(this.ApplicantListServiceSubscription!=undefined){
+      this.ApplicantListServiceSubscription.unsubscribe();
+    }
+
+    if(this.CurrentSelectedCandidatePageServiceSubcription!=undefined){
+      this.CurrentSelectedCandidatePageServiceSubcription.unsubscribe();
+    }
+
+    if(this.CurrentSelectedCandidatePageServiceSubscription!=undefined){
+      this.CurrentSelectedCandidatePageServiceSubscription.unsubscribe();
+    }
+
+    if(this.CurrentSelectedCandidatePageServiceSubscriptionTotalCandidates!=undefined){
+      this.CurrentSelectedCandidatePageServiceSubscriptionTotalCandidates.unsubscribe();
+    }
+    
+  }
   ngOnInit() {
     this.GetCandidatePageInfo()
     
     this.CurrentPageNo=+this.cPageInfo.PageFitler.PageNo;
-    this.ApplicantListService.cast.subscribe(ApplicantsList=>this.ApplicantsList=ApplicantsList)
+    this.ApplicantListServiceSubscription= this.ApplicantListService.cast.subscribe(ApplicantsList=>this.ApplicantsList=ApplicantsList)
     this.ApplicantBasicInfoService.cast.subscribe(
       SelectedCandidateBasicInfo=>
       {
@@ -54,8 +80,8 @@ export class ApplicantsListComponent implements OnInit {
 
     );
     this.GetCandidatePageInfo();
-    this.CurrentSelectedCandidatePageService.cast.subscribe(CurrentPageNo=>this.CurrentPageNo=CurrentPageNo);
-    this.CurrentSelectedCandidatePageService.casTotalCandidates.subscribe(
+    this.CurrentSelectedCandidatePageServiceSubcription= this.CurrentSelectedCandidatePageService.cast.subscribe(CurrentPageNo=>this.CurrentPageNo=CurrentPageNo);
+    this.CurrentSelectedCandidatePageServiceSubscriptionTotalCandidates= this.CurrentSelectedCandidatePageService.casTotalCandidates.subscribe(
       
       TotalCandidates=>{
         this.TotalCandidates=TotalCandidates;

@@ -1,10 +1,11 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Component, OnInit, Inject, Input, OnDestroy } from '@angular/core';
 import { CurrentApplicationStatus } from '../../../../models/current-application-status';
 import { CandidateService } from '../../../../services/candidate.service';
 import { CurrentSelectedCandidateService } from '../../../../services/current-selected-candidate.service';
 import { CurrentSelectedCandidate } from '../../../../models/current-selected-candidate';
 import { CurrentSelectedCandidatePageService } from '../../../../services/current-selected-candidate-page.service';
 import { ApplicantTimeline } from '../../../../models/applicant-timeline';
+import { Subscription } from 'rxjs';
 
 declare var $:any;
 
@@ -13,7 +14,7 @@ declare var $:any;
   templateUrl: './applicant-current-application-status.component.html',
   styleUrls: ['./applicant-current-application-status.component.css']
 })
-export class ApplicantCurrentApplicationStatusComponent implements OnInit {
+export class ApplicantCurrentApplicationStatusComponent implements OnInit,OnDestroy {
 
   constructor(
     @Inject(CandidateService) private candidateService : CandidateService,
@@ -31,9 +32,36 @@ export class ApplicantCurrentApplicationStatusComponent implements OnInit {
   
   isMultipleApplicationsExist:boolean=false;
 
+
+  CurrentSelectedCandidateServiceSubscription:Subscription;
+  GetCandidateParticularApplicationStatusSubscription:Subscription;
+  GetCandidateParticularApplicationTimeLineSubscription:Subscription;
+  GetActiveJobApplicationsSubcription:Subscription;
+
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if(this.CurrentSelectedCandidateServiceSubscription !=undefined){
+      this.CurrentSelectedCandidateServiceSubscription.unsubscribe();
+    }
+
+    if(this.GetCandidateParticularApplicationStatusSubscription !=undefined){
+      this.GetCandidateParticularApplicationStatusSubscription.unsubscribe();
+    }
+
+    if(this.GetCandidateParticularApplicationTimeLineSubscription !=undefined){
+      this.GetCandidateParticularApplicationTimeLineSubscription.unsubscribe();
+    }
+
+    if(this.GetActiveJobApplicationsSubcription !=undefined){
+      this.GetActiveJobApplicationsSubcription.unsubscribe();
+    }
+  }
+
   ngOnInit() {
     this.CurrentSelectedCandidatePageService.UpdateCurrentSelectedApplicantTimeline(this.ApplicantTimeline);
-    this.CurrentSelectedCandidateService.cast.subscribe(
+    this.CurrentSelectedCandidateServiceSubscription= this.CurrentSelectedCandidateService.cast.subscribe(
       CurrentSelectedCandidate=>{
         this.CurrentSelectedCandidate=CurrentSelectedCandidate;
         this.GetActiveApplications(this.CurrentSelectedCandidate.CandidateID);
@@ -42,6 +70,8 @@ export class ApplicantCurrentApplicationStatusComponent implements OnInit {
       }
       
     );
+
+   
   
     $("#CurrentApplicationID").dropdown()
 
@@ -49,7 +79,7 @@ export class ApplicantCurrentApplicationStatusComponent implements OnInit {
   }
   onApplicationChange(ApplicationID:number){
 
-    this.candidateService.GetCandidateParticularApplicationStatus(ApplicationID).subscribe(
+  this.GetCandidateParticularApplicationStatusSubscription=  this.candidateService.GetCandidateParticularApplicationStatus(ApplicationID).subscribe(
       (response)=>{
        this.CurrentAppliationStatus=response["ApplicationStatus"][0] 
        this.GetCandidateApplicationTimeLine(ApplicationID)
@@ -62,7 +92,7 @@ export class ApplicantCurrentApplicationStatusComponent implements OnInit {
   }
 
   GetCandidateApplicationTimeLine(ApplicationID:number){
-    this.candidateService.GetCandidateParticularApplicationTimeLine(ApplicationID).subscribe(
+   this.GetCandidateParticularApplicationTimeLineSubscription= this.candidateService.GetCandidateParticularApplicationTimeLine(ApplicationID).subscribe(
       (response)=>{
       var ApplicationTimeline : any[] = response["ApplicationTimeline"]
 
@@ -80,7 +110,7 @@ export class ApplicantCurrentApplicationStatusComponent implements OnInit {
   }
   GetActiveApplications(CandiateID:string){
    
-    this.candidateService.GetActiveJobApplications(+CandiateID).subscribe(
+  this.GetActiveJobApplicationsSubcription=   this.candidateService.GetActiveJobApplications(+CandiateID).subscribe(
       (response)=>{
        
         this.ActiveApplications=response["ActiveJobApplications"];
@@ -97,10 +127,6 @@ export class ApplicantCurrentApplicationStatusComponent implements OnInit {
       (error)=>{}
     )
   }
-  ngAfterContentInit() {
-    //Called after ngOnInit when the component's or directive's content has been initialized.
-    //Add 'implements AfterContentInit' to the class.
-   
-  }
+ 
 
 }

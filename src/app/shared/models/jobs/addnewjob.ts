@@ -14,6 +14,7 @@ export class JobsAddNewJob {
     PositionTypeID: string;
     RefNo: string;
     RequestedOn: string;
+    TargetJoiningDate: string;
     JobInterviewerList: JobInterviewerList[];
 }
 

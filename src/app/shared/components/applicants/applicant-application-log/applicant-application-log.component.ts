@@ -1,29 +1,41 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { CandidateService } from '../../../services/candidate.service';
 import { ApplicantActivityLog } from '../../../models/applicant-activity-log';
 import { CurrentSelectedCandidate } from '../../../models/current-selected-candidate';
 import { CurrentSelectedCandidateService } from '../../../services/current-selected-candidate.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-applicant-application-log',
   templateUrl: './applicant-application-log.component.html',
   styleUrls: ['./applicant-application-log.component.css']
 })
-export class ApplicantApplicationLogComponent implements OnInit {
+export class ApplicantApplicationLogComponent implements OnInit,OnDestroy {
   ActivityLog:ApplicantActivityLog[]=[];
   ActivityLogFiltered:ApplicantActivityLog[]=[];
   SearchQuery:string="";
 
   CurrentSelectedCandidate:CurrentSelectedCandidate;
   SelectedCandidateID:number;
+
+  CurrentSelectedCandidateServiceSubscription:Subscription;
+
   constructor(
     @Inject(CandidateService) private candidateService : CandidateService,
     private CurrentSelectedCandidateService:CurrentSelectedCandidateService
   ) { }
 
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if(this.CurrentSelectedCandidateServiceSubscription !=undefined){
+      this.CurrentSelectedCandidateServiceSubscription.unsubscribe();
+    }
+  }
   ngOnInit() {
 
-    this.CurrentSelectedCandidateService.cast.subscribe(CurrentSelectedCandidate=>this.CurrentSelectedCandidate=CurrentSelectedCandidate);
+   this.CurrentSelectedCandidateServiceSubscription= this.CurrentSelectedCandidateService.cast.subscribe(CurrentSelectedCandidate=>this.CurrentSelectedCandidate=CurrentSelectedCandidate);
     this.SelectedCandidateID= + this.CurrentSelectedCandidate.CandidateID;
 
     this.candidateService.GetActivityLog(this.SelectedCandidateID).subscribe(
