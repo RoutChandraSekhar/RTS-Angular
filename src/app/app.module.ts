@@ -30,33 +30,22 @@ import { MatButtonModule, MatCheckbox, MatCheckboxModule, MatSelectModule } from
 
 
 
-
-
-
-
-
 @NgModule({
   declarations: [
-    
     AppComponent,
     OnboardingComponent,
     ReportsComponent,
     LoginComponent
-    
-   
-    
   ],
   imports: [
     FormsModule,
     BrowserModule, 
-    
     MasterModule,
     CvDatabaseModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
     MatSelectModule
-   
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:RTSInterceptorService, multi:true},
@@ -72,7 +61,6 @@ import { MatButtonModule, MatCheckbox, MatCheckboxModule, MatSelectModule } from
     RequestGroupWiseService,
     LoginService,
     CurrentSelectedCandidateService
-
     ],
   bootstrap: [AppComponent]
 })

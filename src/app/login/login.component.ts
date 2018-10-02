@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       },
 
       ()=>{
-        if (this.isLoggedIn=true){
+        if (this.isLoggedIn==true){
           this.LoginService.UpdateLoggedInUserDetails(this.LoggedInUserDetails);
           this.isLoggedinEvent.emit(true);
           this.router.navigate(['/home']);
