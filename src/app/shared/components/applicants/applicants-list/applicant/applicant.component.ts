@@ -109,6 +109,8 @@ export class ApplicantComponent implements OnInit,OnDestroy {
   
  this.getCandidateDetailsSubscription= this.candidateService.getCandidateDetails(+this.SelectedCandidateID).subscribe(
     (response)=>{
+
+
       this.ApplicantDetails=response;
       let candidateDetails =response["CandidateDetails"];
      //let candidateDetails =response;

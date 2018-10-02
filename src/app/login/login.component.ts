@@ -61,48 +61,44 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.SigninBtnText="Authenticating.."
     this.CheckLogin()
 
-    setTimeout( () => { /*Your Code*/
     
-      if (this.isLoggedIn==true){
-        this.LoginService.UpdateLoggedInUserDetails(this.LoggedInUserDetails);
-        this.isLoggedinEvent.emit(true);
-        this.router.navigate(['/home']);
-    }
-    else{
-          
-    this.isSigninDisabled=false;
-    this.SigninBtnText="Login"
-      console.log('here');
-      Swal('Invalid Login', 'Username and password is not valid.', 'error')
-    }
-    
-    
-    
-    }, 1500 );
 
   }  
 
    CheckLogin(){
-  this.LoginUserSubscripiton=  this.candidateService.LoginUser(this.UserName,this.Password).subscribe(response => {
+     let result:boolean=false;
+    this.LoginUserSubscripiton=  this.candidateService.LoginUser(this.UserName,this.Password).subscribe
+    (result => {
       
-       //console.log(response);
-      //  let UserDetails = response["UserDetails"];
-      //console.log(this.Password);
-      
-      if (response["UserDetails"].length>0){
-       this.LoggedInUserDetails=(response["UserDetails"]);
+  
+      if (result["UserDetails"].length>0){
+       this.LoggedInUserDetails=(result["UserDetails"]);
         this.isLoggedIn=true;
-        return true
+        result=true;
       }
         else{
-          return false
-        
+          result=false;
       }
        
       },
       (error)=>{
-        Swal('Oops...', 'Something went wrong! Please contact IT Deparment', 'error')
-        return false
+        Swal('Oops...', 'Something went wrong! Please contact IT Deparment', 'error');
+        result=false;
+      },
+
+      ()=>{
+        if (this.isLoggedIn=true){
+          this.LoginService.UpdateLoggedInUserDetails(this.LoggedInUserDetails);
+          this.isLoggedinEvent.emit(true);
+          this.router.navigate(['/home']);
+      }
+      else{       
+      this.isSigninDisabled=false;
+      this.SigninBtnText="Login"
+        console.log('here');
+        Swal('Invalid Login', 'Username and password is not valid.', 'error')
+      }
+
       }
 
       

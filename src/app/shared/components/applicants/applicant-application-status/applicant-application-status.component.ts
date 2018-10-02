@@ -67,8 +67,7 @@ ngOnDestroy(): void {
  this.GetApplicationStatusDetailsSubscription=   this.candidateService.GetApplicationStatusDetails(this.CurrentCandidateID).subscribe(
       (response)=>{
     
-      
-        console.log(response);
+        
 
         if ((!(response["ApplicationDetails"]==undefined)) || (!(response["ApplicationDetails"]==null))){
 
@@ -82,7 +81,10 @@ ngOnDestroy(): void {
         } 
         
         if((!(response.ApplicationDetails["Timeline"]== null)) || (!(response.ApplicationDetails["Timeline"] == undefined))){
+         
+          
           this.ApplicantTimeline=response.ApplicationDetails["Timeline"];
+         
           this.CurrentSelectedCandidatePageService.UpdateCurrentSelectedApplicantTimeline( this.ApplicantTimeline);
         } 
 

@@ -33,27 +33,27 @@ var myroutes : Routes=[
   {path:"candidates",  data:{depth:2000}, component:CvDatabaseComponent,
        children: [
     { path: '', redirectTo: 'overview', pathMatch: 'full' },
-    { path: 'overview/:mode',  data:{depth:1}, component: ApplicantOverviewComponent },
-    { path: 'status',  data:{depth:2}, component: ApplicantApplicationStatusComponent },
-    { path: 'logs',  data:{depth:3}, component: ApplicantApplicationLogComponent },
-    { path: 'overview',  data:{depth:200}, component: ApplicantOverviewComponent },
-    { path: 'overviewx',  data:{depth:205}, component: ApplicantOverviewComponent },
+    { path: 'overview/:mode',  data:{depth:2001}, component: ApplicantOverviewComponent },
+    { path: 'status',  data:{depth:2002}, component: ApplicantApplicationStatusComponent },
+    { path: 'logs',  data:{depth:2003}, component: ApplicantApplicationLogComponent },
+    { path: 'overview',  data:{depth:2004}, component: ApplicantOverviewComponent },
+    { path: 'overviewx',  data:{depth:2005}, component: ApplicantOverviewComponent },
     
   ]
   },
-  {path:"candidatesx",  data:{depth:301}, component:CvDatabaseComponent,
+  {path:"candidatesx",  data:{depth:3000}, component:CvDatabaseComponent,
   children: [
 { path: '', redirectTo: 'overview', pathMatch: 'full' },
-{ path: 'overview/:mode',  data:{depth:1}, component: ApplicantOverviewComponent },
-{ path: 'status',  data:{depth:2}, component: ApplicantApplicationStatusComponent },
-{ path: 'logs',  data:{depth:3}, component: ApplicantApplicationLogComponent },
-{ path: 'overview',  data:{depth:200}, component: ApplicantOverviewComponent },
-{ path: 'overviewx',  data:{depth:205}, component: ApplicantOverviewComponent },
+{ path: 'overview/:mode',  data:{depth:3001}, component: ApplicantOverviewComponent },
+{ path: 'status',  data:{depth:3002}, component: ApplicantApplicationStatusComponent },
+{ path: 'logs',  data:{depth:3003}, component: ApplicantApplicationLogComponent },
+{ path: 'overview',  data:{depth:3004}, component: ApplicantOverviewComponent },
+{ path: 'overviewx',  data:{depth:3005}, component: ApplicantOverviewComponent },
 
 ]
 }
  ];
- 
+
  var myroutesCVDatabase = RouterModule.forChild(myroutes);
 
 @NgModule({
@@ -70,10 +70,6 @@ var myroutes : Routes=[
     MatCheckboxModule,
     MatInputModule
 
-
-   
-
-  
   ],
   declarations: [CvDatabaseComponent, BreadcrumbCvDatabaseComponent, CvDatabaseQuickActionButtonsComponent, AddCandidateComponent, BreadcrumbAddCandidateComponent, AddCandidateQuickAcionButtonsComponent, AddCandidateFormPostionAppliedComponent, AddCandidateFormPersonalProfileComponent, AddCandidateFormWorkExperienceComponent, AddCandidateFormEmploymentProfileComponent, AddCandidateFormAcademicProfileComponent, AddCandidateFormWhyshurooqComponent, AddCandidateFormUploadcvComponent, AddCandidateFormEmploymentProfilesComponent, AddCandidateFormAcademicProfilesComponent, CandidateDetailsComponent],
   exports:[CvDatabaseComponent],

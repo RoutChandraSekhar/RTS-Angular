@@ -20,6 +20,8 @@ export class ApplicantTimelineComponent implements OnInit, OnDestroy {
     if(this.CurrentSelectedCandidatePageServiceSubscription !=undefined){
       this.CurrentSelectedCandidatePageServiceSubscription.unsubscribe();
     }
+    this.ApplicantTimeline=[];
+    this.CurrentSelectedCandidatePageService.UpdateCurrentSelectedApplicantTimeline(this.ApplicantTimeline);
   }
 
   ngOnInit() {
@@ -29,7 +31,7 @@ export class ApplicantTimelineComponent implements OnInit, OnDestroy {
      
     ApplicantTimeline=>
     {
-   
+
       this.ApplicantTimeline=ApplicantTimeline
     }
    

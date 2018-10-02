@@ -60,11 +60,15 @@ export class CurrentSelectedCandidatePageService {
     this.JbCurrentSelectedApplicantID.next(CurrentSelectedApplicantID);
   }
 
+
   UpdateCurrentSelectedApplicantTimeline(ApplicantTimeline:ApplicantTimeline[]){
+
+
     this.JbCurrentSelectedApplicantTimeline.next(ApplicantTimeline);
   }
 
   UpdateCurrentSelectedApplicantCVInfo(CurrentSelectedCandidateCVInfo:CurrentSelectedCandidateCVInfo){
+
     this.JbCVInfo.next(CurrentSelectedCandidateCVInfo);
   }
 

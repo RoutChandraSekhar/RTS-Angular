@@ -6,6 +6,7 @@ import { Vacancy } from '../models/vacancy';
 import { environment } from '../../../environments/environment';
 import { ApplicantDetails } from '../models/applicant-details';
 import { map } from 'rxjs/operators';
+
 import {  CandidateFilter } from '../models/searchfilter';
 
 
@@ -147,12 +148,6 @@ public CreateNewVacancy(Vacancy:string ){
   }
 
 
-  public LoginUser(UserName :string, Password: String){
-    //alert(this.ApiEndPoint + "api/common/loginsystemuser");
-    return this.http.get(this.ApiEndPoint + "api/common/loginsystemuser?username="+ UserName +"&password=" + Password,{responseType:"json"});
-  }
-
-
   public GetDashboard(DashboardID :string, ChartDailyPlotDisplayCount: String): Observable<any>{
     return this.http.get(this.ApiEndPoint + "api/common/getdashboard/" + DashboardID +"?ChartDailyPlotDisplayCount=" + ChartDailyPlotDisplayCount,{responseType:"json"});
   }
@@ -221,6 +216,19 @@ uploadDocuments(payload: FormData) {
   headers.append('Content-Type', 'application/json');
   return this.http.post(this.ApiEndPoint + "api/documentupload/uploadDocuments?apikey=123", payload, { headers: headers, responseType: 'text' })
 }
+
+
+public LoginUser(UserName :string, Password: String){
+  //alert(this.ApiEndPoint + "api/common/loginsystemuser");
+  var a= this.http.get(this.ApiEndPoint + "api/common/loginsystemuser?username="+ UserName +"&password=" + Password,{responseType:"json"});
+ console.log(a);
+  return a;
+ // return this.http.get(this.ApiEndPoint + "api/common/loginsystemuser?username="+ UserName +"&password=" + Password)
+ // .pipe(map(res => res)).toPromise();
+}
+
+
+
 
 
 

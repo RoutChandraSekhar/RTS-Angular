@@ -109,8 +109,7 @@ ApplicantsList: ApplicantBasicInfo[];
              this.CurrentSelectedCandidateCVInfo.cvFile=this.ApplicantProfileInfo.cvFIle;
              this.CurrentSelectedCandidateCVInfo.cvMimeType=this.ApplicantProfileInfo.cvMimeType;
             
-        
-
+           
              this.CurrentSelectedCandidatePageService.UpdateCurrentSelectedApplicantCVInfo(this.CurrentSelectedCandidateCVInfo);
     
 
@@ -160,6 +159,7 @@ ApplicantsList: ApplicantBasicInfo[];
       } else {
         this.ApplicantTimeline=response["ApplicationTimeline"];
       }
+
         this.CurrentSelectedCandidatePageService.UpdateCurrentSelectedApplicantTimeline(this.ApplicantTimeline);
       },
       (error)=>{console.log("error")}

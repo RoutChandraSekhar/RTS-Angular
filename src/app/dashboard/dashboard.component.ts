@@ -52,10 +52,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
    $('.tooltipped').tooltip();
  this.DashboardSubscription=  this.candidateService.GetDashboard( "1","7").subscribe(
         (response)=>{
-            /*
-            console.log(response);
-            console.log(response["dashboard"][0]);
-            */
+           
             let dash =response["dashboard"][0];
             
             this.Dashboard=dash;
@@ -70,23 +67,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
         }
         
             this.RecentCandidates=response["recentcandidates"];
-
-            /*
-            console.log(response);
-            console.log(this.Dashboard.ChartData)
-            console.log( this.RecentCandidates)
-            */
-
-
-            /*
-            setTimeout(()=>{
-                console.log(this.ChartData);
-                this.flot1(this.ChartData, this.ChartTicks);
-               
-               }
-                ,2000)
-            */
-        
+            this.RenderCharts(this.ChartTicks,this.ChartData);
         },
         (error)=>{console.log(error)}
 
@@ -125,13 +106,17 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
   
   }
 
+
+
+
   ngAfterViewInit(): void {
       //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
       //Add 'implements AfterViewInit' to the class.
+   /*
       setTimeout(() => {
         this.RenderCharts(this.ChartTicks,this.ChartData);
       }, 500);
-      
+      */
   }
 
   RenderCharts(ChartTicks:string[], chartData:number[]){
@@ -144,7 +129,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
             datasets: [{
                 label : 'Applicants registered',
                 data:chartData,
-                fill:false,
+                fill:true,
                 lineTension:0.8,
                 borderColor:"#00acc1",
                 borderWidth:3

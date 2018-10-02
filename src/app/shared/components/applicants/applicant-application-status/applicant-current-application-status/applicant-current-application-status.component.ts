@@ -60,7 +60,8 @@ export class ApplicantCurrentApplicationStatusComponent implements OnInit,OnDest
   }
 
   ngOnInit() {
-    this.CurrentSelectedCandidatePageService.UpdateCurrentSelectedApplicantTimeline(this.ApplicantTimeline);
+   
+    //this.CurrentSelectedCandidatePageService.UpdateCurrentSelectedApplicantTimeline(this.ApplicantTimeline);
     this.CurrentSelectedCandidateServiceSubscription= this.CurrentSelectedCandidateService.cast.subscribe(
       CurrentSelectedCandidate=>{
         this.CurrentSelectedCandidate=CurrentSelectedCandidate;
@@ -101,6 +102,7 @@ export class ApplicantCurrentApplicationStatusComponent implements OnInit,OnDest
       } else {
         this.ApplicantTimeline=response["ApplicationTimeline"];
       }
+     
         this.CurrentSelectedCandidatePageService.UpdateCurrentSelectedApplicantTimeline(this.ApplicantTimeline);
       },
       (error)=>{console.log("error")}

@@ -23,37 +23,46 @@ ngOnDestroy(): void {
   //Called once, before the instance is destroyed.
   //Add 'implements OnDestroy' to the class.
  
-
+ 
   if(this.CurrentSelectedCandidatePageServiceSubscription !=undefined){
     this.CurrentSelectedCandidatePageServiceSubscription.unsubscribe();
   }
+
+  this.CurrentSelectedCandidateCVInfo=null;
 
   
 }
 
   ngOnInit() {
-
-    setTimeout(() => {
       this.LoadDocuments();
-    }, 500);
   }
 
 
 
+
+
   LoadDocuments(){
+   
   this.CurrentSelectedCandidatePageServiceSubscription=  this.CurrentSelectedCandidatePageService.castCurrentSelectedApplicantCVInfo.subscribe(CurrentSelectedCandidateCVInfo=>
       {
+      
         this.CurrentSelectedCandidateCVInfo=CurrentSelectedCandidateCVInfo;
         
+       if (this.CurrentSelectedCandidateCVInfo !=null && this.CurrentSelectedCandidateCVInfo !=undefined){
         this.CVDownloadURL=environment.CVCDownloader +  this.CurrentSelectedCandidateCVInfo.cvFile;
-
         if (this.CurrentSelectedCandidateCVInfo.cvMimeType.toLowerCase()=="pdf"){
           this.CVInlineDisplayURL=environment.CVOnlinePDFViewer + this.CurrentSelectedCandidateCVInfo.cvFile;
         } else{
           this.CVInlineDisplayURL=environment.CVOnlineViewer + this.CurrentSelectedCandidateCVInfo.cvFile;
         }
+       }
+       
       }
-    )
+
+
+    ),
+    (error)=>{}
+  
   }
   }
 
